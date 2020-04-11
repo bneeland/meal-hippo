@@ -1,4 +1,4 @@
-"""customuser URL Configuration
+"""meal-hippo-2 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -16,11 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from . import views
-
 urlpatterns = [
-    path('admin/', admin.site.urls), # The admin site
-    path('users/', include('users.urls')), # The custom user app called 'users'
-    path('users/', include('django.contrib.auth.urls')), # All django user registration default views
-    path('', views.Home.as_view(), name='home'), # The home page
+    path('', include(('webplatform.urls', 'webplatform'), namespace='webplatform')),
+    path('admin/', admin.site.urls),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
+    path('users/', include('django.contrib.auth.urls')),
 ]

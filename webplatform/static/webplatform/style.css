@@ -1,0 +1,78 @@
+body {
+  color: #2D3033;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Segoe UI", Geneva, Frutiger, Verdana, "Helvetica Neue", Arial, sans-serif;
+}
+
+a, .btn-link {
+  color: steelblue;
+}
+
+a:hover, .btn-link:hover {
+  text-decoration: none;
+  color: #123048;
+}
+
+.jumbotron-splash {
+  background-image: url('splash.png');
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.navbar-light .navbar-brand, .logo a {
+  color: steelblue;
+  font-size: 1.5em;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
+
+.navbar-light .navbar-brand:hover {
+  color: steelblue;
+  text-decoration: none;
+}
+
+.logo a {
+  font-size: 1.2em;
+}
+
+.logo a:hover {
+  color: steelblue;
+}
+
+.navbar-nav .nav-item a.nav-link {
+  color: steelblue;
+}
+
+.navbar-nav .nav-item a.nav-link:hover {
+  color: #123048;;
+}
+
+.invitation {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  margin-bottom: 100px;
+}
+
+.btn-primary {
+  background: steelblue;
+  border: none;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-primary:hover {
+  background: #4E95D1;
+}
+
+.btn-light {
+  color: steelblue;
+  background: none;
+  border: none;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-light:hover {
+  color: #123048;
+}

@@ -1,0 +1,78 @@
+{% extends 'webplatform/base.html' %}
+
+{% load static %}
+
+{% block title %}How it works{% endblock %}
+
+{% block content %}
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+      <div class="jumbotron bg-white mb-0">
+        <h4 class="text-center">Meal Hippo is a platform that allows chefs to offer their fully cooked, ready-to-eat dishes to you.</h4>
+      </div>
+
+      <h3>How it works</h3>
+      <div class="card-group mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Choose a dish 🍲</h5>
+            <p class="card-text">Choose from several dishes offered by local chefs.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Your order is delivered directly to you 🚗</h5>
+            <p class="card-text">Delivery to your door is included in all orders.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-5">
+        <div class="card-body">
+          <h5 class="card-title">Choose a subscription or a one-time order 👍</h5>
+          <p class="card-text">You can subscribe to weekly orders, or order one at a time.</p>
+          <p class="card-text">If you subscribe, you can choose a different dish every week, or cancel any time.</p>
+        </div>
+      </div>
+
+      <h3>Where do the dishes come from?</h3>
+      <p>All food is prepared by local, food regulation-compliant chefs.</p>
+
+      <div class="jumbotron bg-medium mt-5">
+        <div class="containter align-content-stretch">
+          <div class="row">
+            <div class="col-md-8 text-center text-md-left my-auto">
+              <h5 class="m-0 mb-4 mb-md-0">Have more questions?</h5>
+            </div>
+            <div class="col-md-4 text-center text-md-right my-auto">
+              <a class="btn btn-primary" href="{% url 'webplatform:contact_view' %}" role="button">Contact&nbsp;us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  <div class="col-2"></div>
+</div>
+</div>
+
+
+
+<div class="jumbotron jumbotron-fluid bg-medium">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <h3>Get started</h3>
+        <h5>Get fresh food made by local chefs, delivered to you every week<br>🍲 🥘 🍛 🍝</h5>
+        <p><a class="btn btn-primary" href="">Get started</a></p>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
