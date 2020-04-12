@@ -1,12 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'registration/wrappers.html' %}
 
-{% block title %}Signup{% endblock %}
+{% load static %}
 
-{% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+{% load crispy_forms_tags %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block form %}
+<h2 class="text-center">Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" value="Sign up" class="btn btn-primary w-100">
+</form>
 {% endblock %}
