@@ -3,12 +3,73 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23281604-6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-23281604-6');
+    </script>
+    <!-- Charset -->
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %} - Meal Hippo</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'webplatform/favicon.ico' %}"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   </head>
   <body>
+
+
+    <nav class="navbar navbar-expand-md navbar-light py-3">
+      <a class="navbar-brand" href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-5">
+            <a class="nav-link" href="{% url 'webplatform:about_view' %}">How it works</a>
+          </li>
+          <li class="nav-item ml-5">
+            <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
+          </li>
+          <li class="nav-item ml-5">
+            <a class="btn btn-primary" href="" role="button">Get started</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     {% block content %}
     {% endblock %}
+
+    <footer class="container mb-5 text-center text-md-left">
+      <div class="row">
+        <div class="col-lg-6 col-sm mb-5">
+          <span class="logo">
+            <a href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
+          </span>
+        </div>
+        <div class="col-lg-3 col-sm">
+          <p><a href="{% url 'webplatform:about_view' %}">How it works</a></p>
+          <p><a href="{% url 'webplatform:contact_view' %}">Get in touch</a></p>
+        </div>
+        <div class="col-lg-3 col-sm">
+          <p>hello@mealhippo.com</p>
+          <p>780-243-7675</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
   </body>
 </html>

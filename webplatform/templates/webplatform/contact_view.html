@@ -1,4 +1,4 @@
-{% extends 'webplatform/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
@@ -29,21 +29,6 @@
             <h5 class="card-title">Email</h5>
             <p class="card-text">hello@mealhippo.com</p>
           </div>
-        </div>
-      </div>
-
-      <div class="jumbotron bg-medium">
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10">
-            <h5>Send us an email</h5>
-            <form method="post">
-              {% csrf_token %}
-              {{ form|crispy }}
-              <input type="submit" value="Send message" class="btn btn-primary w-100">
-            </form>
-          </div>
-          <div class="col-1"></div>
         </div>
       </div>
 
