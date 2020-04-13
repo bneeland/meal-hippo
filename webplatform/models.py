@@ -27,8 +27,11 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-    def get_add_to_cart_url(self):
-        return reverse("webplatform:add_to_cart", kwargs={'pk': self.pk})
+    def get_add_to_order_url(self):
+        return reverse("webplatform:add_to_order", kwargs={'pk': self.pk})
+
+    def get_remove_from_order_url(self):
+        return reverse("webplatform:remove_from_order", kwargs={'pk': self.pk})
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -7,6 +7,13 @@
 {% block content %}
 
 <div class="container mb-5">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-primary" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
@@ -17,7 +24,8 @@
         <p>{{ supplier.business_name }}</p>
         {% for item in supplier.item_set.all %}
           <p><i>{{ item.name }}</i></p>
-          <p><a href="{{ item.get_add_to_cart_url }}">Add to cart</a></p>
+          <p><a href="{{ item.get_add_to_order_url }}">Add to order</a></p>
+          <p><a href="{{ item.get_remove_from_order_url }}">Remove from order</a></p>
         {% endfor %}
       {% endfor %}
 
