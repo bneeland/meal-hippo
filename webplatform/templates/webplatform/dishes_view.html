@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Dishes{% endblock %}
+
+{% block content %}
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+      <h1>Dishes</h1>
+
+      {% for supplier in suppliers %}
+        <p>{{ supplier.business_name }}</p>
+        {% for item in supplier.item_set.all %}
+          <p><i>{{ item.name }}</i></p>
+        {% endfor %}
+      {% endfor %}
+
+    </div>
+  <div class="col-2"></div>
+</div>
+</div>
+
+{% endblock %}

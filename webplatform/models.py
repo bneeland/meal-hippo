@@ -7,6 +7,7 @@ class Supplier(models.Model):
     contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=20)
     contact_address = models.TextField()
+    is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -18,6 +19,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.FloatField()
+    is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
