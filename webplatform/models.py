@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 class Supplier(models.Model):
     business_name = models.CharField(max_length=100)
@@ -26,17 +27,24 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    def get_add_to_cart_url(self):
+        return reverse("webplatform:add_to_cart", kwargs={'pk': self.pk})
+
 class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f'{self.item.name} (quantity: {self.quantity})'
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
     delivery_at = models.DateTimeField()
     instructions = models.TextField()
+    is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

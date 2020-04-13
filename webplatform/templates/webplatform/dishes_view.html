@@ -17,6 +17,7 @@
         <p>{{ supplier.business_name }}</p>
         {% for item in supplier.item_set.all %}
           <p><i>{{ item.name }}</i></p>
+          <p><a href="{{ item.get_add_to_cart_url }}">Add to cart</a></p>
         {% endfor %}
       {% endfor %}
 
