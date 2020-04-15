@@ -15,23 +15,27 @@
     {% endfor %}
   {% endif %}
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-7">
 
       <h1>Dishes</h1>
 
-      {% for supplier in suppliers %}
-        <p>{{ supplier.business_name }}</p>
-        {% for item in supplier.item_set.all %}
+      {% for active_supplier in active_suppliers %}
+        <p>{{ active_supplier.business_name }}</p>
+        {% for item in active_supplier.item_set.all %}
           <p><i>{{ item.name }}</i></p>
           <p><a href="{{ item.get_add_to_order_url }}">Add to order</a></p>
-          <p><a href="{{ item.get_remove_from_order_url }}">Remove from order</a></p>
         {% endfor %}
       {% endfor %}
 
     </div>
-  <div class="col-2"></div>
-</div>
+    <div class="col-5">
+      <h3>Your current order</h3>
+      {% for order_item in order_items %}
+        <p>{{ order_item.item.name }}, quantity: {{ order_item.quantity }}</p>
+        <p><a href="{{ order_item.item.get_remove_from_order_url }}">Remove from order</a></p>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 {% endblock %}

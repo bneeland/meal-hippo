@@ -18,8 +18,18 @@ class HomeView(TemplateView):
 
 class DishesView(ListView):
     queryset = models.Supplier.objects.filter(is_active=True)
-    context_object_name = 'suppliers'
+    context_object_name = 'active_suppliers'
     template_name = 'webplatform/dishes_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            order_items = order.items.all()
+            context['order_items'] = order_items
+            print(context)
+            return context
 
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
