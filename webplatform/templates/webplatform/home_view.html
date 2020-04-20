@@ -13,22 +13,16 @@
     <div class="row">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <h1 class="splash-title text-center mb-5">Fresh food made by local chefs, delivered to you every week</h1>
-        <div class="card" id="get-started">
-          <div class="card-body">
-            <h5>Enter your email to get started</h5>
-            <form method="post">
-              {% csrf_token %}
-              {{ form|crispy }}
-              <input type="submit" value="Continue" class="btn btn-primary w-100">
-            </form>
-          </div>
-        </div>
+        <h2 class="splash-title text-center mb-5">Fresh food made by local chefs, delivered to you every week</h2>
+        <p class="text-center">
+          <a href="{% url 'webplatform:dishes_view' %}" class="btn btn-primary w-sm-100" role="button">Check out what you can order</a>
+        <p class="text-center">
+          <a href="{% url 'webplatform:support_view' %}" class="btn btn-light w-sm-100" role="button">Learn more</a>
+        </p>
       </div>
       <div class="col-md-3"></div>
     </div>
   </div>
-  <p class="text-center"><a href="{% url 'webplatform:support_view' %}" class="btn btn-light w-sm-100" role="button">Learn more</a></p>
 </div>
 
 <div class="jumbotron jumbotron-fluid bg-medium mb-0">
@@ -63,7 +57,7 @@
   </div>
 
   <div class="text-center mb-5">
-    <a class="btn btn-primary" href="" role="button">Get started</a>
+    <a class="btn btn-primary" href="{% url 'webplatform:dishes_view' %}" role="button">Get started</a>
   </div>
 </div>
 

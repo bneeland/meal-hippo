@@ -7,6 +7,7 @@
 {% block content %}
 
 <div class="container mb-5">
+
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-primary" role="alert">
@@ -14,27 +15,41 @@
       </div>
     {% endfor %}
   {% endif %}
+
   <div class="row">
-    <div class="col-7">
+
+    {% if order_items %}
+      <div class="col-7">
+    {% else %}
+      <div class="col">
+    {% endif %}
 
       <h1>Dishes</h1>
 
       {% for active_supplier in active_suppliers %}
-        <p>{{ active_supplier.business_name }}</p>
+        <h3>{{ active_supplier.business_name }}</h3>
         {% for item in active_supplier.item_set.all %}
           <p><i>{{ item.name }}</i></p>
-          <p><a href="{{ item.get_add_to_order_url }}">Add to order</a></p>
+          {% if user.is_authenticated %}
+            <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary">Add to order</a>
+          {% else %}
+            <a href="{% url 'login' %}?next={% url 'webplatform:dishes_view' %}" class="btn btn-primary">Add to order</a>
+          {% endif %}
         {% endfor %}
       {% endfor %}
 
     </div>
-    <div class="col-5">
+
+    {% if order_items %}
+      <div class="col-5">
       <h3>Your current order</h3>
       {% for order_item in order_items %}
         <p>{{ order_item.item.name }}, quantity: {{ order_item.quantity }}</p>
         <p><a href="{{ order_item.item.get_remove_from_order_url }}">Remove from order</a></p>
       {% endfor %}
-    </div>
+      </div>
+    {% endif %}
+
   </div>
 </div>
 

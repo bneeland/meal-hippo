@@ -17,19 +17,24 @@ class HomeView(TemplateView):
     template_name = 'webplatform/home_view.html'
 
 class DishesView(ListView):
-    queryset = models.Supplier.objects.filter(is_active=True)
-    context_object_name = 'active_suppliers'
+    model = models.Supplier
     template_name = 'webplatform/dishes_view.html'
+    context_object_name = 'active_suppliers'
+
+    def get_queryset(self):
+        return models.Supplier.objects.filter(is_active=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
-        if order_qs.exists():
-            order = order_qs[0]
-            order_items = order.items.all()
-            context['order_items'] = order_items
-            print(context)
-            return context
+
+        if self.request.user.is_authenticated:
+            order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+            if order_qs.exists():
+                order = order_qs[0]
+                order_items = order.items.all()
+                context['order_items'] = order_items
+
+        return context
 
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)

@@ -50,10 +50,6 @@ a:hover, .btn-link:hover {
   margin-bottom: 20px;
 }
 
-.jumbotron {
-  margin-bottom: 100px;
-}
-
 .btn-primary {
   background: steelblue;
   border: none;
@@ -67,7 +63,7 @@ a:hover, .btn-link:hover {
 
 .btn-light {
   color: steelblue;
-  background: none;
+  /* background: none; */
   border: none;
   padding-left: 25px;
   padding-right: 25px;
