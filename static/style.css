@@ -73,3 +73,8 @@ a:hover, .btn-link:hover {
 .btn-light:hover {
   color: #123048;
 }
+
+.badge.badge-light.message {
+  font-weight: normal;
+  margin-bottom: -1px;
+}

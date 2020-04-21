@@ -26,14 +26,13 @@ class DishesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         if self.request.user.is_authenticated:
             order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
             if order_qs.exists():
                 order = order_qs[0]
+                context['order'] = order
                 order_items = order.items.all()
                 context['order_items'] = order_items
-
         return context
 
 def add_to_order(request, pk):
@@ -45,14 +44,14 @@ def add_to_order(request, pk):
         if order.items.filter(item__pk=item.pk).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "The dish quantity in your order was increased successfully.")
+            messages.info(request, "Dish added")
         else:
             order.items.add(order_item)
-            messages.info(request, "The dish was added successfully to your order.")
+            messages.info(request, "Dish added")
     else:
         order = models.Order.objects.create(user=request.user, delivery_at=timezone.now(), is_completed=False)
         order.items.add(order_item)
-        messages.info(request, "The dish was added successfully to your order.")
+        messages.info(request, "Dish added")
     return redirect("webplatform:dishes_view")
 
 def remove_from_order(request, pk):
@@ -66,12 +65,12 @@ def remove_from_order(request, pk):
             if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
-                messages.info(request, "The dish quantity in your order was decreased successfully.")
+                messages.info(request, "Dish removed")
             else:
                 order_item.delete()
-                messages.info(request, "The dish was removed successfully from your order.")
+                # messages.info(request, "Dish removed")
         else:
-            messages.info(request, "The dish was not in your order.")
+            messages.info(request, "No dish to remove")
     else:
-        messages.info(request, "There is nothing in your order at the moment.")
+        messages.info(request, "No dish to remove")
     return redirect("webplatform:dishes_view")
