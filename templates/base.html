@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load cart_templatetags %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -42,6 +44,14 @@
             <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
           </li>
           {% if user.is_authenticated %}
+            <li class="nav-item ml-4">
+              <a href="{% url 'webplatform:dishes_view' %}">
+                <button type="button" class="btn btn-light">
+                  Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
+                </button>
+              </a>
+              <!-- <a class="nav-link" href="{% url 'webplatform:dishes_view' %}">Current order: {{ request.user|cart_item_count }}</a> -->
+            </li>
             <li class="nav-item ml-4">
               <a class="nav-link" href="{% url 'logout' %}">Log out</a>
             </li>
