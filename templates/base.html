@@ -33,15 +33,15 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ml-5">
+            <a class="nav-link" href="{% url 'webplatform:dishes_view' %}">Explore dishes</a>
+          </li>
+          <li class="nav-item ml-5">
             <a class="nav-link" href="{% url 'webplatform:support_view' %}">How it works</a>
           </li>
           <li class="nav-item ml-5">
             <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
           </li>
           {% if user.is_authenticated %}
-            {% comment %}<li class="nav-item ml-4">
-              <a class="nav-link" href="{% url 'app:account_home' %}">My account</a>
-            </li>{% endcomment %}
             <li class="nav-item ml-4">
               <a class="nav-link" href="{% url 'logout' %}">Log out</a>
             </li>
