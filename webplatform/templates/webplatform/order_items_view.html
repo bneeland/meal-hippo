@@ -34,7 +34,7 @@
             {% if user.is_authenticated %}
               <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add</a>
             {% else %}
-              <a href="{% url 'login' %}?next={% url 'webplatform:dishes_view' %}" class="btn btn-primary w-100">Add to order</a>
+              <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary w-100">Add to order</a>
             {% endif %}
           </div>
         </div>
@@ -77,7 +77,7 @@
               ${{ order.get_total_order_price|floatformat:2|intcomma }}
             </div>
           </div>
-          <a href="" class="btn btn-primary w-100">Checkout</a>
+          <a href="{% url 'webplatform:order_timing_view' %}" class="btn btn-primary w-100">Checkout</a>
         </div>
       </div>
 

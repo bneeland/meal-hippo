@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ml-5">
-            <a class="nav-link" href="{% url 'webplatform:dishes_view' %}">Explore dishes</a>
+            <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">Explore dishes</a>
           </li>
           <li class="nav-item ml-5">
             <a class="nav-link" href="{% url 'webplatform:support_view' %}">How it works</a>
@@ -47,12 +47,11 @@
           </li>
           {% if user.is_authenticated %}
             <li class="nav-item ml-4">
-              <a href="{% url 'webplatform:dishes_view' %}">
+              <a href="{% url 'webplatform:order_items_view' %}">
                 <button type="button" class="btn btn-light">
                   Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
                 </button>
               </a>
-              <!-- <a class="nav-link" href="{% url 'webplatform:dishes_view' %}">Current order: {{ request.user|cart_item_count }}</a> -->
             </li>
             <li class="nav-item ml-4">
               <a class="nav-link" href="{% url 'logout' %}">Log out</a>

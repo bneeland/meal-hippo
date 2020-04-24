@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
@@ -16,9 +17,9 @@ class ContactView(TemplateView):
 class HomeView(TemplateView):
     template_name = 'webplatform/home_view.html'
 
-class DishesView(ListView):
+class OrderItemsView(ListView):
     model = models.Supplier
-    template_name = 'webplatform/dishes_view.html'
+    template_name = 'webplatform/order_items_view.html'
     context_object_name = 'active_suppliers'
 
     def get_queryset(self):
@@ -52,7 +53,7 @@ def add_to_order(request, pk):
         order = models.Order.objects.create(user=request.user, delivery_at=timezone.now(), is_completed=False)
         order.items.add(order_item)
         messages.info(request, "Dish added")
-    return redirect("webplatform:dishes_view")
+    return redirect("webplatform:order_items_view")
 
 def remove_from_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
@@ -73,8 +74,20 @@ def remove_from_order(request, pk):
             messages.info(request, "No dish to remove")
     else:
         messages.info(request, "No dish to remove")
-    return redirect("webplatform:dishes_view")
+    return redirect("webplatform:order_items_view")
 
-class DeliveryDetailsView(UpdateView):
+class OrderTimingView(UpdateView):
+# class OrderTimingView(LoginRequiredMixin, UpdateView):
+    # login_url = 'login'
+
     model = models.Order
-    fields = ['']
+    fields = ['timing']
+    template_name = 'webplatform/order_timing_view.html'
+    success_url = 'home_view'
+
+    def get_object(self):
+        order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.items.count() > 0:
+                return order
