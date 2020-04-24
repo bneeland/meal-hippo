@@ -74,3 +74,7 @@ def remove_from_order(request, pk):
     else:
         messages.info(request, "No dish to remove")
     return redirect("webplatform:dishes_view")
+
+class DeliveryDetailsView(UpdateView):
+    model = models.Order
+    fields = ['']

@@ -62,9 +62,10 @@
                 {{ order_item.item.name }}
               </div>
               <div class="col-4 text-left">
-                <small>${{ order_item.item.price|floatformat:2|intcomma }}</small>
-                <span class="badge badge-secondary">&times; {{ order_item.quantity }}</span>
-                <a href="{{ order_item.item.get_add_to_order_url }}">&plus;</a> <a href="{{ order_item.item.get_remove_from_order_url }}">&minus;</a>
+                <small class="mr-3">${{ order_item.item.price|floatformat:2|intcomma }}</small>
+                <a href="{{ order_item.item.get_remove_from_order_url }}"><i class="fas fa-minus"></i></a>
+                <span class="badge badge-secondary">{{ order_item.quantity }}</span>
+                <a href="{{ order_item.item.get_add_to_order_url }}"><i class="fas fa-plus"></i></a>
               </div>
               <div class="col-3 text-right">
                 ${{ order_item.get_total_item_price|floatformat:2|intcomma }}

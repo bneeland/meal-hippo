@@ -31,6 +31,7 @@ class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=50, null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    instructions = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
