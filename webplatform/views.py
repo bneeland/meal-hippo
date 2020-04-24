@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
@@ -76,9 +77,9 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
-class OrderTimingView(UpdateView):
-# class OrderTimingView(LoginRequiredMixin, UpdateView):
-    # login_url = 'login'
+# class OrderTimingView(UpdateView):
+class OrderTimingView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
 
     model = models.Order
     fields = ['timing']
