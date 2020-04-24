@@ -61,3 +61,12 @@ class Order(models.Model):
         for item in self.items.all():
             total_order_price += item.get_total_item_price()
         return total_order_price
+
+class UserDeliveryDetail(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+    instructions = models.TextField()
+
+    def __str__(self):
+        return self.user.email

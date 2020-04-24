@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
 
@@ -77,14 +77,13 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
-# class OrderTimingView(UpdateView):
 class OrderTimingView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
     model = models.Order
     fields = ['timing']
     template_name = 'webplatform/order_timing_view.html'
-    success_url = 'home_view'
+    success_url = reverse_lazy('webplatform:order_delivery_view')
 
     def get_object(self):
         order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
@@ -92,3 +91,14 @@ class OrderTimingView(LoginRequiredMixin, UpdateView):
             order = order_qs[0]
             if order.items.count() > 0:
                 return order
+
+class OrderDeliveryView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+
+    model = models.UserDeliveryDetail
+    fields = ['phone', 'address', 'instructions',]
+    template_name = 'webplatform/order_delivery_view.html'
+    success_url = reverse_lazy('webplatform:home_view')
+
+    def get_object(self):
+        return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)

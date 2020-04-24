@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact', views.ContactView.as_view(), name='contact_view'),
     path('order/items', views.OrderItemsView.as_view(), name='order_items_view'),
     path('order/timing', views.OrderTimingView.as_view(), name='order_timing_view'),
+    path('order/delivery', views.OrderDeliveryView.as_view(), name='order_delivery_view'),
     path('add_to_order/<int:pk>', views.add_to_order, name='add_to_order'),
     path('remove_from_order/<int:pk>', views.remove_from_order, name='remove_from_order'),
 ]

@@ -14,23 +14,14 @@
 
   <div class="row">
 
-    {% if order_items %}
-      <div class="col-8">
-        <h1>Where do you want your order delivered?</h1>
+      <div class="col">
+        <h1>Just a few details for your delivery...</h1>
         <form method="post">
           {% csrf_token %}
           {{ form|crispy }}
           <input type="submit" value="Proceed to payment" class="btn btn-primary">
         </form>
-    {% else %}
-      <div class="col">
-        <p>You need to add some items to your cart before proceeding.</p>
-        <p><a href="{% url 'webplatform:order_items_view' %}">Explore dishes</a></p>
-    {% endif %}
-
-
-
-    </div> <!-- col 1 -->
+      </div> <!-- col 1 -->
 
     {% if order_items %}
 
