@@ -51,7 +51,7 @@ def add_to_order(request, pk):
             order.items.add(order_item)
             messages.info(request, "Dish added")
     else:
-        order = models.Order.objects.create(user=request.user, delivery_at=timezone.now(), is_completed=False)
+        order = models.Order.objects.create(user=request.user, is_completed=False)
         order.items.add(order_item)
         messages.info(request, "Dish added")
     return redirect("webplatform:order_items_view")
@@ -81,7 +81,7 @@ class OrderTimingView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
     model = models.Order
-    fields = ['timing']
+    fields = ['delivery_date', 'delivery_time']
     template_name = 'webplatform/order_timing_view.html'
     success_url = reverse_lazy('webplatform:order_delivery_view')
 

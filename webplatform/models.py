@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.utils import timezone
 
 class Supplier(models.Model):
     business_name = models.CharField(max_length=100)
@@ -48,7 +49,8 @@ class OrderItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
-    timing = models.DateTimeField()
+    delivery_date = models.DateField(null=True, default=timezone.now)
+    delivery_time = models.TimeField(null=True, default=timezone.now)
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
