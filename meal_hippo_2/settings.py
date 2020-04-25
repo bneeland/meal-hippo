@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'meal-hippo-2.urls'
+ROOT_URLCONF = 'meal_hippo_2.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'meal-hippo-2.wsgi.application'
+WSGI_APPLICATION = 'meal_hippo_2.wsgi.application'
 
 
 # Database
