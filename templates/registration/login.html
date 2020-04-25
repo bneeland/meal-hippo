@@ -13,4 +13,6 @@
   {{ form|crispy }}
   <input type="submit" value="Log in" class="btn btn-primary w-100">
 </form>
+<h3>Don't have an account?</h3>
+<p><a class="btn btn-primary" href="{% url 'users:signup' %}?next={{ request.GET.next }}" role="button">Sign up</a></p>
 {% endblock %}
