@@ -71,20 +71,18 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="my-4 mx-3 text-center text-md-left">
-      <div class="row">
-        <div class="col-lg-8 col-sm mb-5">
-          <span class="logo">
-            <a href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
-          </span>
-        </div>
-        <div class="col-lg-2 col-sm">
-          <p><a href="{% url 'webplatform:support_view' %}">How it works</a></p>
-          <p><a href="{% url 'webplatform:contact_view' %}">Get in touch</a></p>
-        </div>
-        <div class="col-lg-2 col-sm">
-          <p>hello@mealhippo.com</p>
-          <p>780-243-7675</p>
+    <footer>
+      <div class="container-fluid my-4 text-center text-md-left">
+        <div class="row">
+          <div class="col-md mb-4">
+            <span class="logo">
+              <a href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
+            </span>
+          </div>
+          <div class="col-md">
+            <p>hello@mealhippo.com</p>
+            <p>780-243-7675</p>
+          </div>
         </div>
       </div>
     </footer>
