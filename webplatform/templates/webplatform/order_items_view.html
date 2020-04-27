@@ -59,10 +59,10 @@
           <div class="container">
             {% for order_item in order_items %}
               <div class="row py-2">
-                <div class="col-5 text-left">
+                <div class="col-4 text-left">
                   {{ order_item.item.name }}
                 </div>
-                <div class="col-4 text-left">
+                <div class="col-5 text-center">
                   <small class="mr-3">${{ order_item.item.price|floatformat:2|intcomma }}</small>
                   <a href="{{ order_item.item.get_remove_from_order_url }}"><i class="fas fa-minus"></i></a>
                   <span class="badge badge-secondary">{{ order_item.quantity }}</span>
