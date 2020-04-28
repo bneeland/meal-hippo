@@ -8,6 +8,9 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
 
+import stripe
+stripe.api_key = "sk_test_nHnTQsXHpYu7VG1Dvl9z7dNi00Wgb8xDNd"
+
 from . import models
 
 class SupportView(TemplateView):
@@ -104,6 +107,12 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)
 
-class OrderPaymentView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        return render(self.request, "webplatform/order_payment_view.html")
+def index(request):
+	return render(request, 'webplatform/order_payment_view.html')
+
+def charge(request):
+	amount = 5
+	if request.method == 'POST':
+		print('Data:', request.POST)
+
+	return render(request, 'webplatform/order_payment_view.html')
