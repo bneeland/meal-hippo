@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -98,7 +99,11 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     model = models.UserDeliveryDetail
     fields = ['phone', 'address', 'instructions',]
     template_name = 'webplatform/order_delivery_view.html'
-    success_url = reverse_lazy('webplatform:home_view')
+    success_url = reverse_lazy('webplatform:order_payment_view')
 
     def get_object(self):
         return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)
+
+class OrderPaymentView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        return render(self.request, "webplatform/order_payment_view.html")
