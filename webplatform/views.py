@@ -107,12 +107,28 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)
 
-def index(request):
-	return render(request, 'webplatform/order_payment_view.html')
+class OrderPaymentView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        return render(self.request, 'webplatform/order_payment_view.html')
 
 def charge(request):
-	amount = 5
 	if request.method == 'POST':
-		print('Data:', request.POST)
+		amount = int(request.POST['amount'])
 
-	return render(request, 'webplatform/order_payment_view.html')
+		customer = stripe.Customer.create(
+			email=request.POST['email'],
+			name=request.POST['name'],
+			source=request.POST['stripeToken'],
+		)
+
+		charge = stripe.Charge.create(
+			customer=customer,
+			amount=amount*100,
+			currency='cad',
+			description='item',
+		)
+
+	return redirect(reverse_lazy('webplatform:order_complete_view'))
+
+class OrderCompleteView(TemplateView):
+    template_name = 'webplatform/order_complete_view.html'

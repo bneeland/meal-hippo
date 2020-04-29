@@ -53,8 +53,11 @@
       <script src="https://js.stripe.com/v3/"></script>
 
       <form action="{% url 'webplatform:charge' %}" method="post" id="payment-form">
-
-        <div>
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="amount" placeholder="Amount">
+        <div class="mb-3">
         	<label for="card-element">
         		Credit or debit card
         	</label>
