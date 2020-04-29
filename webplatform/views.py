@@ -111,24 +111,92 @@ class OrderPaymentView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         return render(self.request, 'webplatform/order_payment_view.html')
 
-def charge(request):
-	if request.method == 'POST':
-		amount = int(request.POST['amount'])
+    def post(self, *args, **kwargs):
+        user = self.request.user
+        order = models.Order.objects.get(user=user, is_completed=False)
+        token = self.request.POST.get('stripeToken')
+        price = order.get_total_order_price()
+        price_cents = int(price * 100)
 
-		customer = stripe.Customer.create(
-			email=request.POST['email'],
-			name=request.POST['name'],
-			source=request.POST['stripeToken'],
-		)
+        try:
+            stripe.Charge.create(
+                amount=price_cents,
+                currency='cad',
+                source=token,
+            )
 
-		charge = stripe.Charge.create(
-			customer=customer,
-			amount=amount*100,
-			currency='cad',
-			description='item',
-		)
+            payment = models.Payment()
+            payment.stripe_charge_id = charge["id"]
+            payment.user = user
+            payment.price = price
+            payment.save()
 
-	return redirect(reverse_lazy('webplatform:order_complete_view'))
+            order.is_completed = True
+            order.payment = payment
+            order.save()
+
+            messages.success(self.request, "Your order was successful")
+            return redirect(reverse_lazy('webplatform:order_complete_view'))
+
+        except stripe.error.CardError as e:
+            # # Since it's a decline, stripe.error.CardError will be caught
+            #
+            # print('Status is: %s' % e.http_status)
+            # print('Type is: %s' % e.error.type)
+            # print('Code is: %s' % e.error.code)
+            # # param is '' in this case
+            # print('Param is: %s' % e.error.param)
+            # print('Message is: %s' % e.error.message)
+            error_message = e.error.message
+            messages.error(self.request, f"{error_message}")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except stripe.error.RateLimitError as e:
+            # Too many requests made to the API too quickly
+            messages.error(self.request, "Rate limit error")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except stripe.error.InvalidRequestError as e:
+            # Invalid parameters were supplied to Stripe's API
+            messages.error(self.request, "Invalid parameters")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except stripe.error.AuthenticationError as e:
+            # Authentication with Stripe's API failed
+            # (maybe you changed API keys recently)
+            messages.error(self.request, "Not authenticated")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except stripe.error.APIConnectionError as e:
+            # Network communication with Stripe failed
+            messages.error(self.request, "Network error")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except stripe.error.StripeError as e:
+            # Display a very generic error to the user, and maybe send
+            # yourself an email
+            messages.error(self.request, "Something went wrong. You were not charged. Please try again.")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except Exception as e:
+            # Something else happened, completely unrelated to Stripe
+            messages.error(self.request, "A serious error occurred. We have been notified.")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
+
+
+
+# def charge(request):
+# 	if request.method == 'POST':
+# 		amount = int(request.POST['amount'])
+#
+# 		customer = stripe.Customer.create(
+# 			email=request.POST['email'],
+# 			name=request.POST['name'],
+# 			source=request.POST['stripeToken'],
+# 		)
+#
+# 		charge = stripe.Charge.create(
+# 			customer=customer,
+# 			amount=amount*100,
+# 			currency='cad',
+# 			description='item',
+# 		)
+#
+# 	return redirect(reverse_lazy('webplatform:order_complete_view'))
 
 class OrderCompleteView(TemplateView):
     template_name = 'webplatform/order_complete_view.html'
