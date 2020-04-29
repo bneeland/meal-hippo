@@ -50,7 +50,7 @@
         <div class="sticky-top">
           <h5>
             Your order
-            {% if messages and order_items %}
+            {% if messages %}
               {% for message in messages %}
                 <span class="badge badge-light message">{{ message }}</span>
               {% endfor %}

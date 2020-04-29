@@ -46,13 +46,22 @@ class OrderItem(models.Model):
     def get_total_item_price(self):
         return self.quantity * self.item.price
 
+class Payment(models.Model):
+    stripe_charge_id = models.CharField(max_length=50)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+    price = models.FloatField()
+    timestamp = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.email
+
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
     delivery_date = models.DateField(null=True, default=timezone.now)
     delivery_time = models.TimeField(null=True, default=timezone.now)
     is_completed = models.BooleanField(default=False)
-    payment = models.ForeignKey("Payment", on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
@@ -70,15 +79,6 @@ class UserDeliveryDetail(models.Model):
     phone = models.CharField(max_length=20)
     address = models.TextField()
     instructions = models.TextField()
-
-    def __str__(self):
-        return self.user.email
-
-class Payment(models.Model):
-    stripe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
-    price = models.FloatField()
-    timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.email

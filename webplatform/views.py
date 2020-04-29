@@ -119,7 +119,7 @@ class OrderPaymentView(LoginRequiredMixin, View):
         price_cents = int(price * 100)
 
         try:
-            stripe.Charge.create(
+            charge = stripe.Charge.create(
                 amount=price_cents,
                 currency='cad',
                 source=token,
@@ -174,7 +174,7 @@ class OrderPaymentView(LoginRequiredMixin, View):
             return redirect(reverse_lazy('webplatform:order_payment_view'))
         except Exception as e:
             # Something else happened, completely unrelated to Stripe
-            messages.error(self.request, "A serious error occurred. We have been notified.")
+            messages.error(self.request, "An error unrelated to payment processing occurred")
             return redirect(reverse_lazy('webplatform:order_payment_view'))
 
 

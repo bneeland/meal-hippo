@@ -50,6 +50,12 @@
     <div class="col-2"></div>
     <div class="col-8">
 
+      {% if messages %}
+        {% for message in messages %}
+          <span class="badge badge-light message">{{ message }}</span>
+        {% endfor %}
+      {% endif %}
+
       <script src="https://js.stripe.com/v3/"></script>
 
       <form action="" method="post" id="payment-form">
