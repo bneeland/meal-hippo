@@ -159,7 +159,7 @@ class OrderPaymentView(LoginRequiredMixin, View):
         except stripe.error.AuthenticationError as e:
             # Authentication with Stripe's API failed
             # (maybe you changed API keys recently)
-            messages.error(self.request, "Not authenticated")
+            messages.error(self.request, "Payment keys incorrect--not authenticated")
             return redirect(reverse_lazy('webplatform:order_payment_view'))
         except stripe.error.APIConnectionError as e:
             # Network communication with Stripe failed
