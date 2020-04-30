@@ -7,9 +7,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
+from django.conf import settings
 
 import stripe
-stripe.api_key = "sk_test_nHnTQsXHpYu7VG1Dvl9z7dNi00Wgb8xDNd"
+stripe.api_key = settings.STRIPE_API_SECRET_KEY
 
 from . import models
 
@@ -109,7 +110,13 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
 
 class OrderPaymentView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        return render(self.request, 'webplatform/order_payment_view.html')
+        order = models.Order.objects.get(user=self.request.user, is_completed=False)
+        order_items = order.items.all()
+        context = {
+            'order': order,
+            'order_items': order_items,
+        }
+        return render(self.request, 'webplatform/order_payment_view.html', context)
 
     def post(self, *args, **kwargs):
         user = self.request.user
@@ -135,18 +142,9 @@ class OrderPaymentView(LoginRequiredMixin, View):
             order.payment = payment
             order.save()
 
-            messages.success(self.request, "Your order was successful")
             return redirect(reverse_lazy('webplatform:order_complete_view'))
 
         except stripe.error.CardError as e:
-            # # Since it's a decline, stripe.error.CardError will be caught
-            #
-            # print('Status is: %s' % e.http_status)
-            # print('Type is: %s' % e.error.type)
-            # print('Code is: %s' % e.error.code)
-            # # param is '' in this case
-            # print('Param is: %s' % e.error.param)
-            # print('Message is: %s' % e.error.message)
             error_message = e.error.message
             messages.error(self.request, f"{error_message}")
             return redirect(reverse_lazy('webplatform:order_payment_view'))
@@ -178,25 +176,6 @@ class OrderPaymentView(LoginRequiredMixin, View):
             return redirect(reverse_lazy('webplatform:order_payment_view'))
 
 
-
-# def charge(request):
-# 	if request.method == 'POST':
-# 		amount = int(request.POST['amount'])
-#
-# 		customer = stripe.Customer.create(
-# 			email=request.POST['email'],
-# 			name=request.POST['name'],
-# 			source=request.POST['stripeToken'],
-# 		)
-#
-# 		charge = stripe.Charge.create(
-# 			customer=customer,
-# 			amount=amount*100,
-# 			currency='cad',
-# 			description='item',
-# 		)
-#
-# 	return redirect(reverse_lazy('webplatform:order_complete_view'))
 
 class OrderCompleteView(TemplateView):
     template_name = 'webplatform/order_complete_view.html'
