@@ -45,14 +45,16 @@
 </style>
 
 
-<div class="container-fluid mt-3 mb-5">
+<div class="container-fluid my-5">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
 
       {% if messages %}
         {% for message in messages %}
-          <span class="badge badge-light message">{{ message }}</span>
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
         {% endfor %}
       {% endif %}
 
@@ -60,13 +62,12 @@
       <div class="card">
         <div class="card-body">
           <div class="container">
-            <h3>Order summary</h3>
             {% for order_item in order_items %}
               <div class="row">
-                <div class="col text-left">
+                <div class="col text-left px-0">
                   {{ order_item.item.name }}
                 </div>
-                <div class="col text-right">
+                <div class="col text-right px-0">
                   ${{ order_item.get_total_item_price|floatformat:2|intcomma }}
                 </div>
               </div>
@@ -74,12 +75,12 @@
           </div>
           <div class="container">
             <div class="row border-top py-2">
-              <div class="col text-right">
+              <div class="col text-right px-0">
                 ${{ order.get_total_order_price|floatformat:2|intcomma }}
               </div>
             </div>
           </div>
-          <p><a href="{% url 'webplatform:order_items_view' %}">Change order</a></p>
+          <p class="text-center"><a href="{% url 'webplatform:order_items_view' %}">Change order</a></p>
         </div>
       </div>
 
@@ -108,7 +109,6 @@
       </div>
     </div>
 
-    <div class="col-2"></div>
   </div>
 </div>
 
