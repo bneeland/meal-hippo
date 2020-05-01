@@ -14,6 +14,6 @@
   <input type="submit" value="Log in" class="btn btn-primary w-100">
 </form>
 <p>Forgot password? <a href="{% url 'password_reset' %}">Reset it</a></p>
-<h3>Don't have an account?</h3>
-<p><a class="btn btn-primary" href="{% url 'users:signup' %}?next={{ request.GET.next }}" role="button">Sign up</a></p>
+<h4 class="text-center">Don't have an account?</h4>
+<p><a class="btn btn-primary w-100" href="{% url 'users:signup' %}?next={{ request.GET.next }}" role="button">Sign up</a></p>
 {% endblock %}

@@ -27,7 +27,27 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   </head>
   <body>
-
+    {% if user.is_authenticated %}
+      <nav class="navbar navbar-expand-md navbar-light border-bottom bg-light">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ml-4">
+              <span class="navbar-text">
+                {{ request.user.email }}
+              </span>
+            </li>
+            <li class="nav-item ml-4">
+              <a href="{% url 'webplatform:order_items_view' %}">
+                <button type="button" class="btn btn-light">
+                  Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
+                </button>
+              </a>
+            </li>
+            <li class="nav-item ml-4">
+              <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+            </li>
+          </ul>
+      </nav>
+    {% endif %}
 
     <nav class="navbar navbar-expand-md navbar-light py-3">
       <a class="navbar-brand" href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
@@ -45,21 +65,7 @@
           <li class="nav-item ml-5">
             <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
           </li>
-          {% if user.is_authenticated %}
-            <li class="nav-item ml-4">
-              <a href="{% url 'webplatform:order_items_view' %}">
-                <button type="button" class="btn btn-light">
-                  Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
-                </button>
-              </a>
-            </li>
-            <li class="nav-item ml-4">
-              <span class="nav-link" href="{% url 'logout' %}">{{ request.user.email }}</span>
-            </li>
-            <li class="nav-item ml-4">
-              <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-            </li>
-          {% else %}
+          {% if not user.is_authenticated %}
             <li class="nav-item ml-5">
               <a class="nav-link" href="{% url 'login' %}">Log in</a>
             </li>

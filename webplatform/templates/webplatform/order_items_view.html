@@ -23,7 +23,7 @@
       <div class="container-fluid p-0">
         {% for active_supplier in active_suppliers %}
           <h4>{{ active_supplier.business_name }}</h4>
-          <div class="row m-0 p-0">
+          <div class="row m-0 mb-3 p-0">
               {% for item in active_supplier.item_set.all %}
                 <div class="col-lg-6 col-12 mb-3 m-0 p-0">
                   <div class=" mr-3 p-3 border rounded">
