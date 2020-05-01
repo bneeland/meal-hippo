@@ -5,10 +5,10 @@ from django.utils import timezone
 
 class Supplier(models.Model):
     business_name = models.CharField(max_length=100)
-    contact_name = models.CharField(max_length=100)
-    contact_email = models.EmailField()
-    contact_phone = models.CharField(max_length=20)
-    contact_address = models.TextField()
+    contact_name = models.CharField(max_length=100, blank=True, null=True)
+    contact_email = models.EmailField(blank=True, null=True)
+    contact_phone = models.CharField(max_length=20, blank=True, null=True)
+    contact_address = models.TextField(blank=True, null=True)
     is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
