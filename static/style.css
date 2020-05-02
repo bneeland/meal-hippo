@@ -4,6 +4,10 @@ body {
   font-size: 16px;
 }
 
+p {
+  color: #7C8A97;
+}
+
 a, .btn-link {
   color: steelblue;
 }
