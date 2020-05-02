@@ -51,7 +51,7 @@ def add_to_order(request, pk):
         if order.items.filter(item__pk=item.pk).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "Dish added")
+            messages.info(request, "Portion added")
         else:
             order.items.add(order_item)
             messages.info(request, "Dish added")
@@ -72,7 +72,7 @@ def remove_from_order(request, pk):
             if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
-                messages.info(request, "Dish removed")
+                messages.info(request, "Portion removed")
             else:
                 order_item.delete()
                 # messages.info(request, "Dish removed")
