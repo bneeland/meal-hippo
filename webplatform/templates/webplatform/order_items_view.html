@@ -31,7 +31,7 @@
                       <p class="card-text">{{ item.description }}</p>
                       <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
                       {% if user.is_authenticated %}
-                        <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add</a>
+                        <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add to order</a>
                       {% else %}
                         <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary w-100">Add to order</a>
                       {% endif %}
