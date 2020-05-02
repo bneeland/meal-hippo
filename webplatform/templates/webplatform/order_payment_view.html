@@ -103,7 +103,7 @@
             	<div id="card-errors" role="alert"></div>
             </div>
 
-            <button class="btn btn-primary w-100">Submit Payment</button>
+            <button class="btn btn-primary w-100">Pay ${{ order.get_total_order_price|floatformat:2|intcomma }} once</button>
           </form>
         </div>
       </div>
