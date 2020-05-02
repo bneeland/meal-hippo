@@ -44,16 +44,19 @@ class OrderItemsView(ListView):
 
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
+    supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_item, created = models.OrderItem.objects.get_or_create(item=item, user=request.user, is_completed=False)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__pk=item.pk).exists():
-            order_item.quantity += 1
+            order_item.quantity += supplier.minimum_portions
             order_item.save()
             messages.info(request, "Portion added")
         else:
             order.items.add(order_item)
+            order_item.quantity += (supplier.minimum_portions - 1)
+            order_item.save()
             messages.info(request, "Dish added")
     else:
         order = models.Order.objects.create(user=request.user, is_completed=False)
@@ -63,14 +66,15 @@ def add_to_order(request, pk):
 
 def remove_from_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
+    supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__pk=item.pk).exists():
             order_item_qs = models.OrderItem.objects.filter(item=item, user=request.user, is_completed=False)
             order_item = order_item_qs[0]
-            if order_item.quantity > 1:
-                order_item.quantity -= 1
+            if order_item.quantity > supplier.minimum_portions:
+                order_item.quantity -= supplier.minimum_portions
                 order_item.save()
                 messages.info(request, "Portion removed")
             else:

@@ -26,15 +26,17 @@
               {% for item in active_supplier.item_set.all %}
                 <div class="col-lg-6 col-12 mb-3 m-0 p-0">
                   <div class=" mr-3 p-3 border rounded shadow-sm">
-                      <h5 class="card-title">{{ item.name }}</h5>
-                      <p><small class="text-secondary">{{ active_supplier.business_name }}</small></p>
-                      <p class="card-text">{{ item.description }}</p>
-                      <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
-                      {% if user.is_authenticated %}
-                        <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add to order</a>
-                      {% else %}
-                        <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary w-100">Add to order</a>
-                      {% endif %}
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p><small class="text-secondary">{{ active_supplier.business_name }}</small></p>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
+                    <p class="card-text"><small>Minimum number of portions: {{ item.supplier.minimum_portions }}</small></p>
+                    <p class="card-text"><small>Must be ordered at least {{ item.supplier.minimum_lead_time }} {% if item.supplier.minimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
+                    {% if user.is_authenticated %}
+                      <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add to order</a>
+                    {% else %}
+                      <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary w-100">Add to order</a>
+                    {% endif %}
                   </div>
                 </div>
               {% endfor %}
