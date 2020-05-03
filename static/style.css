@@ -23,12 +23,13 @@ h1, h2, h3 {
 
 h2.splash-title {
   line-height: normal;
+  cursor: default;
 }
 
 .jumbotron-splash {
-  background-image: url('splash.png');
+  background-image: url('splash_3.png');
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: right;
 }
 
 .navbar-light .navbar-brand, .logo a {
@@ -71,6 +72,18 @@ h2.splash-title {
 }
 
 .btn-primary:hover {
+  background: #4E95D1;
+}
+
+.btn-outline-primary {
+  border-color: steelblue;
+  color: steelblue;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn-outline-primary:hover {
+  border-color: steelblue;
   background: #4E95D1;
 }
 

@@ -10,17 +10,18 @@
 
 <div class="jumbotron jumbotron-fluid jumbotron-splash mb-0 bg-white">
   <div class="container mb-5">
-    <div class="row py-5">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <h2 class="splash-title text-center mb-5">Cooked, home-style food, from chefs in your area, delivered to you every week</h2>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2 class="splash-title mb-4">Cooked, home-style food from chefs in your area, delivered to you</h2>
+        <h6 class="splash-title mb-5">Choose <span class="border rounded p-2">one-time order</span> or <span class="border rounded p-2">subscription</span></h6>
         <p class="text-center">
+        <p>
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-primary w-sm-100" role="button">Explore dishes</a>
         <p class="text-center">
-          <a href="{% url 'webplatform:support_view' %}" class="btn btn-light w-sm-100" role="button">Learn more</a>
+        <p>
+          <a href="{% url 'webplatform:support_view' %}" class="btn btn-outline-primary w-sm-100" role="button">Learn more</a>
         </p>
       </div>
-      <div class="col-md-3"></div>
     </div>
   </div>
 </div>
@@ -43,7 +44,7 @@
       </div>
       <div class="card shadow">
         <div class="card-body">
-          <h5 class="card-title">Choose a subscription or a one-time order 👍</h5>
+          <h5 class="card-title">Choose a one-time order or a subscription 👍</h5>
           <p class="card-text">You can subscribe to weekly orders, or order one at a time.</p>
           <p class="card-text">If you subscribe, you can choose a different dish every week, or cancel any time.</p>
         </div>
@@ -96,7 +97,7 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Take a break on busy weeks ✌️</h5>
+          <h5 class="card-title">Take a break on busy weeks 🛋️</h5>
           <p class="card-text">Get a few meals delivered when you're busy. Plan ahead for busy weeks by ordering a few dishes ahead of time.</p>
         </div>
       </div>
