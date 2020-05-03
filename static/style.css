@@ -5,7 +5,7 @@ body {
 }
 
 p {
-  color: #7C8A97;
+  color: #626d78;
 }
 
 a, .btn-link {
@@ -15,6 +15,14 @@ a, .btn-link {
 a:hover, .btn-link:hover {
   text-decoration: none;
   color: #123048;
+}
+
+h1, h2, h3 {
+  line-height: 2em;
+}
+
+h2.splash-title {
+  line-height: normal;
 }
 
 .jumbotron-splash {
@@ -68,7 +76,6 @@ a:hover, .btn-link:hover {
 
 .btn-light {
   color: steelblue;
-  /* background: none; */
   border: none;
   padding-left: 25px;
   padding-right: 25px;
