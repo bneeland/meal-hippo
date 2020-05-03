@@ -25,6 +25,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+     <!-- Crips Chat -->
+     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="236504b4-421b-42dd-a06a-f2b089be0bed";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   </head>
   <body>
     {% if user.is_authenticated %}
@@ -81,7 +83,7 @@
     {% endblock %}
 
     <footer>
-      <div class="container-fluid text-center py-4 border-top">
+      <div class="container-fluid text-center py-4 mb-5 border-top">
         <div class="row">
           <div class="col-sm text-sm-left mb-4">
             <span class="logo">
