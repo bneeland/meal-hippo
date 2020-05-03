@@ -14,6 +14,7 @@
   <input type="hidden" name="next" value="{{ request.GET.next }}"/>
   <input type="submit" value="Sign up" class="btn btn-primary w-100">
 </form>
-<h4 class="text-center">Already have an account?</h4>
+<hr>
+<h5 class="text-center">Already have an account?</h5>
 <p><a class="btn btn-primary w-100" href="{% url 'login' %}?next={{ request.GET.next }}" role="button">Sign up</a></p>
 {% endblock %}
