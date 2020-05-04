@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 import stripe
 stripe.api_key = settings.STRIPE_API_SECRET_KEY
@@ -62,6 +63,13 @@ def add_to_order(request, pk):
         order = models.Order.objects.create(user=request.user, is_completed=False)
         order.items.add(order_item)
         messages.info(request, "Dish added")
+        send_mail(
+            subject='New order created on mealhippo.com',
+            message='A new order was created on mealhippo.com. The user who created the order is '+request.user.email+'.',
+            from_email='web.bot@mealhippo.com',
+            recipient_list=['hello@mealhippo.com'],
+            fail_silently=False,
+        )
     return redirect("webplatform:order_items_view")
 
 def remove_from_order(request, pk):
@@ -145,6 +153,15 @@ class OrderPaymentView(LoginRequiredMixin, View):
             order.is_completed = True
             order.payment = payment
             order.save()
+
+
+            send_mail(
+                subject='Order completed on mealhippo.com',
+                message='An order was completed on mealhippo.com. The user\' email is '+user.email+'.',
+                from_email='web.bot@mealhippo.com',
+                recipient_list=['hello@mealhippo.com'],
+                fail_silently=False,
+            )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
 
