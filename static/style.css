@@ -1,6 +1,7 @@
 body {
   color: #2D3033;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Segoe UI", Geneva, Frutiger, Verdana, "Helvetica Neue", Arial, sans-serif;
+  /* font-family: Arial; */
   font-size: 16px;
 }
 
@@ -23,7 +24,6 @@ h1, h2, h3 {
 
 h2.splash-title {
   line-height: normal;
-  cursor: default;
 }
 
 h6.splash-title {
@@ -88,8 +88,9 @@ h6.splash-title {
 }
 
 .btn-outline-primary:hover {
+  background: #f8f9fa;
   border-color: steelblue;
-  background: #4E95D1;
+  color: #123048;
 }
 
 .btn-light {
