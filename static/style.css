@@ -80,6 +80,7 @@ h2.splash-title {
   color: steelblue;
   padding-left: 25px;
   padding-right: 25px;
+  background-color: white;
 }
 
 .btn-outline-primary:hover {
