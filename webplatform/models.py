@@ -50,12 +50,12 @@ class OrderItem(models.Model):
 
 class Payment(models.Model):
     stripe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET('deleted_user@example.com'), blank=True, null=True)
     price = models.FloatField()
     timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.email
+        return str(self.user)
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -63,7 +63,7 @@ class Order(models.Model):
     delivery_date = models.DateField(null=True, default=timezone.now)
     delivery_time = models.TimeField(null=True, default=timezone.now)
     is_completed = models.BooleanField(default=False)
-    payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(Payment, on_delete=models.SET('deleted_user@example.com'), blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
