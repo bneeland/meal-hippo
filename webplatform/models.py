@@ -22,6 +22,7 @@ class Item(models.Model):
     description = models.TextField()
     price = models.FloatField()
     minimum_portions = models.IntegerField(blank=True, null=True)
+    portion_increment = models.IntegerField(blank=True, null=True)
     minimum_lead_time = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)

@@ -51,7 +51,7 @@ def add_to_order(request, pk):
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__pk=item.pk).exists():
-            order_item.quantity += 1
+            order_item.quantity += item.portion_increment
             order_item.save()
             messages.info(request, "Portion added")
         else:
@@ -86,7 +86,7 @@ def remove_from_order(request, pk):
             order_item_qs = models.OrderItem.objects.filter(item=item, user=request.user, is_completed=False)
             order_item = order_item_qs[0]
             if order_item.quantity > item.minimum_portions:
-                order_item.quantity -= 1
+                order_item.quantity -= item.portion_increment
                 order_item.save()
                 messages.info(request, "Portion removed")
             else:
