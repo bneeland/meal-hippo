@@ -27,7 +27,6 @@
                 <div class="col-lg-6 col-12 mb-3 m-0 p-0">
                   <div class="card mr-3 p-3 border rounded shadow-sm">
                     <h5 class="card-title">{{ item.name }}</h5>
-                    <p><small class="text-secondary">{{ active_supplier.business_name }}</small></p>
                     <p class="card-text">{{ item.description }}</p>
                     <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
                     <p class="card-text"><small>Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %} | Portions in multiples of {{ item.portion_increment }}</small></p>

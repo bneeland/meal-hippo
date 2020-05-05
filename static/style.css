@@ -86,7 +86,7 @@ h2.splash-title {
 .btn-outline-primary:hover {
   background: #f8f9fa;
   border-color: steelblue;
-  color: #123048;
+  color: steelblue;
 }
 
 .btn-light {
