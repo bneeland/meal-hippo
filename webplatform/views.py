@@ -45,7 +45,7 @@ class OrderItemsView(ListView):
 
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
-    supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
+    # supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_item, created = models.OrderItem.objects.get_or_create(item=item, user=request.user, is_completed=False)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
@@ -56,32 +56,36 @@ def add_to_order(request, pk):
             messages.info(request, "Portion added")
         else:
             order.items.add(order_item)
-            order_item.quantity += (supplier.minimum_portions - 1)
+            order_item.quantity += (item.minimum_portions - 1)
             order_item.save()
             messages.info(request, "Dish added")
     else:
         order = models.Order.objects.create(user=request.user, is_completed=False)
         order.items.add(order_item)
+        order_item.quantity += (item.minimum_portions - 1)
+        order_item.save()
         messages.info(request, "Dish added")
-        send_mail(
-            subject='New order created on mealhippo.com',
-            message='A new order was created on mealhippo.com. The user who created the order is '+request.user.email+'.',
-            from_email='web.bot@mealhippo.com',
-            recipient_list=['hello@mealhippo.com'],
-            fail_silently=False,
-        )
+
+        # send_mail(
+        #     subject='New order created on mealhippo.com',
+        #     message='A new order was created on mealhippo.com. The user who created the order is '+request.user.email+'.',
+        #     from_email='web.bot@mealhippo.com',
+        #     recipient_list=['hello@mealhippo.com'],
+        #     fail_silently=True,
+        # )
+
     return redirect("webplatform:order_items_view")
 
 def remove_from_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
-    supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
+    # supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__pk=item.pk).exists():
             order_item_qs = models.OrderItem.objects.filter(item=item, user=request.user, is_completed=False)
             order_item = order_item_qs[0]
-            if order_item.quantity > supplier.minimum_portions:
+            if order_item.quantity > item.minimum_portions:
                 order_item.quantity -= 1
                 order_item.save()
                 messages.info(request, "Portion removed")
@@ -154,14 +158,13 @@ class OrderPaymentView(LoginRequiredMixin, View):
             order.payment = payment
             order.save()
 
-
-            send_mail(
-                subject='Order completed on mealhippo.com',
-                message='An order was completed on mealhippo.com. The user\' email is '+user.email+'.',
-                from_email='web.bot@mealhippo.com',
-                recipient_list=['hello@mealhippo.com'],
-                fail_silently=False,
-            )
+            # send_mail(
+            #     subject='Order completed on mealhippo.com',
+            #     message='An order was completed on mealhippo.com. The user\' email is '+user.email+'.',
+            #     from_email='web.bot@mealhippo.com',
+            #     recipient_list=['hello@mealhippo.com'],
+            #     fail_silently=True,
+            # )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
 

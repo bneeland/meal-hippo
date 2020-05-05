@@ -17,13 +17,13 @@ class SignUpView(CreateView):
         new_user = authenticate(email=email, password=password)
         login(self.request, new_user)
 
-        send_mail(
-            subject='New user signed up on mealhippo.com',
-            message='A new user signed up on mealhippo.com. The user\'s email is '+email+'.',
-            from_email='web.bot@mealhippo.com',
-            recipient_list=['hello@mealhippo.com'],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     subject='New user signed up on mealhippo.com',
+        #     message='A new user signed up on mealhippo.com. The user\'s email is '+email+'.',
+        #     from_email='web.bot@mealhippo.com',
+        #     recipient_list=['hello@mealhippo.com'],
+        #     fail_silently=True,
+        # )
 
         return valid
 

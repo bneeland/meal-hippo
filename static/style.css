@@ -26,10 +26,6 @@ h2.splash-title {
   line-height: normal;
 }
 
-h6.splash-title {
-  line-height: 3em;
-}
-
 .jumbotron-splash {
   background-image: url('splash_3.png');
   background-repeat: no-repeat;
