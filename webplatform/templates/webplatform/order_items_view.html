@@ -29,7 +29,9 @@
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
                     <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
-                    <p class="card-text"><small>Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %} | Portions in multiples of {{ item.portion_increment }}</small></p>
+                    <p class="card-text"><small>Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
+                       |
+                      {% if item.portion_increment > 1 %}Portions in multiples of {{ item.portion_increment }}{% endif %}</small></p>
                     <p class="card-text"><small>Order at least {{ item.minimum_lead_time }} {% if item.inimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
                     {% if user.is_authenticated %}
                       <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add to order</a>
