@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic import TemplateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -14,6 +14,7 @@ import stripe
 stripe.api_key = settings.STRIPE_API_SECRET_KEY
 
 from . import models
+from . import forms
 
 class SupportView(TemplateView):
     template_name = 'webplatform/support_view.html'
@@ -98,12 +99,25 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
-class OrderTimingView(LoginRequiredMixin, UpdateView):
+# class OrderTimingView(LoginRequiredMixin, UpdateView):
+#     login_url = 'login'
+#
+#     model = models.Order
+#     fields = ['delivery_date', 'delivery_time']
+#     template_name = 'webplatform/order_timing_view.html'
+#     success_url = reverse_lazy('webplatform:order_delivery_view')
+#
+#     def get_object(self):
+#         order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+#         if order_qs.exists():
+#             order = order_qs[0]
+#             if order.items.count() > 0:
+#                 return order
+class OrderTimingView(LoginRequiredMixin, FormView):
     login_url = 'login'
 
-    model = models.Order
-    fields = ['delivery_date', 'delivery_time']
     template_name = 'webplatform/order_timing_view.html'
+    form_class = forms.OrderTimingForm
     success_url = reverse_lazy('webplatform:order_delivery_view')
 
     def get_object(self):
