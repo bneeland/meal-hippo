@@ -61,8 +61,8 @@ class Payment(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
-    delivery_date = models.DateField(null=True, default=timezone.now)
-    delivery_time = models.TimeField(null=True, default=timezone.now)
+    delivery_date = models.DateField(null=True, default=timezone.localtime(timezone.now()))
+    delivery_time = models.TimeField(null=True, default=timezone.localtime(timezone.now()))
     is_completed = models.BooleanField(default=False)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
