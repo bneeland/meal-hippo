@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
+from datetime import time, timedelta
 
 class Supplier(models.Model):
     business_name = models.CharField(max_length=100)
@@ -61,8 +62,8 @@ class Payment(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
-    delivery_date = models.DateField(null=True, default=timezone.localtime(timezone.now()))
-    delivery_time = models.TimeField(null=True, default=timezone.localtime(timezone.now()))
+    delivery_date = models.DateField(null=True, default=timezone.localtime(timezone.now())+timedelta(days=3))
+    delivery_time = models.TimeField(null=True, default=time(19, 00))
     is_completed = models.BooleanField(default=False)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
