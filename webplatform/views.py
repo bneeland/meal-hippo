@@ -131,7 +131,7 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
     model = models.UserDeliveryDetail
-    fields = ['phone', 'address', 'instructions',]
+    fields = ['phone', 'address', 'instructions', 'is_subscribed']
     template_name = 'webplatform/order_delivery_view.html'
     success_url = reverse_lazy('webplatform:order_payment_view')
 
