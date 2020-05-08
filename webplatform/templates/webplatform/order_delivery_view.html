@@ -19,6 +19,7 @@
       <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
+        <p>If you subscribe, you will be able to choose a new dish every week.</p>
         <input type="submit" value="Continue" class="btn btn-primary w-100">
       </form>
     </div>

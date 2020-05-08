@@ -21,6 +21,7 @@
 
 
       <div class="container-fluid p-0">
+        <h3><b>Dishes</b></h3>
         {% for active_supplier in active_suppliers %}
           <div class="row m-0 p-0">
               {% for item in active_supplier.item_set.all %}
@@ -33,7 +34,7 @@
                       Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
                       {% if item.portion_increment > 1 %} | Portions in multiples of {{ item.portion_increment }}{% endif %}
                     </small></p>
-                    <p class="card-text"><small>Order at least {{ item.minimum_lead_time }} {% if item.inimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
+                    <p class="card-text"><small>Order at least {{ item.minimum_lead_time }} {% if item.minimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
                     {% if user.is_authenticated %}
                       <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary w-100">Add to order</a>
                     {% else %}
@@ -50,7 +51,7 @@
 
     {% if order_items %}
 
-      <div class="col-4">
+      <div class="col-4 mt-5 pt-3">
         <div class="sticky-top">
           <h5>
             Your order
@@ -78,7 +79,7 @@
             {% endfor %}
           </div>
           <div class="container">
-            <div class="row border-top py-2">
+            <div class="row border-top py-2 mb-2">
               <div class="col text-xl-right px-0">
                 <s class="text-secondary">Delivery fee: $7.00</s>
                 <p><small>Free delivery with first 5 orders</small></p>
