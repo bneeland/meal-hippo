@@ -8,6 +8,15 @@ class OrderTimingForm(ModelForm):
         model = models.Order
         fields = ['delivery_date', 'delivery_time']
         widgets = {
-            'delivery_date': forms.SelectDateWidget(),
-            'delivery_time': forms.TimeInput(),
+            'delivery_date': forms.DateInput(attrs={'type': 'date'}),
+            'delivery_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+
+class OrderDeliveryForm(ModelForm):
+    class Meta:
+        model = models.UserDeliveryDetail
+        fields = ['phone', 'address', 'instructions', 'is_subscribed']
+        widgets = {
+          'address': forms.Textarea(attrs={'rows':4}),
+          'instructions': forms.Textarea(attrs={'rows':4}),
         }

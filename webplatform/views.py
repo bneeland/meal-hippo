@@ -130,9 +130,8 @@ class OrderTimingView(LoginRequiredMixin, FormView):
 class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
-    model = models.UserDeliveryDetail
-    fields = ['phone', 'address', 'instructions', 'is_subscribed']
     template_name = 'webplatform/order_delivery_view.html'
+    form_class = forms.OrderDeliveryForm
     success_url = reverse_lazy('webplatform:order_payment_view')
 
     def get_object(self):
