@@ -6,7 +6,7 @@
 
 {% load humanize %}
 
-{% block title %}Dishes{% endblock %}
+{% block title %}Order{% endblock %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
         <div class="card-body">
           <h4>Thank you!</h4>
           <p>We're so happy you made this purchase.</p>
-          <p>As thanks, we've giving you one free portion on your next order. Just send an email to <b>hello@mealhippo.com</b> before your next purchase and we'll make it happen!</p>
+          <p>As thanks, we're giving you one free portion on your next order. Just send an email to <b>hello@mealhippo.com</b> before your next purchase and we'll make it happen!</p>
           <p><a href="{% url 'webplatform:order_items_view' %}">Back to dishes</a></p>
         </div>
       </div>
