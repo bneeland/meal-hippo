@@ -99,23 +99,10 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
-# class OrderTimingView(LoginRequiredMixin, UpdateView):
-#     login_url = 'login'
-#
-#     model = models.Order
-#     fields = ['delivery_date', 'delivery_time']
-#     template_name = 'webplatform/order_timing_view.html'
-#     success_url = reverse_lazy('webplatform:order_delivery_view')
-#
-#     def get_object(self):
-#         order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
-#         if order_qs.exists():
-#             order = order_qs[0]
-#             if order.items.count() > 0:
-#                 return order
-class OrderTimingView(LoginRequiredMixin, FormView):
+class OrderTimingView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
+    # fields = ['delivery_date', 'delivery_time']
     template_name = 'webplatform/order_timing_view.html'
     form_class = forms.OrderTimingForm
     success_url = reverse_lazy('webplatform:order_delivery_view')
