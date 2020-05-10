@@ -46,7 +46,6 @@ class OrderItemsView(ListView):
 
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
-    # supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_item, created = models.OrderItem.objects.get_or_create(item=item, user=request.user, is_completed=False)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
@@ -79,7 +78,6 @@ def add_to_order(request, pk):
 
 def remove_from_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
-    # supplier = get_object_or_404(models.Supplier, pk=item.supplier.pk)
     order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
     if order_qs.exists():
         order = order_qs[0]
@@ -102,7 +100,6 @@ def remove_from_order(request, pk):
 class OrderTimingView(LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
-    # fields = ['delivery_date', 'delivery_time']
     template_name = 'webplatform/order_timing_view.html'
     form_class = forms.OrderTimingForm
     success_url = reverse_lazy('webplatform:order_delivery_view')
