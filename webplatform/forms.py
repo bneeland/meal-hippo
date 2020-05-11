@@ -14,20 +14,25 @@ class OrderTimingForm(ModelForm):
 
         # Date dropdown menu choices
         cutoff_days = 2
-        number_of_dates = 5
-        sunday = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
-        while sunday.weekday() != 6:
-            sunday += datetime.timedelta(1)
+        weeks_worth_of_dates = 3
+        acceptable_days = [1, 3, 6] # Monday is 0, Sunday is 6
+        first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
+        while first_date.weekday() not in acceptable_days:
+            first_date += datetime.timedelta(1)
         DATE_CHOICES = (('', 'Select a date'),)
-        for d in range(number_of_dates):
-            next_date_as_date = sunday + datetime.timedelta(d*7)
-            next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
-            DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
-            DATE_CHOICES += DATE_CHOICE
+        for w in range(0, weeks_worth_of_dates):
+            for d in acceptable_days:
+                if w == 0 and first_date.weekday() > d:
+                    pass
+                else:
+                    next_date_as_date = first_date + datetime.timedelta(w*7 + d - first_date.weekday())
+                    next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
+                    DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
+                    DATE_CHOICES += DATE_CHOICE
 
         # Time dropdown menu choices
         start_time = 0 # 0 is noon
-        end_time = 9
+        end_time = 8
         TIME_CHOICES = (('', 'Select a time'),)
         for t in range(start_time, end_time + 1):
             # :00

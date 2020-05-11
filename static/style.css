@@ -17,10 +17,6 @@ a:hover, .btn-link:hover {
   color: #123048;
 }
 
-h1, h2, h3 {
-  line-height: 2em;
-}
-
 h2.splash-title {
   line-height: normal;
 }
@@ -40,6 +36,10 @@ h2.splash-title {
 .navbar-light .navbar-brand:hover {
   color: steelblue;
   text-decoration: none;
+}
+
+.navbar-light .navbar-text {
+  color: #626d78;
 }
 
 .logo a {
