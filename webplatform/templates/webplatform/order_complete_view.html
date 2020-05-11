@@ -10,25 +10,28 @@
 
 {% block content %}
 
-<div class="container-fluid mt-3 mb-5">
+
+
+
+
+<div class="container-fluid my-5">
 
   <div class="row">
 
-    <div class="col-2"></div>
 
-    <div class="col-8">
-      <h2><b>Order completed 🥳</b></h2>
-      <div class="card shadow">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+      <div class="jumbotron bg-white text-center">
+        <h3><b>Order completed 🥳</b></h3>
+      </div>
+      <div class="jumbotron card shadow-sm bg-white">
         <div class="card-body">
-          <h4>Thank you!</h4>
-          <p>Thank you for using Meal Hippo.</p>
-          <p>As thanks, we're giving you one free portion on your next order. Just send an email to <b>hello@mealhippo.com</b> before your next purchase and we'll make it happen.</p>
-          <p><a href="{% url 'webplatform:order_items_view' %}">Back to dishes</a></p>
+          <h4>Thank you for using Meal Hippo!</h4>
+          <p>As thanks, we're giving you one free portion on your next order. Just answer the questions below and we'll make it happen.</p>
+
         </div>
       </div>
     </div>
 
-    <div class="col-2"></div>
 
   </div>
 
