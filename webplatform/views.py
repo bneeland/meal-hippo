@@ -8,13 +8,13 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
 from django.conf import settings
-from django.core.mail import send_mail
 
 import stripe
 stripe.api_key = settings.STRIPE_API_SECRET_KEY
 
 from . import models
 from . import forms
+from . import tasks
 
 class SupportView(TemplateView):
     template_name = 'webplatform/support_view.html'
@@ -66,13 +66,11 @@ def add_to_order(request, pk):
         order_item.save()
         messages.info(request, "Dish added")
 
-        # send_mail(
-        #     subject='New order created on mealhippo.com',
-        #     message='A new order was created on mealhippo.com. The user who created the order is '+request.user.email+'.',
-        #     from_email='web.bot@mealhippo.com',
-        #     recipient_list=['hello@mealhippo.com'],
-        #     fail_silently=True,
-        # )
+        tasks.send_mail_with_celery.delay(
+            subject='New order created on mealhippo.com',
+            message='A new order was created on mealhippo.com. The user who created the order is ',
+            user=request.user.email,
+        )
 
     return redirect("webplatform:order_items_view")
 

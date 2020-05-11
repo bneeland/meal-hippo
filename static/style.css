@@ -89,11 +89,25 @@ h2.splash-title {
 }
 
 .btn-primary.green {
-  background: #5FA136;
+  background: #00A65B;
 }
 
 .btn-primary.green:hover {
-  background: #62B41C;
+  background: #00BD68;
+}
+
+.btn-outline-primary.grey {
+  border-color: #626d78;
+  color: #626d78;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: white;
+}
+
+.btn-outline-primary.grey:hover {
+  background: #f8f9fa;
+  border-color: #434B53;
+  color: #434B53;
 }
 
 .btn-light {
