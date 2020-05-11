@@ -68,8 +68,7 @@ def add_to_order(request, pk):
 
         tasks.send_mail_with_celery.delay(
             subject='New order created on mealhippo.com',
-            message='A new order was created on mealhippo.com. The user who created the order is ',
-            user=request.user.email,
+            message='A new order was created on mealhippo.com. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
         )
 
     return redirect("webplatform:order_items_view")
