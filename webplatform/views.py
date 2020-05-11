@@ -125,6 +125,7 @@ class OrderPaymentView(LoginRequiredMixin, View):
         context = {
             'order': order,
             'order_items': order_items,
+            'stripe_pk': settings.STRIPE_API_PUBLISHABLE_KEY,
         }
         return render(self.request, 'webplatform/order_payment_view.html', context)
 

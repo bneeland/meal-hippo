@@ -152,7 +152,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-STRIPE_API_SECRET_KEY = os.environ.get('STRIPE_API_SECRET_KEY')
+STRIPE_API_SECRET_KEY = os.environ.get('STRIPE_API_SECRET_KEY_TEST')
+STRIPE_API_PUBLISHABLE_KEY = os.environ.get('STRIPE_API_PUBLISHABLE_KEY_TEST')
 
 django_heroku.settings(locals())
 
