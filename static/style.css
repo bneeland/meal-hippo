@@ -88,6 +88,14 @@ h2.splash-title {
   color: steelblue;
 }
 
+.btn-primary.green {
+  background: #5FA136;
+}
+
+.btn-primary.green:hover {
+  background: #62B41C;
+}
+
 .btn-light {
   color: steelblue;
   border: none;
