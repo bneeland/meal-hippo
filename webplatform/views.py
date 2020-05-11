@@ -154,7 +154,7 @@ class OrderPaymentView(LoginRequiredMixin, View):
 
             tasks.send_mail_with_celery.delay(
                 subject='Order completed on mealhippo.com',
-                message='An order was completed on mealhippo.com. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+                message='An order was completed on mealhippo.com. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
             )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
