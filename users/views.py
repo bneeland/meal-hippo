@@ -4,10 +4,11 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth import authenticate, login
 from django.utils import timezone
 
-from .forms import CustomUserCreationForm
+from . import forms
+from . import tasks
 
 class SignUpView(CreateView):
-    form_class = CustomUserCreationForm
+    form_class = forms.CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
