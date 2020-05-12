@@ -90,3 +90,18 @@ class UserDeliveryDetail(models.Model):
 
     def __str__(self):
         return self.user.email
+
+class Feedback(models.Model):
+    FEEL_CHOICES = (
+        ('VD', 'Very disappointed'),
+        ('SD', 'Somewhat disappointed'),
+        ('ND', 'Not disappointed'),
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    feel_if_no_longer = models.CharField(max_length=2, choices=FEEL_CHOICES, default=None, verbose_name='How would you feel if you could no longer use Meal Hippo?')
+    type_of_people = models.TextField(verbose_name='What type of people do you think would most benefit from Meal Hippo?')
+    main_benefit = models.TextField(verbose_name='What is the main benefit you receive from Meal Hippo?')
+    how_to_improve = models.TextField(verbose_name='How can we improve Meal Hippo for you?')
+
+    def __str__(self):
+        return self.user.email

@@ -10,14 +10,9 @@
 
 {% block content %}
 
-
-
-
-
 <div class="container-fluid my-5">
 
   <div class="row">
-
 
     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
       <div class="jumbotron bg-white text-center">
@@ -26,12 +21,11 @@
       <div class="jumbotron card shadow-sm bg-white">
         <div class="card-body">
           <h4>Thank you for using Meal Hippo!</h4>
-          <p>As thanks, we're giving you one free portion on your next order. Just answer the questions below and we'll make it happen.</p>
-
+          <p>As thanks, we're giving you one free portion on your next order. Just fill out our feedback form and we'll get in touch to set up a free portion on you next order.</p>
+          <a href="{% url 'webplatform:feedback_view' %}" class="btn btn-primary btn-block">Give feedback</a>
         </div>
       </div>
     </div>
-
 
   </div>
 

@@ -193,5 +193,23 @@ class OrderPaymentView(LoginRequiredMixin, View):
 
 
 
-class OrderCompleteView(TemplateView):
+class OrderCompleteView(LoginRequiredMixin, TemplateView):
+    login_url = 'login'
+
     template_name = 'webplatform/order_complete_view.html'
+
+class FeedbackView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+
+    template_name = 'webplatform/feedback_view.html'
+    form_class = forms.FeedbackForm
+    success_url = reverse_lazy('webplatform:feedback_complete_view')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class FeedbackCompleteView(LoginRequiredMixin, TemplateView):
+    login_url = 'login'
+
+    template_name = 'webplatform/feedback_complete_view.html'

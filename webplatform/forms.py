@@ -70,3 +70,14 @@ class OrderDeliveryForm(ModelForm):
           'address': forms.Textarea(attrs={'rows':4}),
           'instructions': forms.Textarea(attrs={'rows':4}),
         }
+
+class FeedbackForm(ModelForm):
+    class Meta:
+        model = models.Feedback
+        fields = ['feel_if_no_longer', 'type_of_people', 'main_benefit', 'how_to_improve']
+        widgets = {
+            'feel_if_no_longer': forms.RadioSelect,
+            'type_of_people': forms.Textarea(attrs={'rows':3}),
+            'main_benefit': forms.Textarea(attrs={'rows':3}),
+            'how_to_improve': forms.Textarea(attrs={'rows':3}),
+        }
