@@ -28,10 +28,13 @@ a:hover, .btn-link:hover {
 
 h1, h2, h3 {
   color: var(--heading);
+  line-height: normal;
+  margin-bottom: 1.5em;
 }
 
 h4, h5, h6 {
   color: var(--sub_heading);
+  line-height: normal;
 }
 
 .splash-title {
