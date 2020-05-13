@@ -4,10 +4,11 @@
     --heading: #3B4362;
     --sub_heading: #4E5672;
     --text: #70747A;
-    --button_dark: #60D387;
-    --button_light: #73E89B;
-    --link_dark: #5CBD7D;
-    --link_light: #73E89B;
+    --logo: steelblue;
+    --button_dark: steelblue;
+    --button_light: #619BC3;
+    --link_dark: steelblue;
+    --link_light: #619BC3;
 }
 
 body {
@@ -48,7 +49,7 @@ h4, h5, h6 {
 }
 
 .navbar-light .navbar-brand, .logo a {
-  color: var(--heading);
+  color: var(--logo);
   font-size: 1.5em;
   /* font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif; */
   font-family: 'Varela Round', "Arial Rounded MT Bold", "Helvetica Rounded", sans-serif;
@@ -69,7 +70,7 @@ h4, h5, h6 {
 }
 
 .logo a:hover {
-  color: var(--heading);
+  color: var(--logo);
 }
 
 .navbar-nav .nav-item a.nav-link {
