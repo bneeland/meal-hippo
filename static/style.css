@@ -1,20 +1,29 @@
-body {
-  color: #2D3033;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Segoe UI", Geneva, Frutiger, Verdana, "Helvetica Neue", Arial, sans-serif;
-  /* font-size: 14px; */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap');
+
+:root {
+    --heading: #3B4362;
+    --text: #70747A;
+    --link_light: #00D991;
+    --link_dark: #00BB7D;
+    --flash: #69B578;
 }
 
-p {
-  color: #626d78;
+body {
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
 }
 
 a, .btn-link {
-  color: steelblue;
+  color: var(--link_light);
 }
 
 a:hover, .btn-link:hover {
   text-decoration: none;
-  color: #123048;
+  color: var(--link_dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading);
 }
 
 .splash-title {
@@ -28,18 +37,20 @@ a:hover, .btn-link:hover {
 }
 
 .navbar-light .navbar-brand, .logo a {
-  color: steelblue;
+  color: var(--heading);
   font-size: 1.5em;
-  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  /* font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif; */
+  font-family: 'Varela Round', "Arial Rounded MT Bold", "Helvetica Rounded", sans-serif;
+  font-weight: bold;
 }
 
 .navbar-light .navbar-brand:hover {
-  color: steelblue;
+  color: var(--heading);
   text-decoration: none;
 }
 
 .navbar-light .navbar-text {
-  color: #626d78;
+  color: var(--text);
 }
 
 .logo a {
@@ -47,15 +58,15 @@ a:hover, .btn-link:hover {
 }
 
 .logo a:hover {
-  color: steelblue;
+  color: var(--heading);
 }
 
 .navbar-nav .nav-item a.nav-link {
-  color: steelblue;
+  color: var(--text);
 }
 
 .navbar-nav .nav-item a.nav-link:hover {
-  color: #123048;;
+  color: var(--heading);
 }
 
 .invitation {
@@ -64,19 +75,19 @@ a:hover, .btn-link:hover {
 }
 
 .btn-primary {
-  background: steelblue;
+  background: var(--link_dark);
   border: none;
   padding-left: 25px;
   padding-right: 25px;
 }
 
 .btn-primary:hover {
-  background: #4E95D1;
+  background: var(--link_light);
 }
 
 .btn-outline-primary {
-  border-color: steelblue;
-  color: steelblue;
+  border-color: var(--link_dark);
+  color: var(--link_dark);
   padding-left: 25px;
   padding-right: 25px;
   background-color: white;
@@ -84,16 +95,8 @@ a:hover, .btn-link:hover {
 
 .btn-outline-primary:hover {
   background: #f8f9fa;
-  border-color: steelblue;
-  color: steelblue;
-}
-
-.btn-primary.green {
-  background: #00A65B;
-}
-
-.btn-primary.green:hover {
-  background: #00BD68;
+  border-color: var(--link_dark);
+  color: var(--link_dark);
 }
 
 .btn-outline-primary.grey {
@@ -111,14 +114,14 @@ a:hover, .btn-link:hover {
 }
 
 .btn-light {
-  color: steelblue;
+  color: #377056;
   border: none;
   padding-left: 25px;
   padding-right: 25px;
 }
 
 .btn-light:hover {
-  color: #123048;
+  color: #FF9900;
 }
 
 .badge.badge-success.message {
