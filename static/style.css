@@ -57,7 +57,7 @@ h4, h5, h6 {
 }
 
 .navbar-light .navbar-brand:hover {
-  color: var(--heading);
+  color: var(--logo);
   text-decoration: none;
 }
 
