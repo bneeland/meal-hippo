@@ -2,32 +2,43 @@
 
 :root {
     --heading: #3B4362;
+    --sub_heading: #4E5672;
     --text: #70747A;
-    --link_light: #00D991;
-    --link_dark: #00BB7D;
-    --flash: #69B578;
+    --button_light: #7BC48A;
+    --button_dark: #69B578;
+    --link_light: #8AD099;
+    --link_dark: #69B578;
 }
 
 body {
   color: var(--text);
   font-family: 'Lato', sans-serif;
+  font-size: 17px;
 }
 
 a, .btn-link {
-  color: var(--link_light);
+  color: var(--link_dark);
 }
 
 a:hover, .btn-link:hover {
   text-decoration: none;
-  color: var(--link_dark);
+  color: var(--link_light);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
   color: var(--heading);
+}
+
+h4, h5, h6 {
+  color: var(--sub_heading);
 }
 
 .splash-title {
   line-height: normal;
+}
+
+.splash-subtitle {
+  color: var(--sub_heading)
 }
 
 .jumbotron-splash {
@@ -75,19 +86,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: var(--link_dark);
+  background: var(--button_dark);
   border: none;
   padding-left: 25px;
   padding-right: 25px;
 }
 
 .btn-primary:hover {
-  background: var(--link_light);
+  background: var(--button_light);
 }
 
 .btn-outline-primary {
-  border-color: var(--link_dark);
-  color: var(--link_dark);
+  border-color: var(--button_dark);
+  color: var(--button_dark);
   padding-left: 25px;
   padding-right: 25px;
   background-color: white;
@@ -95,8 +106,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline-primary:hover {
   background: #f8f9fa;
-  border-color: var(--link_dark);
-  color: var(--link_dark);
+  border-color: var(--button_dark);
+  color: var(--button_dark);
 }
 
 .btn-outline-primary.grey {
@@ -114,14 +125,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-light {
-  color: #377056;
+  color: var(--link_dark);
   border: none;
   padding-left: 25px;
   padding-right: 25px;
 }
 
 .btn-light:hover {
-  color: #FF9900;
+  color: var(--link_light);
 }
 
 .badge.badge-success.message {

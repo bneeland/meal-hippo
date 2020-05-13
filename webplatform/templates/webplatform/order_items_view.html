@@ -19,7 +19,7 @@
     {% endif %}
 
       <div class="container-fluid p-0">
-        <h3><b>Dishes</b></h3>
+        <p >DISHES</p>
         {% for active_supplier in active_suppliers %}
           <div class="row m-0 p-0">
               {% for item in active_supplier.item_set.all %}
@@ -49,7 +49,7 @@
 
     {% if order_items %}
 
-      <div class="col-4 mt-5 pt-3">
+      <div class="col-4 mt-4 pt-3">
         <div class="sticky-top">
           <h5>
             Your order
