@@ -67,8 +67,8 @@ def add_to_order(request, pk):
         messages.info(request, "Dish added")
 
         tasks.send_mail_with_celery.delay(
-            subject='New order created on mealhippo.com',
-            message='A new order was created on mealhippo.com. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+            subject='New order created on mealhippo.com beta',
+            message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
         )
 
     return redirect("webplatform:order_items_view")
@@ -154,8 +154,8 @@ class OrderPaymentView(LoginRequiredMixin, View):
             order.save()
 
             tasks.send_mail_with_celery.delay(
-                subject='Order completed on mealhippo.com',
-                message='An order was completed on mealhippo.com. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+                subject='Order completed on mealhippo.com beta',
+                message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
             )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))

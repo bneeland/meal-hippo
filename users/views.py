@@ -19,8 +19,8 @@ class SignUpView(CreateView):
         login(self.request, new_user)
 
         tasks.send_mail_with_celery.delay(
-            subject='New user signed up on mealhippo.com',
-            message='A new user signed up on mealhippo.com. The user who did this was '+email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+            subject='New user signed up on mealhippo.com beta',
+            message='A new user signed up on mealhippo.com beta. The user who did this was '+email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
         )
 
         return valid
