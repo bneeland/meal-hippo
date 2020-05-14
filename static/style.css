@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap');
 
 :root {
-    --heading: #3B4362;
-    --sub_heading: #4E5672;
+    /* --heading: #3B4362; */
+    --heading: #303B66;
+    /* --sub_heading: #4E5672; */
+    --sub_heading: #3E4C7C;
     --text: #70747A;
-    --logo: steelblue;
-    --button_dark: steelblue;
-    --button_light: #619BC3;
-    --link_dark: steelblue;
-    --link_light: #619BC3;
+    /* --logo: steelblue; */
+    --logo: #3787CA;
+    /* --button_dark: steelblue; */
+    --button_dark: #3787CA;
+    /* --button_light: #619BC3; */
+    --button_light: #3595E4;
+    /* --link_dark: steelblue; */
+    --link_dark: #3787CA;
+    /* --link_light: #619BC3; */
+    --link_light: #3595E4;
+    --nav_dark: #303B66;
+    --nav_light: #3E4C7C;
 }
 
 body {
@@ -77,11 +86,11 @@ h4, h5, h6 {
 }
 
 .navbar-nav .nav-item a.nav-link {
-  color: var(--text);
+  color: var(--nav_dark);
 }
 
 .navbar-nav .nav-item a.nav-link:hover {
-  color: var(--heading);
+  color: var(--nav_light);
 }
 
 .invitation {
