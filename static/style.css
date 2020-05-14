@@ -1,23 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap');
 
 :root {
-    /* --heading: #3B4362; */
-    --heading: #303F66;
-    /* --sub_heading: #4E5672; */
-    --sub_heading: #3E4C7C;
+    --heading: #2D3142;
+    --sub_heading: #414655;
     --text: #70747A;
-    /* --logo: steelblue; */
     --logo: #3787CA;
-    /* --button_dark: steelblue; */
     --button_dark: #3787CA;
-    /* --button_light: #619BC3; */
-    --button_light: #3595E4;
-    /* --link_dark: steelblue; */
+    --button_light: #4693CF;
     --link_dark: #3787CA;
-    /* --link_light: #619BC3; */
-    --link_light: #3595E4;
-    --nav_dark: #6285A3;
-    --nav_light: #6298C6;
+    --link_light: #60A9D9;
+    --nav_dark: #4693CF;
+    --nav_light: #60A9D9;
+    --attention_dark: #E6C229;
+    --attention_light: #EED33D;
 }
 
 body {
@@ -99,22 +94,31 @@ h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.btn {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .btn-primary {
   background: var(--button_dark);
   border: none;
-  padding-left: 25px;
-  padding-right: 25px;
 }
 
 .btn-primary:hover {
   background: var(--button_light);
 }
 
+.btn-attention {
+  background: var(--attention_dark);
+}
+
+.btn-attention:hover {
+  background: var(--attention_light);
+}
+
 .btn-outline-primary {
   border-color: var(--button_dark);
   color: var(--button_dark);
-  padding-left: 25px;
-  padding-right: 25px;
   background-color: white;
 }
 
@@ -127,8 +131,6 @@ h4, h5, h6 {
 .btn-outline-primary.grey {
   border-color: #626d78;
   color: #626d78;
-  padding-left: 25px;
-  padding-right: 25px;
   background-color: white;
 }
 
@@ -141,12 +143,10 @@ h4, h5, h6 {
 .btn-light {
   color: var(--text);
   border: none;
-  padding-left: 25px;
-  padding-right: 25px;
 }
 
 .btn-light:hover {
-  color: var(--heading);
+  color: var(--link_light);
 }
 
 .badge.badge-success.message {
