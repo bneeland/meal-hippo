@@ -2,7 +2,7 @@
 
 :root {
     /* --heading: #3B4362; */
-    --heading: #303B66;
+    --heading: #303F66;
     /* --sub_heading: #4E5672; */
     --sub_heading: #3E4C7C;
     --text: #70747A;
@@ -16,8 +16,8 @@
     --link_dark: #3787CA;
     /* --link_light: #619BC3; */
     --link_light: #3595E4;
-    --nav_dark: #303B66;
-    --nav_light: #3E4C7C;
+    --nav_dark: #6285A3;
+    --nav_light: #6298C6;
 }
 
 body {
@@ -38,7 +38,8 @@ a:hover, .btn-link:hover {
 h1, h2, h3 {
   color: var(--heading);
   line-height: normal;
-  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 1.25em;
 }
 
 h4, h5, h6 {
