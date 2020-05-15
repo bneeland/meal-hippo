@@ -102,6 +102,8 @@ class Feedback(models.Model):
     type_of_people = models.TextField(verbose_name='What type of people do you think would most benefit from Meal Hippo?')
     main_benefit = models.TextField(verbose_name='What is the main benefit you receive from Meal Hippo?')
     how_to_improve = models.TextField(verbose_name='How can we improve Meal Hippo for you?')
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    # created_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.user.email
