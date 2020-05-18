@@ -20,11 +20,11 @@ from . import tasks
 class IsSubscribedMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super(IsSubscribedMixin, self).get_context_data(**kwargs)
-        user = self.request.user
-        user_subscription_qs = models.UserSubscription.objects.filter(user=user)
-        user_subscription = user_subscription_qs[0]
-        context['is_subscribed'] = user_subscription.is_subscribed
-        return context
+        if self.request.user.is_authenticated:
+            user_subscription_qs = models.UserSubscription.objects.filter(user=self.request.user)
+            user_subscription = user_subscription_qs[0]
+            context['is_subscribed'] = user_subscription.is_subscribed
+            return context
 
 class SupportView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/support_view.html'
