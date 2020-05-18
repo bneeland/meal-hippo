@@ -65,7 +65,7 @@ class OrderTimingForm(ModelForm):
 class OrderDeliveryForm(ModelForm):
     class Meta:
         model = models.UserDeliveryDetail
-        fields = ['phone', 'address', 'instructions', 'is_subscribed']
+        fields = ['phone', 'address', 'instructions']
         widgets = {
           'address': forms.Textarea(attrs={'rows':4}),
           'instructions': forms.Textarea(attrs={'rows':4}),

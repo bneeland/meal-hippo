@@ -17,4 +17,5 @@ urlpatterns = [
     path('feedback/thanks', views.FeedbackCompleteView.as_view(), name='feedback_complete_view'),
     path('add_to_order/<int:pk>', views.add_to_order, name='add_to_order'),
     path('remove_from_order/<int:pk>', views.remove_from_order, name='remove_from_order'),
+    path('subscribe_toggle/<path:path>', views.subscribe_toggle, name='subscribe_toggle'),
 ]

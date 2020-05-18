@@ -25,30 +25,27 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-     <!-- Crips Chat -->
+     <!-- Crisp Chat -->
      <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="236504b4-421b-42dd-a06a-f2b089be0bed";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   </head>
   <body>
     {% if user.is_authenticated %}
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-          <ul class="navbar-nav ml-md-auto mx-md-0 mx-auto text-md-left text-center">
-            <li class="nav-item ml-4">
-              <span class="navbar-text">
-                {{ request.user.email }}
-              </span>
-            </li>
-            <li class="nav-item ml-4">
-              <a href="{% url 'webplatform:order_items_view' %}">
-                <button type="button" class="btn btn-light bg-white">
-                  Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
-                </button>
-              </a>
-            </li>
-            <li class="nav-item ml-4">
-              <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-            </li>
-          </ul>
-      </nav>
+        <nav class="navbar navbar-expand-md navbar-light user-nav bg-light">
+            <ul class="navbar-nav ml-md-auto mx-md-0 mx-auto text-md-left text-center">
+              <li class="nav-item mr-4">
+                <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">Current order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.email }}</a>
+                <div class="dropdown-menu">
+                  <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">{% if is_subscribed %}Subscribed <i class="fas fa-toggle-on"></i>{% else %}Subscribe now <i class="fas fa-toggle-off"></i>{% endif %}</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                </div>
+              </li>
+            </ul>
+        </nav>
     {% endif %}
 
     <nav class="navbar navbar-expand-md navbar-light py-3 border-bottom">
@@ -58,20 +55,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-5">
+          <li class="nav-item mr-5">
             <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">Explore dishes</a>
           </li>
-          <li class="nav-item ml-5">
+          <li class="nav-item mr-5">
             <a class="nav-link" href="{% url 'webplatform:support_view' %}">How it works</a>
           </li>
-          <li class="nav-item ml-5">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
           </li>
           {% if not user.is_authenticated %}
-            <li class="nav-item ml-5">
+            <li class="nav-item ml-5 mr-5">
               <a class="nav-link" href="{% url 'login' %}">Log in</a>
             </li>
-            <li class="nav-item ml-5">
+            <li class="nav-item">
               <a class="btn btn-primary" href="{% url 'users:signup' %}?next={% url 'webplatform:order_items_view' %}" role="button">Sign up</a>
             </li>
           {% endif %}

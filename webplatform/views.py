@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic import TemplateView, ListView
+from django.views.generic.base import ContextMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -16,16 +17,25 @@ from . import models
 from . import forms
 from . import tasks
 
-class SupportView(TemplateView):
+class IsSubscribedMixin(ContextMixin):
+    def get_context_data(self, **kwargs):
+        context = super(IsSubscribedMixin, self).get_context_data(**kwargs)
+        user = self.request.user
+        user_subscription_qs = models.UserSubscription.objects.filter(user=user)
+        user_subscription = user_subscription_qs[0]
+        context['is_subscribed'] = user_subscription.is_subscribed
+        return context
+
+class SupportView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/support_view.html'
 
-class ContactView(TemplateView):
+class ContactView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/contact_view.html'
 
-class HomeView(TemplateView):
+class HomeView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/home_view.html'
 
-class OrderItemsView(ListView):
+class OrderItemsView(IsSubscribedMixin, ListView):
     model = models.Supplier
     template_name = 'webplatform/order_items_view.html'
     context_object_name = 'active_suppliers'
@@ -94,7 +104,26 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
-class OrderTimingView(LoginRequiredMixin, UpdateView):
+def subscribe_toggle(request, path):
+    user = request.user
+    user_subscription_qs = models.UserSubscription.objects.filter(user=user)
+    user_subscription = user_subscription_qs[0]
+    if user_subscription.is_subscribed == False:
+        user_subscription.is_subscribed = True
+        tasks.send_mail_with_celery.delay(
+            subject='User has subscribed on mealhippo.com beta',
+            message='A user has subscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+        )
+    else:
+        user_subscription.is_subscribed = False
+        tasks.send_mail_with_celery.delay(
+            subject='User has unsubscribed on mealhippo.com beta',
+            message='A user has unsubscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+        )
+    user_subscription.save()
+    return redirect(path)
+
+class OrderTimingView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
     template_name = 'webplatform/order_timing_view.html'
@@ -108,7 +137,7 @@ class OrderTimingView(LoginRequiredMixin, UpdateView):
             if order.items.count() > 0:
                 return order
 
-class OrderDeliveryView(LoginRequiredMixin, UpdateView):
+class OrderDeliveryView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
     login_url = 'login'
 
     template_name = 'webplatform/order_delivery_view.html'
@@ -118,7 +147,7 @@ class OrderDeliveryView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)
 
-class OrderPaymentView(LoginRequiredMixin, View):
+class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         order = models.Order.objects.get(user=self.request.user, is_completed=False)
         order_items = order.items.all()
@@ -193,12 +222,12 @@ class OrderPaymentView(LoginRequiredMixin, View):
 
 
 
-class OrderCompleteView(LoginRequiredMixin, TemplateView):
+class OrderCompleteView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
     login_url = 'login'
 
     template_name = 'webplatform/order_complete_view.html'
 
-class FeedbackView(LoginRequiredMixin, CreateView):
+class FeedbackView(IsSubscribedMixin, LoginRequiredMixin, CreateView):
     login_url = 'login'
 
     template_name = 'webplatform/feedback_view.html'
@@ -209,7 +238,7 @@ class FeedbackView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class FeedbackCompleteView(LoginRequiredMixin, TemplateView):
+class FeedbackCompleteView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
     login_url = 'login'
 
     template_name = 'webplatform/feedback_complete_view.html'

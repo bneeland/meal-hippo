@@ -95,6 +95,13 @@ class UserDeliveryDetail(models.Model):
     def __str__(self):
         return self.user.email
 
+class UserSubscription(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    is_subscribed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.email
+
 class Feedback(models.Model):
     FEEL_CHOICES = (
         ('VD', 'Very disappointed'),
