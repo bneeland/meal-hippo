@@ -19,8 +19,8 @@ from . import tasks
 
 class IsSubscribedMixin(ContextMixin):
     def get_context_data(self, **kwargs):
-        context = super(IsSubscribedMixin, self).get_context_data(**kwargs)
         if self.request.user.is_authenticated:
+            context = super(IsSubscribedMixin, self).get_context_data(**kwargs)
             user_subscription_qs = models.UserSubscription.objects.filter(user=self.request.user)
             user_subscription = user_subscription_qs[0]
             context['is_subscribed'] = user_subscription.is_subscribed
@@ -35,7 +35,7 @@ class ContactView(IsSubscribedMixin, TemplateView):
 class HomeView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/home_view.html'
 
-class OrderItemsView(IsSubscribedMixin, ListView):
+class OrderItemsView(ListView):
     model = models.Supplier
     template_name = 'webplatform/order_items_view.html'
     context_object_name = 'active_suppliers'
