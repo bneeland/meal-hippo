@@ -7,6 +7,6 @@
 # Mac
 .DS_Store
 
-Django
+# Django
 *.log
 db.sqlite3

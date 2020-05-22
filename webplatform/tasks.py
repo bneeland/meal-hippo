@@ -8,7 +8,7 @@ def send_mail_with_celery(subject, message):
         subject=subject,
         message=message,
         from_email='web.bot@mealhippo.com',
-        recipient_list=['hello@mealhippo.com'],
+        recipient_list=['hello@protonmail.com'],
         fail_silently=True,
     )
     return None
