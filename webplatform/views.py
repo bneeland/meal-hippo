@@ -78,7 +78,9 @@ def add_to_order(request, pk):
 
         tasks.send_mail_with_celery.delay(
             subject='New order created on mealhippo.com beta',
-            message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+            message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+            recipient_list=['hello@mealhippo.com'],
+            html_message='<h1>New user</h1><p>A new user signed up on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
         )
 
     return redirect("webplatform:order_items_view")
