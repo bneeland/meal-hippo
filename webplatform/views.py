@@ -80,7 +80,7 @@ def add_to_order(request, pk):
             subject='New order created on mealhippo.com beta',
             message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
             recipient_list=['hello@mealhippo.com'],
-            html_message='<h1>New user</h1><p>A new user signed up on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+            html_message='<h1>New order</h1><p>A new order was created on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
         )
 
     return redirect("webplatform:order_items_view")
@@ -114,13 +114,17 @@ def subscribe_toggle(request, path):
         user_subscription.is_subscribed = True
         tasks.send_mail_with_celery.delay(
             subject='User has subscribed on mealhippo.com beta',
-            message='A user has subscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+            message='A user has subscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+            recipient_list=['hello@mealhippo.com'],
+            html_message='<h1>User subscribed</h1><p>A user has subscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
         )
     else:
         user_subscription.is_subscribed = False
         tasks.send_mail_with_celery.delay(
             subject='User has unsubscribed on mealhippo.com beta',
-            message='A user has unsubscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+            message='A user has unsubscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+            recipient_list=['hello@mealhippo.com'],
+            html_message='<h1>User unsubscribed</h1><p>A user has unsubscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
         )
     user_subscription.save()
     return redirect(path)
@@ -186,7 +190,9 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
 
             tasks.send_mail_with_celery.delay(
                 subject='Order completed on mealhippo.com beta',
-                message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.'
+                message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+                recipient_list=['hello@mealhippo.com'],
+                html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
             )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
