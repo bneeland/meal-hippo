@@ -20,9 +20,8 @@
 
       <div class="container-fluid p-0">
         <p >DISHES</p>
-        {% for active_supplier in active_suppliers %}
           <div class="row m-0 p-0">
-              {% for item in active_supplier.item_set.all %}
+              {% for item in active_items %}
                 <div class="col-lg-6 col-12 mb-3 m-0 p-0">
                   <div class="card mr-3 p-3 border rounded shadow-sm">
                     <h5 class="card-title">{{ item.name }}</h5>
@@ -43,7 +42,6 @@
                 </div>
               {% endfor %}
           </div>
-        {% endfor %}
       </div>
 
     </div>

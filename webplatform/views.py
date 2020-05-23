@@ -38,10 +38,10 @@ class HomeView(IsSubscribedMixin, TemplateView):
 class OrderItemsView(IsSubscribedMixin, ListView):
     model = models.Supplier
     template_name = 'webplatform/order_items_view.html'
-    context_object_name = 'active_suppliers'
+    context_object_name = 'active_items'
 
     def get_queryset(self):
-        return models.Supplier.objects.filter(is_active=True)
+        return models.Item.objects.filter(is_active=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
