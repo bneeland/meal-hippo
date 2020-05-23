@@ -156,11 +156,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STRIPE_API_SECRET_KEY = os.environ.get('STRIPE_API_SECRET_KEY_LIVE')
 STRIPE_API_PUBLISHABLE_KEY = os.environ.get('STRIPE_API_PUBLISHABLE_KEY_LIVE')
 
-django_heroku.settings(locals())
-
-# CELERY_BROKER_URL = 'redis://h:p1385b3318599d78d957029d09cd4e066495d8e4beb92a98a63c9625613fe0936@ec2-35-172-113-66.compute-1.amazonaws.com:20039'
-# CELERY_BROKER_URL = 'redis://h:p1385b3318599d78d957029d09cd4e066495d8e4beb92a98a63c9625613fe0936@ec2-3-221-10-247.compute-1.amazonaws.com:15909'
 CELERY_BROKER_URL = os.environ.get('REDIS_URL')
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+django_heroku.settings(locals())
