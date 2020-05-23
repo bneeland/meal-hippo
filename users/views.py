@@ -29,7 +29,7 @@ class SignUpView(CreateView):
             subject='Thanks for signing up to Meal Hippo!',
             message='Hi '+email+', Thanks for signing up on mealhippo.com! If you have any questions about Meal Hippo, such as how to start your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
             recipient_list=[email],
-            html_message='<h1>Thanks for signing up to Meal Hippo!</h1><p>Hi '+email+',</p><p>Thanks for signing up on mealhippo.com!</p><p>If you have any questions about Meal Hippo, such as how to start your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
+            html_message='<h1>Thanks for signing up to Meal Hippo!</h1><p>Hi '+email+',</p><p>Thanks for signing up on mealhippo.com!</p><p>If you have any questions about Meal Hippo, such as how to start your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
         )
 
         return valid
