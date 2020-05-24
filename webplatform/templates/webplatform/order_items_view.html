@@ -27,7 +27,7 @@
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
                     <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
-                    <p class="card-text"><small>{% if item.calories %}Calories: {{ item.calories }} &emsp; {% endif %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}</small></p>
+                    {% comment %}<p class="card-text"><small>{% if item.calories %}Calories: {{ item.calories }} &emsp; {% endif %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}</small></p>{% endcomment %}
                     <p class="card-text"><small>
                       Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
                       {% if item.portion_increment > 1 %} | Portions in multiples of {{ item.portion_increment }}{% endif %}
