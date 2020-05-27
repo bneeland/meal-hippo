@@ -15,7 +15,7 @@ class OrderTimingForm(ModelForm):
         # Date dropdown menu choices
         cutoff_days = 2
         weeks_worth_of_dates = 3
-        acceptable_days = [1, 3, 6] # Monday is 0, Sunday is 6
+        acceptable_days = [0, 2, 4] # Monday is 0, Tuesday is 1, ... Sunday is 6
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
             first_date += datetime.timedelta(1)
@@ -33,14 +33,19 @@ class OrderTimingForm(ModelForm):
         # Time dropdown menu choices
         start_time = 0 # 0 is noon
         end_time = 8
+        cutoff_time_for_hot = 3
         TIME_CHOICES = (('', 'Select a time'),)
         for t in range(start_time, end_time + 1):
+            if t < cutoff_time_for_hot:
+                hot_or_cold = "(fresh and warm)"
+            else:
+                hot_or_cold = "(fresh and refrigerated - heat and serve)"
             # :00
             next_time_as_time = time(t+12, 00)
             next_time_as_time__end = time(t+12, 30)
             next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
             next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
-            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end}"
+            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
             TIME_CHOICE = (
                 ((next_time_as_time, next_timespan_as_str),)
             )
@@ -50,7 +55,7 @@ class OrderTimingForm(ModelForm):
             next_time_as_time__end = time(t+12+1, 00)
             next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
             next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
-            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end}"
+            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
             TIME_CHOICE = (
                 ((next_time_as_time, next_timespan_as_str),)
             )
