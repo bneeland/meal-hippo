@@ -78,8 +78,12 @@
           <div class="container">
             <div class="row border-top py-2 mb-2">
               <div class="col text-xl-right px-0">
-                <s class="text-secondary">Delivery: $7.00</s>
-                <p><small>Free delivery with first order</small></p>
+                {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
+                  <s class="text-secondary">Delivery: $7.00</s>
+                  <p><small>Free delivery with first order</small></p>
+                {% else %}
+                  <p>Delivery: $7.00</p>
+                {% endif %}
                 <hr>
                 ${{ order.get_total_order_price|floatformat:2|intcomma }}
               </div>

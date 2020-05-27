@@ -83,6 +83,8 @@ class Order(models.Model):
         total_order_price = 0
         for item in self.items.all():
             total_order_price += item.get_total_item_price()
+        if not UserDeliveryDetail.objects.filter(user=self.user)[0].free_delivery:
+            total_order_price += 7
         return total_order_price
 
 class UserDeliveryDetail(models.Model):
@@ -90,6 +92,7 @@ class UserDeliveryDetail(models.Model):
     phone = models.CharField(max_length=20)
     address = models.TextField()
     instructions = models.TextField(blank=True, null=True)
+    free_delivery = models.BooleanField(default=True)
     is_subscribed = models.BooleanField(default=False, verbose_name='subscribe weekly')
 
     def __str__(self):

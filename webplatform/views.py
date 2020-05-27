@@ -26,16 +26,25 @@ class IsSubscribedMixin(ContextMixin):
             context['is_subscribed'] = user_subscription.is_subscribed
         return context
 
+class HasFreeDeliveryMixin(ContextMixin):
+    def get_context_data(self, **kwargs):
+        context = super(HasFreeDeliveryMixin, self).get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            user_delivery_detail_qs = models.UserDeliveryDetail.objects.filter(user=self.request.user)
+            user_delivery_detail = user_delivery_detail_qs[0]
+            context['free_delivery'] = user_delivery_detail.free_delivery
+        return context
+
 class SupportView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/support_view.html'
 
 class ContactView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/contact_view.html'
 
-class HomeView(IsSubscribedMixin, TemplateView):
+class HomeView(IsSubscribedMixin, HasFreeDeliveryMixin, TemplateView):
     template_name = 'webplatform/home_view.html'
 
-class OrderItemsView(IsSubscribedMixin, ListView):
+class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
     model = models.Supplier
     template_name = 'webplatform/order_items_view.html'
     context_object_name = 'active_items'
@@ -158,9 +167,11 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
         user = self.request.user
         order = models.Order.objects.get(user=user, is_completed=False)
         order_items = order.items.all()
+        free_delivery = models.UserDeliveryDetail.objects.get(user=user).free_delivery
         context = {
             'order': order,
             'order_items': order_items,
+            'free_delivery': free_delivery,
             'stripe_pk': settings.STRIPE_API_PUBLISHABLE_KEY,
         }
         return render(self.request, 'webplatform/order_payment_view.html', context)

@@ -63,7 +63,7 @@
         <div class="card-body">
           <div class="container">
             {% for order_item in order_items %}
-              <div class="row">
+              <div class="row py-2">
                 <div class="col text-left px-0">
                   {{ order_item.item.name }}
                 </div>
@@ -76,8 +76,12 @@
           <div class="container">
             <div class="row border-top py-2">
               <div class="col text-right px-0">
-								<s class="text-secondary">Delivery: $7.00</s>
-                <p><small>Free delivery with first order</small></p>
+								{% if user.is_authenticated and free_delivery or not user.is_authenticated %}
+                  <s class="text-secondary">Delivery: $7.00</s>
+                  <p><small>Free delivery with first order</small></p>
+                {% else %}
+                  <p>Delivery: $7.00</p>
+                {% endif %}
                 <hr>
                 ${{ order.get_total_order_price|floatformat:2|intcomma }}
               </div>
