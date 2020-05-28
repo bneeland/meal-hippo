@@ -33,7 +33,7 @@ class OrderTimingForm(ModelForm):
         # Time dropdown menu choices
         start_time = 0 # 0 is noon
         end_time = 8
-        cutoff_time_for_hot = 3
+        cutoff_time_for_hot = 4
         TIME_CHOICES = (('', 'Select a time'),)
         for t in range(start_time, end_time + 1):
             if t < cutoff_time_for_hot:
