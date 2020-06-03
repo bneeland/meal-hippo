@@ -26,7 +26,7 @@ class Item(models.Model):
     minimum_portions = models.IntegerField(blank=True, null=True)
     portion_increment = models.IntegerField(blank=True, null=True)
     minimum_lead_time = models.IntegerField(blank=True, null=True)
-    calories = models.IntegerField(blank=True, null=True)
+    calories = models.CharField(max_length=100, blank=True, null=True)
     protein = models.FloatField(blank=True, null=True)
     fat = models.FloatField(blank=True, null=True)
     carbs = models.FloatField(blank=True, null=True)
