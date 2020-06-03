@@ -31,6 +31,7 @@ class Item(models.Model):
     fat = models.FloatField(blank=True, null=True)
     carbs = models.FloatField(blank=True, null=True)
     is_active = models.BooleanField()
+    is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

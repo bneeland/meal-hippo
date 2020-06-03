@@ -8,8 +8,8 @@
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid jumbotron-splash mb-0 bg-white text-center text-sm-left">
-  <div class="container mb-5 py-5">
+<div class="jumbotron jumbotron-fluid jumbotron-splash bg-white text-center text-sm-left py-5">
+  <div class="container">
     <div class="row">
       <div class="col-md-9">
       <!-- <div class="col-md-12"> -->
@@ -31,6 +31,24 @@
       </div>
       <div class="col-md-3"></div>
     </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="card-group shadow">
+    {% for item in items %}
+      <!-- <a href="{% url 'webplatform:order_items_view' %}"> -->
+        <div class="card">
+          <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text text-center">{{ item.name }}</p>
+          </div>
+        </div>
+      <!-- </a> -->
+    {% endfor %}
+  </div>
+  <div class="my-5 text-center">
+    <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention" role="button">See all dishes</a>
   </div>
 </div>
 

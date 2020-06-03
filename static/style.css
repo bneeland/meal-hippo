@@ -52,7 +52,7 @@ h4, h5, h6 {
 }
 
 .jumbotron-splash {
-  background-image: url('splash_4.png');
+  /* background-image: url('splash_4.png'); */
   background-repeat: no-repeat;
   background-position: right;
 }

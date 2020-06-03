@@ -44,6 +44,11 @@ class ContactView(IsSubscribedMixin, TemplateView):
 class HomeView(IsSubscribedMixin, HasFreeDeliveryMixin, TemplateView):
     template_name = 'webplatform/home_view.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['items'] = models.Item.objects.filter(is_featured=True)
+        return context
+
 class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
     model = models.Supplier
     template_name = 'webplatform/order_items_view.html'
