@@ -35,14 +35,16 @@
 </div>
 
 <div class="container my-5">
-  <div class="card-group shadow">
+  <div class="card-group shadow-sm">
     {% for item in items %}
       <!-- <a href="{% url 'webplatform:order_items_view' %}"> -->
         <div class="card">
-          <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text text-center">{{ item.name }}</p>
-          </div>
+          <a href="{% url 'webplatform:order_items_view' %}" class="featured">
+            <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text text-center">{{ item.name }}</p>
+            </div>
+          </a>
         </div>
       <!-- </a> -->
     {% endfor %}

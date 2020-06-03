@@ -57,6 +57,14 @@ h4, h5, h6 {
   background-position: right;
 }
 
+a.featured {
+  color: var(--text)
+}
+
+a.featured:hover {
+  color: var(--sub_heading);
+}
+
 .navbar-light .navbar-brand, .logo a {
   color: var(--logo);
   font-size: 1.5em;
