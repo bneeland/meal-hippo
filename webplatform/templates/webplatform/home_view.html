@@ -46,6 +46,7 @@
         </a>
       </div>
     {% endfor %}
+    <a href="{% url 'webplatform:order_items_view' %}" class="py-5 px-4 my-auto" data-toggle="tooltip" data-placement="bottom" title="More dishes"><i class="fas fa-angle-right"></i></a>
   </div>
   <div class="my-5 text-center">
     <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention" role="button">See all dishes</a>
