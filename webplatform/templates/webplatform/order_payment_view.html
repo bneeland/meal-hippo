@@ -61,31 +61,37 @@
 
       <div class="card">
         <div class="card-body">
-          <div class="container">
+					<div class="container">
             {% for order_item in order_items %}
               <div class="row py-2">
-                <div class="col text-left px-0">
-                  {{ order_item.item.name }}
+                <div class="col-xl-6 text-xl-left px-0">
+                  {{ order_item.item.name }} <small class="mr-3">${{ order_item.item.price|floatformat:2|intcomma }}</small>
                 </div>
-                <div class="col text-right px-0">
+                <div class="col-xl-6 text-xl-right px-0">
                   ${{ order_item.get_total_item_price|floatformat:2|intcomma }}
                 </div>
               </div>
             {% endfor %}
-          </div>
-          <div class="container">
-            <div class="row border-top py-2">
-              <div class="col text-right px-0">
-								{% if user.is_authenticated and free_delivery or not user.is_authenticated %}
+            <div class="row py-2 mb-2">
+              <div class="col text-xl-right px-0">
+                {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
                   <s class="text-secondary">Delivery: $7.00</s>
                   <p><small>Free delivery with first order</small></p>
                 {% else %}
                   <p>Delivery: $7.00</p>
                 {% endif %}
                 <hr>
-                ${{ order.get_total_order_price|floatformat:2|intcomma }}
+                <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}
+                <p>GST (5.00%): ${{ order.get_order_gst|floatformat:2|intcomma }}</p>
+                <hr>
+                ${{ order.get_order_total|floatformat:2|intcomma }}
               </div>
             </div>
+						<div class="row">
+							<div class="col px-0 text-center">
+								<p><small><a href="{% url 'webplatform:order_items_view' %}">Change order</a></small></p>
+							</div>
+						</div>
           </div>
         </div>
       </div>
@@ -109,7 +115,7 @@
             	<div id="card-errors" role="alert"></div>
             </div>
 
-            <button class="btn btn-attention btn-block">Pay ${{ order.get_total_order_price|floatformat:2|intcomma }}</button>
+            <button class="btn btn-attention btn-block">Pay ${{ order.get_order_total|floatformat:2|intcomma }}</button>
           </form>
         </div>
       </div>

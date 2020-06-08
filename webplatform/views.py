@@ -185,7 +185,7 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
         user = self.request.user
         order = models.Order.objects.get(user=user, is_completed=False)
         token = self.request.POST.get('stripeToken')
-        price = order.get_total_order_price()
+        price = order.get_order_total()
         price_cents = int(price * 100)
 
         try:

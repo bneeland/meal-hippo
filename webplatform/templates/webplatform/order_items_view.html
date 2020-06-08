@@ -79,7 +79,7 @@
             {% endfor %}
           </div>
           <div class="container">
-            <div class="row border-top py-2 mb-2">
+            <div class="row py-2 mb-2">
               <div class="col text-xl-right px-0">
                 {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
                   <s class="text-secondary">Delivery: $7.00</s>
@@ -88,7 +88,10 @@
                   <p>Delivery: $7.00</p>
                 {% endif %}
                 <hr>
-                ${{ order.get_total_order_price|floatformat:2|intcomma }}
+                <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}
+                <p>GST (5.00%): ${{ order.get_order_gst|floatformat:2|intcomma }}</p>
+                <hr>
+                ${{ order.get_order_total|floatformat:2|intcomma }}
               </div>
             </div>
           </div>

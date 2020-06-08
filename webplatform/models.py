@@ -80,13 +80,25 @@ class Order(models.Model):
     def __str__(self):
         return self.user.email
 
-    def get_total_order_price(self):
-        total_order_price = 0
+    def get_order_subtotal(self):
+        order_subtotal = 0
         for item in self.items.all():
-            total_order_price += item.get_total_item_price()
+            order_subtotal += item.get_total_item_price()
         if not UserDeliveryDetail.objects.filter(user=self.user)[0].free_delivery:
-            total_order_price += 7
-        return total_order_price
+            order_subtotal += 7
+        return order_subtotal
+
+    def get_order_gst(self):
+        order_subtotal = self.get_order_subtotal()
+        gst_rate = 0.05
+        order_gst = order_subtotal * gst_rate
+        return order_gst
+
+    def get_order_total(self):
+        order_subtotal = self.get_order_subtotal()
+        order_gst = self.get_order_gst()
+        order_total = order_subtotal + order_gst
+        return order_total
 
 class UserDeliveryDetail(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
