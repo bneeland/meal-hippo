@@ -22,6 +22,10 @@ body {
   font-size: 18px;
 }
 
+.btn {
+  font-size: 1em;
+}
+
 a, .btn-link {
   color: var(--link_dark);
 }
