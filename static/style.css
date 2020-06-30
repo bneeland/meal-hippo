@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap');
 
 :root {
-    --heading: #2D3142;
-    --sub_heading: #414655;
-    --text: #70747A;
-    --logo: #3787CA;
-    --button_dark: #3787CA;
-    --button_light: #4693CF;
-    --link_dark: #3787CA;
-    --link_light: #60A9D9;
-    --nav_dark: #4693CF;
-    --nav_light: #60A9D9;
-    --attention_dark: #FFBA08;
-    --attention_light: #FFC518;
-    --attention_text: #392900;
+  --heading: #1B1B1F;
+  --sub_heading: #1B1B1F;
+  --text: #404143;
+  --logo: #2D80E1;
+  --button_dark: #2D80E1;
+  --button_light: #387CFF;
+  --link_dark: #2D80E1;
+  --link_light: #387CFF;
+  --nav_dark: #2D80E1;
+  --nav_light: #387CFF;
+  --attention_dark: #FFBA08;
+  --attention_light: #FFC518;
+  --attention_text: #392900;
 }
 
 body {
@@ -33,6 +33,7 @@ a:hover, .btn-link:hover {
 
 h1, h2, h3 {
   color: var(--heading);
+  font-weight: bold;
   line-height: normal;
   margin-top: 1.5em;
   margin-bottom: 1.25em;
@@ -40,6 +41,7 @@ h1, h2, h3 {
 
 h4, h5, h6 {
   color: var(--sub_heading);
+  font-weight: bold;
   line-height: normal;
 }
 
