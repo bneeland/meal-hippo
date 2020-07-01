@@ -9,8 +9,8 @@
   --button_light: #388FF4;
   --link_dark: #307FDB;
   --link_light: #388FF4;
-  --nav_dark: #307FDB;
-  --nav_light: #388FF4;
+  --nav_dark: #1B1B1F;
+  --nav_light: #404143;
   --attention_dark: #FFBA08;
   --attention_light: #FFC518;
   --attention_text: #392900;
@@ -47,19 +47,6 @@ h4, h5, h6 {
   line-height: normal;
 }
 
-.splash-title {
-  line-height: normal;
-}
-
-.splash-subtitle {
-  color: var(--sub_heading)
-}
-
-.jumbotron-splash {
-  /* background-image: url('splash_4.png'); */
-  background-repeat: no-repeat;
-  background-position: right;
-}
 
 a.featured {
   color: var(--text)
