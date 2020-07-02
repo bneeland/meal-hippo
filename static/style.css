@@ -3,14 +3,14 @@
 :root {
   --heading: #1B1B1F;
   --sub_heading: #1B1B1F;
-  --text: #404143;
+  --text: #70747A;
   --logo: #2D80E1;
   --button_dark: #307FDB;
   --button_light: #388FF4;
   --link_dark: #307FDB;
   --link_light: #388FF4;
-  --nav_dark: #1B1B1F;
-  --nav_light: #404143;
+  --nav_dark: #70747A;
+  --nav_light: #1B1B1F;
   --attention_dark: #FFBA08;
   --attention_light: #FFC518;
   --attention_text: #392900;
