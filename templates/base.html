@@ -36,13 +36,14 @@
                 <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">{% if is_subscribed %}Subscribed <i class="fas fa-toggle-on"></i>{% else %}<span data-toggle="tooltip" data-placement="bottom" title="Save 5% on all orders">Subscribe <i class="fas fa-toggle-off"></i></span>{% endif %}</a>
               <li class="nav-item mr-4">
                 <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">
-                  Your order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
+                  Order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
                 </a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.email }}</a>
-                <div class="dropdown-menu">
-                  <!-- <div class="dropdown-divider"></div> -->
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <div class="dropdown-header">{{ request.user.email }}</div>
+                  <div class="dropdown-divider"></div>
                   <a class="nav-link" href="{% url 'logout' %}">Log out</a>
                 </div>
               </li>
