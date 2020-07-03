@@ -92,7 +92,7 @@
                 <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}
                 <p>GST (5.00%): ${{ order.get_order_gst|floatformat:2|intcomma }}</p>
                 <hr>
-                ${{ order.get_order_total|floatformat:2|intcomma }}
+                <p>Total: ${{ order.get_order_total|floatformat:2|intcomma }}</p>
               </div>
             </div>
           </div>

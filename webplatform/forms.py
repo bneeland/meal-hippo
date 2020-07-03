@@ -13,9 +13,9 @@ class OrderTimingForm(ModelForm):
         fields = ['delivery_date', 'delivery_time']
 
         # Date dropdown menu choices
-        cutoff_days = 2
-        weeks_worth_of_dates = 3
-        acceptable_days = [0, 2, 4] # Monday is 0, Tuesday is 1, ... Sunday is 6
+        cutoff_days = 7
+        weeks_worth_of_dates = 4
+        acceptable_days = [2, 4] # Monday is 0, Tuesday is 1, ... Sunday is 6
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
             first_date += datetime.timedelta(1)
@@ -31,15 +31,17 @@ class OrderTimingForm(ModelForm):
                     DATE_CHOICES += DATE_CHOICE
 
         # Time dropdown menu choices
-        start_time = 0 # 0 is noon
-        end_time = 8
-        cutoff_time_for_hot = 4
+        start_time = 2 # 0 is noon
+        end_time = 6
+        cutoff_time_for_hot = 7
         TIME_CHOICES = (('', 'Select a time'),)
         for t in range(start_time, end_time + 1):
             if t < cutoff_time_for_hot:
-                hot_or_cold = "(fresh and warm)"
+                # hot_or_cold = "(fresh and warm)"
+                hot_or_cold = ""
             else:
-                hot_or_cold = "(fresh and refrigerated - heat and serve)"
+                # hot_or_cold = "(fresh and refrigerated - heat and serve)"
+                hot_or_cold = ""
             # :00
             next_time_as_time = time(t+12, 00)
             next_time_as_time__end = time(t+12, 30)
