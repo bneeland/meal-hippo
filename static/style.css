@@ -89,8 +89,13 @@ a.featured:hover {
   color: var(--nav_light);
 }
 
-.navbar-light .navbar-nav .show>.nav-link {
+.navbar-light .navbar-nav .show .nav-link {
   color: var(--nav_dark);
+}
+
+.dropdown-menu {
+  font-size: 1em;
+  color: var(--nav_light);
 }
 
 .invitation {

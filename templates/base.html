@@ -32,9 +32,9 @@
     {% if user.is_authenticated %}
         <nav class="navbar navbar-expand-md navbar-light user-nav bg-light">
             <ul class="navbar-nav ml-md-auto mx-md-0 mx-auto text-md-left text-center">
-              <li class="nav-item mr-4">
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">{% if is_subscribed %}Subscribed <i class="fas fa-toggle-on"></i>{% else %}<span data-toggle="tooltip" data-placement="bottom" title="Save 5% on all orders">Subscribe <i class="fas fa-toggle-off"></i></span>{% endif %}</a>
-              <li class="nav-item mr-4">
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">
                   Order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
                 </a>
@@ -42,9 +42,9 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <div class="dropdown-header">{{ request.user.email }}</div>
+                  <span class="dropdown-item-text">{{ request.user.email }}</span>
                   <div class="dropdown-divider"></div>
-                  <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                 </div>
               </li>
             </ul>
@@ -58,17 +58,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-5">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">Explore dishes</a>
           </li>
-          <li class="nav-item mr-5">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'webplatform:support_view' %}">How it works</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'webplatform:contact_view' %}">Get in touch</a>
           </li>
           {% if not user.is_authenticated %}
-            <li class="nav-item ml-5 mr-5">
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Log in</a>
             </li>
             <li class="nav-item">
