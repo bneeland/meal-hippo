@@ -113,7 +113,6 @@ def remove_from_order(request, pk):
                 messages.info(request, "Portion removed")
             else:
                 order_item.delete()
-                # messages.info(request, "Dish removed")
         else:
             messages.info(request, "No dish to remove")
     else:

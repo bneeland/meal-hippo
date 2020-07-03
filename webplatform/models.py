@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-# from django.utils import timezone
-# from datetime import time, timedelta
 from datetime import time
 
 class Supplier(models.Model):
@@ -68,9 +66,7 @@ class Payment(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
-    # delivery_date = models.DateField(null=True, default=timezone.localtime(timezone.now())+timedelta(days=3))
     delivery_date = models.DateField(null=True)
-    # delivery_time = models.TimeField(null=True, default=time(19, 00))
     delivery_time = models.TimeField(null=True)
     is_completed = models.BooleanField(default=False)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
@@ -84,6 +80,7 @@ class Order(models.Model):
         order_subtotal = 0
         for item in self.items.all():
             order_subtotal += item.get_total_item_price()
+        order_subtotal += 2
         if not UserDeliveryDetail.objects.filter(user=self.user)[0].free_delivery:
             order_subtotal += 7
         return order_subtotal
@@ -130,7 +127,6 @@ class Feedback(models.Model):
     main_benefit = models.TextField(verbose_name='What is the main benefit you receive from Meal Hippo?')
     how_to_improve = models.TextField(verbose_name='How can we improve Meal Hippo for you?')
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-    # created_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.user.email
