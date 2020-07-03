@@ -90,12 +90,12 @@ def add_to_order(request, pk):
         order_item.save()
         messages.info(request, "Dish added")
 
-        tasks.send_mail_with_celery.delay(
-            subject='New order created on mealhippo.com beta',
-            message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
-            recipient_list=['hello@mealhippo.com'],
-            html_message='<h1>New order</h1><p>A new order was created on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
-        )
+        # tasks.send_mail_with_celery.delay(
+        #     subject='New order created on mealhippo.com beta',
+        #     message='A new order was created on mealhippo.com beta. The user who did this was '+request.user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+        #     recipient_list=['hello@mealhippo.com'],
+        #     html_message='<h1>New order</h1><p>A new order was created on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+        # )
 
     return redirect("webplatform:order_items_view")
 
@@ -125,20 +125,20 @@ def subscribe_toggle(request, path):
     user_subscription = user_subscription_qs[0]
     if user_subscription.is_subscribed == False:
         user_subscription.is_subscribed = True
-        tasks.send_mail_with_celery.delay(
-            subject='User has subscribed on mealhippo.com beta',
-            message='A user has subscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
-            recipient_list=['hello@mealhippo.com'],
-            html_message='<h1>User subscribed</h1><p>A user has subscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
-        )
+        # tasks.send_mail_with_celery.delay(
+        #     subject='User has subscribed on mealhippo.com beta',
+        #     message='A user has subscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+        #     recipient_list=['hello@mealhippo.com'],
+        #     html_message='<h1>User subscribed</h1><p>A user has subscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+        # )
     else:
         user_subscription.is_subscribed = False
-        tasks.send_mail_with_celery.delay(
-            subject='User has unsubscribed on mealhippo.com beta',
-            message='A user has unsubscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
-            recipient_list=['hello@mealhippo.com'],
-            html_message='<h1>User unsubscribed</h1><p>A user has unsubscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
-        )
+        # tasks.send_mail_with_celery.delay(
+        #     subject='User has unsubscribed on mealhippo.com beta',
+        #     message='A user has unsubscribed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+        #     recipient_list=['hello@mealhippo.com'],
+        #     html_message='<h1>User unsubscribed</h1><p>A user has unsubscribed on mealhippo.com beta.</p><p>The user who did this was '+request.user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+        # )
     user_subscription.save()
     return redirect(path)
 
@@ -204,19 +204,19 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
             order.payment = payment
             order.save()
 
-            tasks.send_mail_with_celery.delay(
-                subject='Order completed on mealhippo.com beta',
-                message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
-                recipient_list=['hello@mealhippo.com'],
-                html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
-            )
-
-            tasks.send_mail_with_celery.delay(
-                subject='Thanks for placing an order Meal Hippo!',
-                message='Hi '+user.email+', Thanks for placing an on mealhippo.com! Total price: '+str(price)+'. If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
-                recipient_list=[user.email],
-                html_message='<h1>Thanks for placing an order with Meal Hippo!</h1><p>Hi '+user.email+',</p><p>Thanks for placing an order on mealhippo.com!</p><h4>Total price: '+str(price)+'</h4><p>If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
-            )
+            # tasks.send_mail_with_celery.delay(
+            #     subject='Order completed on mealhippo.com beta',
+            #     message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+            #     recipient_list=['hello@mealhippo.com'],
+            #     html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+            # )
+            #
+            # tasks.send_mail_with_celery.delay(
+            #     subject='Thanks for placing an order Meal Hippo!',
+            #     message='Hi '+user.email+', Thanks for placing an on mealhippo.com! Total price: '+str(price)+'. If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
+            #     recipient_list=[user.email],
+            #     html_message='<h1>Thanks for placing an order with Meal Hippo!</h1><p>Hi '+user.email+',</p><p>Thanks for placing an order on mealhippo.com!</p><h4>Total price: '+str(price)+'</h4><p>If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
+            # )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
 
@@ -246,10 +246,10 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
             # yourself an email
             messages.error(self.request, "Something went wrong. You were not charged. Please try again.")
             return redirect(reverse_lazy('webplatform:order_payment_view'))
-        # except Exception as e:
-        #     # Something else happened, completely unrelated to Stripe
-        #     messages.error(self.request, "An error unrelated to payment processing occurred")
-        #     return redirect(reverse_lazy('webplatform:order_payment_view'))
+        except Exception as e:
+            # Something else happened, completely unrelated to Stripe
+            messages.error(self.request, "An error unrelated to payment processing occurred")
+            return redirect(reverse_lazy('webplatform:order_payment_view'))
 
 
 
