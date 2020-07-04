@@ -15,8 +15,9 @@
   <div class="row">
 
     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
-      <h3>When do you want your order delivered?</h3>
-      <h6>Orders must be placed one week in advance.</h6>
+      <p>Step <b>1 of 3</b></p>
+      <h3 class="mb-4">When do you want your order delivered?</h3>
+      <h5 class="mb-4">Orders can be placed minimum one week in advance.</h5>
       <form method="post">
         {% csrf_token %}
         {{ form|crispy }}

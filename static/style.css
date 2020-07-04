@@ -42,14 +42,10 @@ a:hover, .btn-link:hover {
 h1, h2, h3 {
   font-weight: bold;
   color: var(--heading);
-  line-height: normal;
-  margin-top: 1.5em;
-  margin-bottom: 1.25em;
 }
 
 h4, h5, h6 {
   color: var(--sub_heading);
-  line-height: normal;
 }
 
 
@@ -97,12 +93,20 @@ a.featured:hover {
   color: var(--nav_dark);
 }
 
+.user-nav {
+  font-size: 0.9em;
+}
+
 .dropdown-menu {
   font-size: 1em;
 }
 
 .dropdown-item {
   color: var(--link_dark);
+}
+
+.dropdown-item:hover {
+  color: var(--link_light);
 }
 
 .dropdown-item-text {
