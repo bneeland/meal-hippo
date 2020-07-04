@@ -13,7 +13,7 @@ class OrderTimingForm(ModelForm):
         fields = ['delivery_date', 'delivery_time']
 
         # Date dropdown menu choices
-        cutoff_days = 7
+        cutoff_days = 6
         weeks_worth_of_dates = 4
         acceptable_days = [2, 4] # Monday is 0, Tuesday is 1, ... Sunday is 6
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)

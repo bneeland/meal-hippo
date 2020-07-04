@@ -22,6 +22,10 @@ body {
   font-size: 18px;
 }
 
+select.form-control, input.form-control {
+  font-size: 1em;
+}
+
 .btn {
   font-size: 1em;
 }
@@ -95,7 +99,14 @@ a.featured:hover {
 
 .dropdown-menu {
   font-size: 1em;
-  color: var(--nav_light);
+}
+
+.dropdown-item {
+  color: var(--link_dark);
+}
+
+.dropdown-item-text {
+  color: var(--text);
 }
 
 .invitation {
