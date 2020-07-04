@@ -13,14 +13,14 @@
     <div class="row">
       <div class="col-md-9">
         <h1 class="mb-4">Get home-style cooking from chefs and caterers in your area delivered to you</h1>
-        <h3 class="mb-5">Fresh, easy food for people who don't particularly like to cook.</h3>
+        <!-- <h3 class="mb-5">Fresh, easy food for people who don't particularly like to cook.</h3> -->
         <h5>Real food you want to eat everyday</h5>
         <h5>Made to order with fresh ingredients by chefs in your area</h5>
         <h5>Fully cooked and prepared&mdash;no prep, no cooking</h5>
         <h5>Choose a one-time order or a subscription</h5>
         <!-- <h6>Cooked and ready-to-eat food from chefs in your area, delivered to you</h6> -->
         <!-- <h6 class="mb-5">Choose a one-time order or a subscription</h6> -->
-        <p class="mt-5">
+        <p class="mt-4">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg" role="button">Explore dishes</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
         </p>
