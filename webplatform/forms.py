@@ -12,10 +12,11 @@ class OrderTimingForm(ModelForm):
         model = models.Order
         fields = ['delivery_date', 'delivery_time']
 
+
         # Date dropdown menu choices
-        cutoff_days = 6
-        weeks_worth_of_dates = 4
-        acceptable_days = [2, 4] # Monday is 0, Tuesday is 1, ... Sunday is 6
+        cutoff_days = 11
+        weeks_worth_of_dates = 1
+        acceptable_days = [2,] # Monday is 0, Tuesday is 1, ... Sunday is 6
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
             first_date += datetime.timedelta(1)
@@ -30,8 +31,12 @@ class OrderTimingForm(ModelForm):
                     DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
                     DATE_CHOICES += DATE_CHOICE
 
+        # next_date_as_date = datetime.datetime(2020, 7, 23)
+        # next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
+        # DATE_CHOICES = ((next_date_as_date, next_date_as_str),)
+
         # Time dropdown menu choices
-        start_time = 2 # 0 is noon
+        start_time = 4 # 0 is noon
         end_time = 6
         cutoff_time_for_hot = 7
         TIME_CHOICES = (('', 'Select a time'),)
