@@ -66,8 +66,17 @@
     {% if user.is_authenticated %}
         <nav class="navbar navbar-expand navbar-light user-nav pt-0">
             <ul class="navbar-nav mx-auto ml-md-auto mr-md-0">
-              <li class="nav-item mr-4">
-                <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">{% if is_subscribed %}Subscribed <i class="fas fa-toggle-on"></i>{% else %}<span data-toggle="tooltip" data-placement="bottom" title="Save 5% on all orders">Subscribe <i class="fas fa-toggle-off"></i></span>{% endif %}</a>
+              {% if is_subscribed %}
+                <li class="nav-item mr-4">
+                  <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">Subscribed <i class="fas fa-toggle-on"></i></a>
+                </li>
+              {% else %}
+                <span data-toggle="tooltip" data-placement="bottom" title="Save 5% on all orders">
+                  <li class="nav-item mr-4">
+                    <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">Subscribe <i class="fas fa-toggle-off"></i></a>
+                  </li>
+                </span>
+              {% endif %}
               <li class="nav-item mr-4">
                 <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">
                   Order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
