@@ -76,13 +76,31 @@ class Order(models.Model):
     def __str__(self):
         return self.user.email
 
-    def get_order_subtotal(self):
-        order_subtotal = 0
+    def get_order_initial_subtotal(self):
+        order_initial_subtotal = 0
         for item in self.items.all():
-            order_subtotal += item.get_total_item_price()
-        order_subtotal += 2
+            order_initial_subtotal += item.get_total_item_price()
+        return order_initial_subtotal
+
+    def get_order_web_fee(self):
+        order_initial_subtotal = self.get_order_initial_subtotal()
+        # Set web fees
+        website_fee_fixed = 3
+        website_fee_variable = 0.029
+        # Apply web fees
+        order_web_fee = website_fee_fixed + order_initial_subtotal * website_fee_variable
+        return order_web_fee
+
+    def get_order_subtotal(self):
+        order_initial_subtotal = self.get_order_initial_subtotal()
+        order_web_fee = self.get_order_web_fee()
+        order_subtotal = order_initial_subtotal + order_web_fee
+        # Delivery fee (only if user's setting is not set to free delivery)
         if not UserDeliveryDetail.objects.filter(user=self.user)[0].free_delivery:
-            order_subtotal += 7
+            # Set delivery fee
+            order_delivery_fee = 6
+            # Apply delivery fee
+            order_subtotal += order_delivery_fee
         return order_subtotal
 
     def get_order_gst(self):

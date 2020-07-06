@@ -82,14 +82,14 @@
             <div class="row py-2 mb-2">
               <div class="col text-xl-right px-0">
                 {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
-                  <s>Delivery: $7.00</s>
+                  <s>Delivery: $6.00</s>
                   <p><small>Free delivery with first order</small></p>
                 {% else %}
-                  <p>Delivery: $7.00</p>
+                  <p>Delivery: $6.00</p>
                 {% endif %}
-                <p>Fee: $2.00</p>
+                <p>Fee: ${{ order.get_order_web_fee|floatformat:2|intcomma }}</p>
                 <hr>
-                <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}
+                <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}</p>
                 <p>GST (5.00%): ${{ order.get_order_gst|floatformat:2|intcomma }}</p>
                 <hr>
                 <p>Total: ${{ order.get_order_total|floatformat:2|intcomma }}</p>
