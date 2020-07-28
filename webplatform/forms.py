@@ -2,8 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
 import datetime
-from django.utils import timezone
-from datetime import timedelta, time
+# from datetime import timedelta, time
 
 from . import models
 
@@ -14,9 +13,9 @@ class OrderTimingForm(ModelForm):
 
 
         # Date dropdown menu choices
-        cutoff_days = 11
-        weeks_worth_of_dates = 1
-        acceptable_days = [2,] # Monday is 0, Tuesday is 1, ... Sunday is 6
+        cutoff_days = 1
+        weeks_worth_of_dates = 3
+        acceptable_days = [0, 1, 2, 3, 4, ] # Monday is 0, Tuesday is 1, ... Sunday is 6
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
             first_date += datetime.timedelta(1)
@@ -31,46 +30,103 @@ class OrderTimingForm(ModelForm):
                     DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
                     DATE_CHOICES += DATE_CHOICE
 
-        # next_date_as_date = datetime.datetime(2020, 7, 23)
-        # next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
-        # DATE_CHOICES = ((next_date_as_date, next_date_as_str),)
 
         # Time dropdown menu choices
-        start_time = 4 # 0 is noon
-        end_time = 6
-        cutoff_time_for_hot = 7
         TIME_CHOICES = (('', 'Select a time'),)
-        for t in range(start_time, end_time + 1):
-            if t < cutoff_time_for_hot:
-                # hot_or_cold = "(fresh and warm)"
-                hot_or_cold = ""
-            else:
-                # hot_or_cold = "(fresh and refrigerated - heat and serve)"
-                hot_or_cold = ""
-            # :00
-            next_time_as_time = time(t+12, 00)
-            next_time_as_time__end = time(t+12, 30)
-            next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
-            next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
-            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
-            TIME_CHOICE = (
-                ((next_time_as_time, next_timespan_as_str),)
-            )
-            TIME_CHOICES += TIME_CHOICE
-            # :30
-            next_time_as_time = time(t+12, 30)
-            next_time_as_time__end = time(t+12+1, 00)
-            next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
-            next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
-            next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
-            TIME_CHOICE = (
-                ((next_time_as_time, next_timespan_as_str),)
-            )
-            TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(13, 30)
+        time_start = datetime.time(13, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(14, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(14, 00)
+        time_start = datetime.time(14, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(14, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(14, 30)
+        time_start = datetime.time(14, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(15, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(15, 00)
+        time_start = datetime.time(15, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(15, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+
+        # start_time_h = 13 # 12 is noon
+        # start_time_m = 30
+        # end_time_h = 15
+        # end_time_m = 30
+        #
+        # TIME_CHOICES = (('', 'Select a time'),)
+        #
+        # for next_hour in range(start_time_h, end_time_h + 1):
+        #     next_time_as_date__start = datetime.datetime(100, 1, 1, next_hour, start_time_m)
+        #     next_time_as_date__end = datetime.datetime(100, 1, 1, next_hour, start_time_m) + datetime.timedelta(minutes=30)
+        #
+        #     next_time_as_time__start = next_time_as_date__start.time()
+        #     next_time_as_time__end = next_time_as_date__end.time()
+        #
+        #     next_time_as_str__start = next_time_as_time__start.strftime("%-I:%M %p")
+        #     next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
+        #
+        #     next_timespan_as_str = f"{next_time_as_str__start} - {next_time_as_str__end}"
+        #
+        #     TIME_CHOICE = (
+        #         ((next_time_as_date__start, next_timespan_as_str),)
+        #     )
+        #     TIME_CHOICES += TIME_CHOICE
+
+
+
+        # start_time_h = 13 # 12 is noon
+        # start_time_m = 30
+        # end_time_h = 15
+        # end_time_m = 30
+        # cutoff_time_for_hot_h = 4
+        # cutoff_time_for_hot_m = 00
+        # TIME_CHOICES = (('', 'Select a time'),)
+        # for t in range(start_time_h, end_time_h + 1):
+        #     if t < cutoff_time_for_hot_h:
+        #         # hot_or_cold = "(fresh and warm)"
+        #         hot_or_cold = ""
+        #     else:
+        #         # hot_or_cold = "(fresh and refrigerated - heat and serve)"
+        #         hot_or_cold = ""
+        #     # :00
+        #     next_time_as_time = datetime.time(t, start_time_m)
+        #     next_time_as_time__end = (datetime.datetime(100, 1, 1, t, start_time_m) + datetime.timedelta(minutes=30)).time()
+        #     # next_time_as_time__end = next_time_as_time + time(0, 30)
+        #     next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
+        #     next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
+        #     next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
+        #     TIME_CHOICE = (
+        #         ((next_time_as_time, next_timespan_as_str),)
+        #     )
+        #     TIME_CHOICES += TIME_CHOICE
+            # # :30
+            # next_time_as_time = time(t+12, 30)
+            # next_time_as_time__end = time(t+12+1, 00)
+            # next_time_as_str = next_time_as_time.strftime("%-I:%M %p")
+            # next_time_as_str__end = next_time_as_time__end.strftime("%-I:%M %p")
+            # next_timespan_as_str = f"{next_time_as_str} - {next_time_as_str__end} {hot_or_cold}"
+            # TIME_CHOICE = (
+            #     ((next_time_as_time, next_timespan_as_str),)
+            # )
+            # TIME_CHOICES += TIME_CHOICE
 
         widgets = {
             'delivery_date': forms.Select(choices=DATE_CHOICES),
-            # 'delivery_time': forms.TimeInput(attrs={'type': 'time'}),
             'delivery_time': forms.Select(choices=TIME_CHOICES),
         }
 
