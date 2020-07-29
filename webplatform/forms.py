@@ -16,6 +16,8 @@ class OrderTimingForm(ModelForm):
         cutoff_days = 1
         weeks_worth_of_dates = 3
         acceptable_days = [0, 1, 2, 3, 4, ] # Monday is 0, Tuesday is 1, ... Sunday is 6
+        blackout_day = datetime.date(2020, 7, 31)
+
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
             first_date += datetime.timedelta(1)
@@ -26,9 +28,12 @@ class OrderTimingForm(ModelForm):
                     pass
                 else:
                     next_date_as_date = first_date + datetime.timedelta(w*7 + d - first_date.weekday())
-                    next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
-                    DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
-                    DATE_CHOICES += DATE_CHOICE
+                    if next_date_as_date != blackout_day:
+                        next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
+                        DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
+                        DATE_CHOICES += DATE_CHOICE
+
+        print("DATE_CHOICES:", DATE_CHOICES)
 
 
         # Time dropdown menu choices
