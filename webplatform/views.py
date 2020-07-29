@@ -204,12 +204,12 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
             order.payment = payment
             order.save()
 
-            # tasks.send_mail_with_celery.delay(
-            #     subject='Order completed on mealhippo.com beta',
-            #     message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
-            #     recipient_list=['hello@mealhippo.com'],
-            #     html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
-            # )
+            tasks.send_mail_with_celery.delay(
+                subject='Order completed on mealhippo.com beta',
+                message='An order was completed on mealhippo.com beta. The user who did this was '+user.email+'. This was done at '+str(timezone.localtime(timezone.now()))+'.',
+                recipient_list=['hello@mealhippo.com'],
+                html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
+            )
             #
             # tasks.send_mail_with_celery.delay(
             #     subject='Thanks for placing an order Meal Hippo!',
