@@ -16,7 +16,7 @@ class OrderTimingForm(ModelForm):
         cutoff_days = 1
         weeks_worth_of_dates = 3
         acceptable_days = [0, 1, 2, 3, 4, ] # Monday is 0, Tuesday is 1, ... Sunday is 6
-        blackout_day = datetime.date(2020, 7, 31)
+        blackout_day = datetime.date(2020, 8, 3)
 
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
