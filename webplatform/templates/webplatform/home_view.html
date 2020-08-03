@@ -31,7 +31,7 @@
 <div class="container my-5">
   <div class="card-group shadow-sm">
     {% for item in items %}
-      <div class="card border-0">
+      <div class="card border-top-0 border-bottom-0 border-left-0">
         <a href="{% url 'webplatform:order_items_view' %}" class="featured">
           <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
