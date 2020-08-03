@@ -33,8 +33,6 @@ class OrderTimingForm(ModelForm):
                         DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
                         DATE_CHOICES += DATE_CHOICE
 
-        print("DATE_CHOICES:", DATE_CHOICES)
-
 
         # Time dropdown menu choices
         TIME_CHOICES = (('', 'Select a time'),)

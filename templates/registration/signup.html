@@ -16,5 +16,5 @@
 </form>
 <hr>
 <h5 class="text-center">Already have an account?</h5>
-<p><a class="btn btn-primary w-100" href="{% url 'login' %}?next={{ request.GET.next }}" role="button">Log in</a></p>
+<p class="text-center"><a href="{% url 'login' %}?next={{ request.GET.next }}">Log in</a></p>
 {% endblock %}

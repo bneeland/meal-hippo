@@ -16,5 +16,5 @@
 <p>Forgot password? <a href="{% url 'password_reset' %}">Reset it</a></p>
 <hr>
 <h5 class="text-center">Don't have an account?</h5>
-<p><a class="btn btn-primary w-100" href="{% url 'users:signup' %}?next={{ request.GET.next }}" role="button">Sign up</a></p>
+<p class="text-center"><a href="{% url 'users:signup' %}?next={{ request.GET.next }}">Sign up</a></p>
 {% endblock %}
