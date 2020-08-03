@@ -210,13 +210,13 @@ class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
                 recipient_list=['hello@mealhippo.com'],
                 html_message='<h1>Order completed</h1><p>An order was completed on mealhippo.com beta.</p><p>The user who did this was '+user.email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
             )
-            #
-            # tasks.send_mail_with_celery.delay(
-            #     subject='Thanks for placing an order Meal Hippo!',
-            #     message='Hi '+user.email+', Thanks for placing an on mealhippo.com! Total price: '+str(price)+'. If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
-            #     recipient_list=[user.email],
-            #     html_message='<h1>Thanks for placing an order with Meal Hippo!</h1><p>Hi '+user.email+',</p><p>Thanks for placing an order on mealhippo.com!</p><h4>Total price: '+str(price)+'</h4><p>If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
-            # )
+
+            tasks.send_mail_with_celery.delay(
+                subject='Thanks for placing an order Meal Hippo!',
+                message='Hi '+user.email+', Thanks for placing an on mealhippo.com! Total price: '+str(price)+'. If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
+                recipient_list=[user.email],
+                html_message='<h1>Thanks for placing an order with Meal Hippo!</h1><p>Hi '+user.email+',</p><p>Thanks for placing an order on mealhippo.com!</p><h4>Total price: '+str(price)+'</h4><p>If you have any concerns about your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
+            )
 
             return redirect(reverse_lazy('webplatform:order_complete_view'))
 
