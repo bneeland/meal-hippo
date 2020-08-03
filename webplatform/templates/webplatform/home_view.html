@@ -13,12 +13,8 @@
     <div class="row">
       <div class="col-md-9">
         <h1 class="mb-4">Enjoy great, affordable food at home, even when you don't have time to cook</h1>
-        <!-- <h1 class="mb-4">Get home-style cooking from chefs and caterers in your area delivered to you</h1> -->
         <h4 class="mb-4">Get home-style cooking from chefs and caterers in your area delivered to you.</h4>
-        <!-- <h3 class="mb-5">Fresh, easy food for people who don't particularly like to cook.</h3> -->
         <p>Real food you want to eat everyday. Made to order with fresh ingredients by chefs in your area. Fully cooked and prepared&mdash;no prep, no cooking. And an optional subscription format to make your meal planning as easy as clicking a button.</p>
-        <!-- <h6>Cooked and ready-to-eat food from chefs in your area, delivered to you</h6> -->
-        <!-- <h6 class="mb-5">Choose a one-time order or a subscription</h6> -->
         <p class="mt-4">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg" role="button">Explore dishes</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
@@ -35,7 +31,7 @@
 <div class="container my-5">
   <div class="card-group shadow-sm">
     {% for item in items %}
-      <div class="card">
+      <div class="card border-0">
         <a href="{% url 'webplatform:order_items_view' %}" class="featured">
           <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
@@ -44,7 +40,7 @@
         </a>
       </div>
     {% endfor %}
-    <a href="{% url 'webplatform:order_items_view' %}" class="py-2 px-4 my-auto" data-toggle="tooltip" data-placement="bottom" title="See all dishes"><i class="fas fa-angle-right"></i></a>
+      <a href="{% url 'webplatform:order_items_view' %}" class="py-2 px-4 my-auto" data-toggle="tooltip" data-placement="bottom" title="See all dishes"><i class="fas fa-angle-right"></i></a>
   </div>
   <div class="my-5 text-center">
     <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention" role="button">See all dishes</a>
