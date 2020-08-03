@@ -70,25 +70,72 @@
                 <div class="col-6 text-left px-0">
                   {{ order_item.item.name }} <small class="mr-3">${{ order_item.item.price|floatformat:2|intcomma }}</small>
                 </div>
-                <div class="col-6 text-right px-0">
+                <div class="col-3 text-center px-0">
+                  <span class="badge badge-secondary">{{ order_item.quantity }}</span>
+                </div>
+                <div class="col-3 text-right px-0">
                   ${{ order_item.get_total_item_price|floatformat:2|intcomma }}
                 </div>
               </div>
             {% endfor %}
-            <div class="row py-2 mb-2">
-              <div class="col text-right px-0">
+            <div class="row py-2">
+              <div class="col-6 text-left px-0">
                 {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
-                  <s>Delivery: $6.00</s>
-                  <p><small>Free delivery with first order</small></p>
+                  <s>Delivery</s>
                 {% else %}
-                  <p>Delivery: $6.00</p>
+                  Delivery
                 {% endif %}
-                <p>Fee: ${{ order.get_order_web_fee|floatformat:2|intcomma }}</p>
+              </div>
+              <div class="col-6 text-right px-0">
+                {% if user.is_authenticated and free_delivery or not user.is_authenticated %}
+                  <s>$6.00</s>
+                  <br>
+                  <small>Free delivery with first order</small>
+                {% else %}
+                  $6.00
+                {% endif %}
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col-6 text-left px-0">
+                Fee
+              </div>
+              <div class="col-6 text-right px-0">
+                ${{ order.get_order_web_fee|floatformat:2|intcomma }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col px-0">
                 <hr>
-                <p>Subtotal: ${{ order.get_order_subtotal|floatformat:2|intcomma }}</p>
-                <p>GST (5.00%): ${{ order.get_order_gst|floatformat:2|intcomma }}</p>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col-6 text-left px-0">
+                Subtotal
+              </div>
+              <div class="col-6 text-right px-0">
+                ${{ order.get_order_subtotal|floatformat:2|intcomma }}
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col-6 text-left px-0">
+                GST (5%)
+              </div>
+              <div class="col-6 text-right px-0">
+                ${{ order.get_order_gst|floatformat:2|intcomma }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col px-0">
                 <hr>
-                <p>Total: ${{ order.get_order_total|floatformat:2|intcomma }}</p>
+              </div>
+            </div>
+            <div class="row py-2">
+              <div class="col-6 text-left px-0">
+                Total
+              </div>
+              <div class="col-6 text-right px-0">
+                ${{ order.get_order_total|floatformat:2|intcomma }}
               </div>
             </div>
 						<div class="row">
