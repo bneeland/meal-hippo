@@ -20,30 +20,31 @@
 
         <div class="container-fluid p-0">
           <p>DISHES</p>
+            <h3 class="mb-3">Nak's Catering</h3>
             <div class="row m-0 p-0">
-                {% for item in active_items %}
-                  <div class="col-lg-4 col-md-6 col-12 mb-3 m-0 p-0">
-                    <div class="card mr-3 border rounded shadow-sm">
-                      <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
-                      <div class="card-body p-3">
-                        <h5 class="card-title">{{ item.name }}</h5>
-                        <p class="card-text">{{ item.description }}</p>
-                        <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
-                        <p class="card-text"><small>{% if item.calories %}<span data-toggle="tooltip" data-placement="bottom" title="Estimated range based on Health Canada's Nutrient Data and other sources">Calories: {{ item.calories }} kcal/portion</span> &emsp; {% endif %}{% comment %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}</small></p>
-                        <p class="card-text"><small>
-                          Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
-                          {% if item.portion_increment > 1 %} | Portions in multiples of {{ item.portion_increment }}{% endif %}
-                        </small></p>
-                        <p class="card-text"><small>Order at least {{ item.minimum_lead_time }} {% if item.minimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
-                        {% if user.is_authenticated %}
-                          <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary btn-block">Add to order</a>
-                        {% else %}
-                          <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary btn-block">Add to order</a>
-                        {% endif %}
-                      </div>
+              {% for item in active_items %}
+                <div class="col-lg-4 col-md-6 col-12 mb-3 m-0 p-0">
+                  <div class="card mr-3 border rounded shadow-sm">
+                    <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body p-3">
+                      <h5 class="card-title">{{ item.name }}</h5>
+                      <p class="card-text">{{ item.description }}</p>
+                      <p class="card-text">${{ item.price|floatformat:2|intcomma }} <small>/ portion</small></p>
+                      <p class="card-text"><small>{% if item.calories %}<span data-toggle="tooltip" data-placement="bottom" title="Estimated range based on Health Canada's Nutrient Data and other sources">Calories: {{ item.calories }} kcal/portion</span> &emsp; {% endif %}{% comment %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}</small></p>
+                      <p class="card-text"><small>
+                        Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
+                        {% if item.portion_increment > 1 %} | Portions in multiples of {{ item.portion_increment }}{% endif %}
+                      </small></p>
+                      <p class="card-text"><small>Order at least {{ item.minimum_lead_time }} {% if item.minimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
+                      {% if user.is_authenticated %}
+                        <a href="{{ item.get_add_to_order_url }}" class="btn btn-primary btn-block">Add to order</a>
+                      {% else %}
+                        <a href="{% url 'login' %}?next={% url 'webplatform:order_items_view' %}" class="btn btn-primary btn-block">Add to order</a>
+                      {% endif %}
                     </div>
                   </div>
-                {% endfor %}
+                </div>
+              {% endfor %}
             </div>
         </div>
 
