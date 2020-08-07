@@ -16,7 +16,11 @@
 
     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
       <p>Step <b>1 of 3</b></p>
-      <h3 class="mb-4">When do you want your order delivered?</h3>
+      {% if order.to_be_delivered %}
+        <h3 class="mb-4">When do you want your order delivered?</h3>
+      {% else %}
+        <h3 class="mb-4">When do you want to pick up your order?</h3>
+      {% endif %}
       <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
