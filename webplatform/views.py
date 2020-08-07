@@ -119,6 +119,17 @@ def remove_from_order(request, pk):
         messages.info(request, "No dish to remove")
     return redirect("webplatform:order_items_view")
 
+def to_be_delivered_toggle(request):
+    order_qs = models.Order.objects.filter(user=request.user, is_completed=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.to_be_delivered == True:
+            order.to_be_delivered = False
+        else:
+            order.to_be_delivered = True
+        order.save()
+    return redirect("webplatform:order_items_view")
+
 def subscribe_toggle(request, path):
     user = request.user
     user_subscription_qs = models.UserSubscription.objects.filter(user=user)

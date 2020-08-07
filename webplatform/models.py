@@ -66,6 +66,7 @@ class Payment(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
+    to_be_delivered = models.BooleanField(default=True)
     delivery_date = models.DateField(null=True)
     delivery_time = models.TimeField(null=True)
     is_completed = models.BooleanField(default=False)

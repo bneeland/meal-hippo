@@ -62,6 +62,11 @@
               {% endfor %}
             {% endif %}
           </h5>
+          {% if order.to_be_delivered %}
+            <p>Delivered <a href="{% url 'webplatform:to_be_delivered_toggle' %}">Pick up</a></p>
+          {% else %}
+            <p><a href="{% url 'webplatform:to_be_delivered_toggle' %}">Delivered</a> Pick up</p>
+          {% endif %}
           <div class="container">
             {% for order_item in order_items %}
               <div class="row py-2">
