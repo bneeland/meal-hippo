@@ -67,12 +67,12 @@
 
           {% if order.to_be_delivered %}
             <div class="row">
-              <div class="col-xl my-1"><a class="btn btn-sm btn-outline-primary btn-block disabled" role="button"><small><i class="fas fa-check"></i></small> Delivered</a></div>
+              <div class="col-xl my-1"><a class="btn btn-sm btn-outline-primary btn-block disabled" role="button"><small><i class="fas fa-check"></i></small> Delivery</a></div>
               <div class="col-xl my-1"><a class="btn btn-sm btn-attention btn-block" href="{% url 'webplatform:to_be_delivered_toggle' %}" role="button">Pick up</a></div>
             </div>
           {% else %}
             <div class="row">
-              <div class="col-xl my-1"><a class="btn btn-sm btn-attention btn-block" href="{% url 'webplatform:to_be_delivered_toggle' %}" role="button"> Delivered</a></div>
+              <div class="col-xl my-1"><a class="btn btn-sm btn-attention btn-block" href="{% url 'webplatform:to_be_delivered_toggle' %}" role="button"> Delivery</a></div>
               <div class="col-xl my-1"><a class="btn btn-sm btn-outline-primary btn-block disabled" role="button"><small><i class="fas fa-check"></i></small> Pick up</a></div>
             </div>
             <div class="mt-3">
