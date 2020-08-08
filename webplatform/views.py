@@ -125,8 +125,10 @@ def to_be_delivered_toggle(request):
         order = order_qs[0]
         if order.to_be_delivered == True:
             order.to_be_delivered = False
+            messages.info(request, "You will pick up the order")
         else:
             order.to_be_delivered = True
+            messages.info(request, "Order will be delivered")
         order.save()
     return redirect("webplatform:order_items_view")
 
