@@ -65,8 +65,20 @@
         {% endfor %}
       {% endif %}
 
+      {% if not order.to_be_delivered %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <p><b>Pick up location</b></p>
+            <p>
+              Nak's Bistro & Catering<br>
+              10451 172 St NW, Edmonton
+            </p>
+            <p class="text-center"><small><a href="{% url 'webplatform:order_items_view' %}">Change</a></small></p>
+          </div>
+        </div>
+      {% endif %}
 
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-body">
 					<div class="container">
             {% for order_item in order_items %}
@@ -146,7 +158,7 @@
             </div>
 						<div class="row">
 							<div class="col px-0 text-center">
-								<p><small><a href="{% url 'webplatform:order_items_view' %}">Change order</a></small></p>
+								<p><small><a href="{% url 'webplatform:order_items_view' %}">Change</a></small></p>
 							</div>
 						</div>
           </div>
@@ -154,7 +166,7 @@
       </div>
 
 
-      <div class="card mt-4">
+      <div class="card">
         <div class="card-body">
           <script src="https://js.stripe.com/v3/"></script>
 
