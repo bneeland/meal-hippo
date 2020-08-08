@@ -10,6 +10,10 @@ class OrderTimingForm(ModelForm):
     class Meta:
         model = models.Order
         fields = ['delivery_date', 'delivery_time']
+        labels = {
+            'delivery_date': 'Date',
+            'delivery_time': 'Time', 
+        }
 
 
         # Date dropdown menu choices
