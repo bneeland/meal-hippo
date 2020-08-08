@@ -160,7 +160,7 @@ class OrderTimingView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
 
     template_name = 'webplatform/order_timing_view.html'
     form_class = forms.OrderTimingForm
-    success_url = reverse_lazy('webplatform:order_delivery_view')
+    # success_url = reverse_lazy('webplatform:order_delivery_view')
 
     def get_object(self):
         order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
@@ -168,6 +168,15 @@ class OrderTimingView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
             order = order_qs[0]
             if order.items.count() > 0:
                 return order
+
+    def get_success_url(self):
+        order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.to_be_delivered == True:
+                return reverse_lazy('webplatform:order_delivery_view')
+            else:
+                return reverse_lazy('webplatform:order_payment_view')
 
 class OrderDeliveryView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
     login_url = 'login'
