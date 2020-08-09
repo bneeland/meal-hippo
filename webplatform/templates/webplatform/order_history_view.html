@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Support{% endblock %}
+
+{% block content %}
+
+<!-- Following this: https://support.stripe.com/questions/information-required-on-your-business-website-to-use-stripe -->
+
+<div class="container my-5">
+
+  <div class="row my-5">
+    <div class="col-md-10 offset-md-1">
+      <h1 class="mb-4">Order history</h1>
+      {% for completed_order in completed_orders %}
+        <p>{{ completed_order }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

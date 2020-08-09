@@ -294,3 +294,13 @@ class FeedbackCompleteView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
     login_url = 'login'
 
     template_name = 'webplatform/feedback_complete_view.html'
+
+class OrderHistoryView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
+    login_url = 'login'
+
+    template_name = 'webplatform/order_history_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['completed_orders'] = models.Order.objects.filter(user=self.request.user, is_completed=True)
+        return context
