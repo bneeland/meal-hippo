@@ -182,3 +182,7 @@ a.featured:hover {
   background-color: #d4edda;
   border-color: #c3e6cb;
 }
+
+div.dropdown-menu a:active {
+  background: var(--attention_light);
+}
