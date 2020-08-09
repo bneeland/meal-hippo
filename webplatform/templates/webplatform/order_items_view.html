@@ -19,7 +19,9 @@
     {% endif %}
 
         <div class="container-fluid p-0">
+
           <h3 class="mb-3">Nak's Catering</h3>
+
           <div class="row m-0 p-0">
             {% for item in active_items %}
               <div class="col-lg-4 col-md-6 col-12 mb-3 m-0 p-0">
@@ -103,7 +105,7 @@
             {% endfor %}
             <div class="row py-2">
               <div class="col-xl-6 text-xl-left px-0">
-                Fee <small><span data-toggle="tooltip" data-placement="bottom" title="Covers costs related to payment transactions, servers, and software development"><i class="fas fa-info-circle"></i></span></small>
+                Service fee <small><span data-toggle="tooltip" data-placement="bottom" title="Covers costs related to payment transactions, servers, and software development"><i class="fas fa-info-circle"></i></span></small>
               </div>
               <div class="col-xl-6 text-xl-right px-0">
                 ${{ order.get_order_web_fee|floatformat:2|intcomma }}
