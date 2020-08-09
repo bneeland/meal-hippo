@@ -13,7 +13,7 @@
   <div class="row my-5">
     <div class="col-md-10 offset-md-1">
       <h1 class="mb-4">What is Meal Hippo?</h1>
-      <p>Meal Hippo connects you to chefs and caterers in your area, who offer home-style cooking that you can enjoy at home.</p>
+      <p>Meal Hippo is a web application that connects you to chefs and caterers in your area, who offer home-style cooking that you can enjoy at home.</p>
     </div>
   </div>
 
@@ -69,13 +69,22 @@
   <div class="row my-5">
     <div class="col-md-10 offset-md-1">
       <h1 class="mb-4">Where do the dishes come from?</h1>
-      <p>All food is prepared by professional, independent chefs in your area.</p>
+      <p>All food is prepared by professional, independent chefs or caterers in your area.</p>
+      <p>The chef and cateter name is shown on the <a href="{% url 'webplatform:order_items_view' %}">dishes</a> page.
     </div>
   </div>
   <div class="row my-5">
     <div class="col-md-10 offset-md-1">
       <h1 class="mb-4">Where does the nutritional information come from?</h1>
-      <p>The nutritional information (calories, protein, fat, and carbs) is an estimated range based on Health Canada's Nutrient Data and other sources.</p>
+      <p>The nutritional information (calories, protein, fat, and carbs) are calculated directly from the ingredients in the chef or caterer's recipe.</p>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col-md-10 offset-md-1">
+      <h1 class="mb-4">How does pricing work?</h1>
+      <p>Chefs and caterers set their own prices for the items they sell. This is the price that's posted on the <a href="{% url 'webplatform:order_items_view' %}">dishes</a> page. Chefs and caterers receive 100% of their price.</p>
+      <p>Meal Hippo applies a delivery fee, which covers the cost of delivery. This isn't applied when you choose to pick your order.</p>
+      <p>Meal Hippo also applies a service fee, which covers Meal Hippo's costs associated with payment transactions, servers, and software development.</p>
     </div>
   </div>
   <div class="row my-5">
