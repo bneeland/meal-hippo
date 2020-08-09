@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load humanize %}
+
 {% block title %}Support{% endblock %}
 
 {% block content %}
@@ -13,9 +15,34 @@
   <div class="row my-5">
     <div class="col-md-10 offset-md-1">
       <h1 class="mb-4">Order history</h1>
-      {% for completed_order in completed_orders %}
-        <p>{{ completed_order }}</p>
-      {% endfor %}
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col"></th>
+            <th scope="col">Amount</th>
+            <th scope="col">Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for completed_order in completed_orders %}
+            <tr>
+              <th scope="row">{{ completed_order.delivery_date }}</th>
+              <td>{{ completed_order.delivery_time }}</td>
+              <td>{% if completed_order.to_be_delivered %}Delivery{% else %}Pickup{% endif %}</td>
+              <td>${{ completed_order.payment.price|floatformat:2|intcomma }}</td>
+              <td>
+                {% for order_item in completed_order.items.all %}
+                  {{ order_item.item.name }} &times; {{ order_item.quantity }}<br>
+                {% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
     </div>
   </div>
 
