@@ -66,17 +66,54 @@
     {% if user.is_authenticated %}
         <nav class="navbar navbar-expand navbar-light user-nav pt-0">
             <ul class="navbar-nav mx-auto ml-md-auto mr-md-0">
+
               {% if is_subscribed %}
                 <li class="nav-item mr-4">
-                  <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">Subscribed <i class="fas fa-toggle-on"></i></a>
+                  <a class="nav-link" data-toggle="modal" data-target="#subscribe_modal" href="">Subscribed <i class="fas fa-toggle-on"></i></a>
                 </li>
               {% else %}
                 <span data-toggle="tooltip" data-placement="bottom" title="Save 5% on all orders">
                   <li class="nav-item mr-4">
-                    <a class="nav-link" href="{% url 'webplatform:subscribe_toggle' request.path %}">Subscribe <i class="fas fa-toggle-off"></i></a>
+                    <a class="nav-link" data-toggle="modal" data-target="#subscribe_modal" href="">Subscribe <i class="fas fa-toggle-off"></i></a>
                   </li>
                 </span>
               {% endif %}
+
+              <div class="modal fade" id="subscribe_modal" tabindex="-1" aria-labelledby="subscribe_modal_label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="subscribe_modal_label"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      {% if is_subscribed %}
+                        <h5>Are you sure you want to unsubscribe?</h5>
+                      {% else %}
+                        <h4>Subscribe to Meal Hippo</h4>
+                        <p>Here's what will happen when you subscribe to Meal Hippo:</p>
+                        <ul>
+                          <li>5% off each order</li>
+                          <li>Set up weekly orders next time you order</li>
+                          <li>We will email you before each next automated order to allow you to confirm that you want it</li>
+                          <li>Cancel anytime</li>
+                        </ul>
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      {% if is_subscribed %}
+                        <a class="btn btn-danger btn-block" href="{% url 'webplatform:subscribe_toggle' request.path %}" role="button">Unsubscribe</a>
+                      {% else %}
+                        <a class="btn btn-primary btn-block" href="{% url 'webplatform:subscribe_toggle' request.path %}" role="button">Subscribe</a>
+                      {% endif %}
+                      <button type="button" class="btn btn-light btn-block" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <li class="nav-item mr-4">
                 <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">
                   Order <span class="badge badge-secondary">{{ request.user|cart_item_count }}</span>
