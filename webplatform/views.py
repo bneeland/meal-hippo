@@ -41,6 +41,9 @@ class SupportView(IsSubscribedMixin, TemplateView):
 class ContactView(IsSubscribedMixin, TemplateView):
     template_name = 'webplatform/contact_view.html'
 
+class SupplierGuideView(IsSubscribedMixin, TemplateView):
+    template_name = 'webplatform/supplier_guide_view.html'
+
 class HomeView(IsSubscribedMixin, HasFreeDeliveryMixin, TemplateView):
     template_name = 'webplatform/home_view.html'
 
