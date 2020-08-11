@@ -12,9 +12,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9">
-        <h1 class="mb-4">Enjoy good food at home every day, even when you don't have time to cook</h1>
+        <!-- <h1 class="mb-4">Enjoy good food at home every day, even when you don't have time to cook</h1> -->
+        <h1 class="mb-4">Enjoy good food at home every day</h1>
         <h4 class="mb-4">Get home-style cooking from chefs and caterers in your area delivered to you.</h4>
-        <p>Good food you want to eat everyday. Made to order with fresh ingredients by chefs in your area. Fully cooked and prepared&mdash;no prep, no cooking. Subscribe for automatic weekly orders to simplify your life.</p>
+        <p>Good food you want to eat everyday. Fully cooked and prepared&mdash;no prep, no cooking. Made to order with fresh ingredients by independent chefs and caterers. Subscribe for weekly orders to simplify your life.</p>
         <p class="mt-4">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg" role="button">Explore dishes</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
