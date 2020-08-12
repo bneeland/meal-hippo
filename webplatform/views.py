@@ -67,7 +67,7 @@ class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
             if order_qs.exists():
                 order = order_qs[0]
                 context['order'] = order
-                order_items = order.items.all()
+                order_items = order.items.all().order_by('item')
                 context['order_items'] = order_items
         return context
 
