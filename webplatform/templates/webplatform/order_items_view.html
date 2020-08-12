@@ -108,9 +108,9 @@
               <div class="row pb-2">
 
                 {% if order_item.is_individual %}
-                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch one large container"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>Individual containers</small>
+                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch one container"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>Individual containers</small>
                 {% else %}
-                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch to individual containers"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>One large container</small>
+                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch to individual containers"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>One container</small>
                 {% endif %}
 
               </div>
