@@ -139,10 +139,10 @@ def is_individual_toggle(request, pk):
     order_item = get_object_or_404(models.OrderItem, pk=pk)
     if order_item.is_individual == True:
         order_item.is_individual = False
-        messages.info(request, "Switched to bulk packaging")
+        messages.info(request, "Switched to one container")
     else:
         order_item.is_individual = True
-        messages.info(request, "Switched to individual packaging")
+        messages.info(request, "Switched to individual containers")
     order_item.save()
     return redirect("webplatform:order_items_view")
 
