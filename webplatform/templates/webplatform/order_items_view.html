@@ -108,9 +108,9 @@
               <div class="row pb-2">
 
                 {% if order_item.is_individual %}
-                  <small>Individual portions&nbsp;<span data-toggle="tooltip" data-placement="bottom" title="Switch to bulk portions"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}">&nbsp;&nbsp;<i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span></small>
+                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch to bulk portions"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>Individual portions</small>
                 {% else %}
-                  <small>Bulk portions&nbsp;<span data-toggle="tooltip" data-placement="bottom" title="Switch to individual portions"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}">&nbsp;&nbsp;<i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span></small>
+                  <small><span data-toggle="tooltip" data-placement="bottom" title="Switch to individual portions"><a href="{% url 'webplatform:is_individual_toggle' order_item.pk %}"><i class="fas fa-sort"></i>&nbsp;&nbsp;</a></span>Bulk portions</small>
                 {% endif %}
 
               </div>
