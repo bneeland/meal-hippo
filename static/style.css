@@ -186,3 +186,7 @@ a.featured:hover {
 div.dropdown-menu a:active {
   background: var(--attention_light);
 }
+
+.navbar-expand .navbar-nav .dropdown-menu {
+  z-index: 90000;
+}

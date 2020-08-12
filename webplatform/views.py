@@ -128,11 +128,22 @@ def to_be_delivered_toggle(request):
         order = order_qs[0]
         if order.to_be_delivered == True:
             order.to_be_delivered = False
-            messages.info(request, "Pick up option selected")
+            messages.info(request, "Switched to pick up option")
         else:
             order.to_be_delivered = True
-            messages.info(request, "Delivery option selected")
+            messages.info(request, "Switched to delivery option")
         order.save()
+    return redirect("webplatform:order_items_view")
+
+def is_individual_toggle(request, pk):
+    order_item = get_object_or_404(models.OrderItem, pk=pk)
+    if order_item.is_individual == True:
+        order_item.is_individual = False
+        messages.info(request, "Switched to bulk packaging")
+    else:
+        order_item.is_individual = True
+        messages.info(request, "Switched to individual packaging")
+    order_item.save()
     return redirect("webplatform:order_items_view")
 
 def subscribe_toggle(request, path):

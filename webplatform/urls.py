@@ -20,5 +20,6 @@ urlpatterns = [
     path('add_to_order/<int:pk>', views.add_to_order, name='add_to_order'),
     path('remove_from_order/<int:pk>', views.remove_from_order, name='remove_from_order'),
     path('to_be_delivered_toggle', views.to_be_delivered_toggle, name='to_be_delivered_toggle'),
+    path('is_individual_toggle/<int:pk>', views.is_individual_toggle, name='is_individual_toggle'),
     path('subscribe_toggle/<path:path>', views.subscribe_toggle, name='subscribe_toggle'),
 ]
