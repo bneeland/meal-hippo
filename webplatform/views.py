@@ -128,10 +128,10 @@ def to_be_delivered_toggle(request):
         order = order_qs[0]
         if order.to_be_delivered == True:
             order.to_be_delivered = False
-            messages.info(request, "Switched to pick up option")
+            messages.info(request, "Switched to pick up")
         else:
             order.to_be_delivered = True
-            messages.info(request, "Switched to delivery option")
+            messages.info(request, "Switched to delivery")
         order.save()
     return redirect("webplatform:order_items_view")
 
