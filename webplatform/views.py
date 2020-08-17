@@ -53,12 +53,12 @@ class HomeView(IsSubscribedMixin, HasFreeDeliveryMixin, TemplateView):
         return context
 
 class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
-    model = models.Supplier
+    model = models.Item
     template_name = 'webplatform/order_items_view.html'
     context_object_name = 'active_items'
 
     def get_queryset(self):
-        return models.Item.objects.filter(is_active=True)
+        return models.Item.objects.filter(is_active=True).order_by('rank')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
             if order_qs.exists():
                 order = order_qs[0]
                 context['order'] = order
-                order_items = order.items.all().order_by('item')
+                order_items = order.items.all().order_by('item__rank')
                 context['order_items'] = order_items
         return context
 
