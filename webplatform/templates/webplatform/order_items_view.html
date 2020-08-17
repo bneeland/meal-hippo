@@ -31,7 +31,7 @@
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
                     <p class="card-text">{% if not order_items %}<span data-toggle="tooltip" data-placement="bottom" title="Plus delivery and service fees">{% endif %}${{ item.price|floatformat:2|intcomma }} <small>/ portion</small>{% if not order_items %}</span>{% endif %}</p>
-                    <p class="card-text"><small>{% if item.calories %}<span data-toggle="tooltip" data-placement="bottom" title="Estimated range based on Health Canada's Nutrient Data and other sources">Calories: {{ item.calories }} kcal/portion</span> &emsp; {% endif %}{% comment %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}</small></p>
+                    <p class="card-text"><small>{% if item.calories %}<span data-toggle="tooltip" data-placement="bottom" title="Provided by the chef or caterer">Calories: {{ item.calories }} kcal/portion</span> &emsp; {% endif %}{% comment %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}</small></p>
                     <p class="card-text"><small>
                       Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
                       {% if item.portion_increment > 1 %} | Portions in multiples of {{ item.portion_increment }}{% endif %}
