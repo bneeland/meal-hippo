@@ -49,7 +49,7 @@ class HomeView(IsSubscribedMixin, HasFreeDeliveryMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['items'] = models.Item.objects.filter(is_featured=True)
+        context['items'] = models.Item.objects.filter(is_active=True, is_featured=True).order_by('rank')
         return context
 
 class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
