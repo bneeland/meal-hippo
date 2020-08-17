@@ -28,6 +28,7 @@ class Item(models.Model):
     protein = models.FloatField(blank=True, null=True)
     fat = models.FloatField(blank=True, null=True)
     carbs = models.FloatField(blank=True, null=True)
+    portion_size = models.TextField(blank=True, null=True)
     rank = models.IntegerField(blank=True, null=True)
     is_active = models.BooleanField()
     is_featured = models.BooleanField(default=False)
