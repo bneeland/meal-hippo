@@ -136,6 +136,150 @@ class OrderTimingForm(ModelForm):
             'delivery_date': forms.Select(choices=DATE_CHOICES),
             'delivery_time': forms.Select(choices=TIME_CHOICES),
         }
+class OrderTimingFormLate(ModelForm):
+    class Meta:
+        model = models.Order
+        fields = ['delivery_date', 'delivery_time']
+        labels = {
+            'delivery_date': 'Date',
+            'delivery_time': 'Time',
+        }
+
+
+        # Date dropdown menu choices
+        cutoff_days = 1
+        weeks_worth_of_dates = 3
+        acceptable_days = [0, 1, 2, 3, 4, ] # Monday is 0, Tuesday is 1, ... Sunday is 6
+        blackout_day = datetime.date(2020, 8, 18)
+
+        first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
+        while first_date.weekday() not in acceptable_days:
+            first_date += datetime.timedelta(1)
+        DATE_CHOICES = (('', 'Select a date'),)
+        for w in range(0, weeks_worth_of_dates):
+            for d in acceptable_days:
+                if w == 0 and first_date.weekday() > d:
+                    pass
+                else:
+                    next_date_as_date = first_date + datetime.timedelta(w*7 + d - first_date.weekday())
+                    if next_date_as_date != blackout_day:
+                        next_date_as_str = next_date_as_date.strftime("%A, %B %-d")
+                        DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
+                        DATE_CHOICES += DATE_CHOICE
+
+
+        # Time dropdown menu choices
+        TIME_CHOICES = (('', 'Select a time'),)
+
+        time = datetime.time(13, 30)
+        time_start = datetime.time(13, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(14, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(14, 00)
+        time_start = datetime.time(14, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(14, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(14, 30)
+        time_start = datetime.time(14, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(15, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(15, 00)
+        time_start = datetime.time(15, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(15, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end}"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(15, 30)
+        time_start = datetime.time(15, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(16, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(16, 00)
+        time_start = datetime.time(16, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(16, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(16, 30)
+        time_start = datetime.time(16, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(17, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(17, 00)
+        time_start = datetime.time(17, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(17, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(17, 30)
+        time_start = datetime.time(17, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(18, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(18, 00)
+        time_start = datetime.time(18, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(18, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(18, 30)
+        time_start = datetime.time(18, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(19, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(19, 00)
+        time_start = datetime.time(19, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(19, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(19, 30)
+        time_start = datetime.time(19, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(20, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(20, 00)
+        time_start = datetime.time(20, 00).strftime("%-I:%M %p")
+        time_end = datetime.time(20, 30).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        time = datetime.time(20, 30)
+        time_start = datetime.time(20, 30).strftime("%-I:%M %p")
+        time_end = datetime.time(21, 00).strftime("%-I:%M %p")
+        time_range = f"{time_start} - {time_end} (refrigerated)"
+        TIME_CHOICE = (((time, time_range),))
+        TIME_CHOICES += TIME_CHOICE
+
+        widgets = {
+            'delivery_date': forms.Select(choices=DATE_CHOICES),
+            'delivery_time': forms.Select(choices=TIME_CHOICES),
+        }
 
 class OrderDeliveryForm(ModelForm):
     class Meta:
