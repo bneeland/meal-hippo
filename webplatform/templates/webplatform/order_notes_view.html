@@ -20,7 +20,7 @@
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" value="Continue" class="btn btn-primary btn-block">
-        <a href="{% url 'webplatform:order_payment_view' %}" class="btn btn-outline-primary btn-block" role="button">Cancel</a>
+        <a href="{% url 'webplatform:order_payment_view' %}" class="btn btn-light btn-block" role="button">Cancel</a>
       </form>
     </div>
 
