@@ -146,6 +146,14 @@ class OrderDeliveryForm(ModelForm):
           'instructions': forms.Textarea(attrs={'rows':4}),
         }
 
+class OrderNotesForm(ModelForm):
+    class Meta:
+        model = models.Order
+        fields = ['notes',]
+        widgets = {
+          'notes': forms.Textarea(attrs={'rows':4}),
+        }
+
 class FeedbackForm(ModelForm):
     class Meta:
         model = models.Feedback

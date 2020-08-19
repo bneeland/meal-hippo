@@ -22,7 +22,7 @@ body {
   font-size: 18px;
 }
 
-select.form-control, input.form-control {
+select.form-control, input.form-control, textarea.form-control {
   font-size: 1em;
 }
 

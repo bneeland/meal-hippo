@@ -202,6 +202,20 @@ class OrderDeliveryView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
     def get_object(self):
         return get_object_or_404(models.UserDeliveryDetail, user=self.request.user)
 
+class OrderNotesView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+
+    template_name = 'webplatform/order_notes_view.html'
+    form_class = forms.OrderNotesForm
+    success_url = reverse_lazy('webplatform:order_payment_view')
+
+    def get_object(self):
+        order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)
+        if order_qs.exists():
+            order = order_qs[0]
+            if order.items.count() > 0:
+                return order
+
 class OrderPaymentView(IsSubscribedMixin, LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         user = self.request.user

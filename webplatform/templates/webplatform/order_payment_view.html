@@ -160,6 +160,21 @@
 								<p><small><a href="{% url 'webplatform:order_items_view' %}">Change</a></small></p>
 							</div>
 						</div>
+						<div class="row">
+              <div class="col px-0">
+                <hr>
+              </div>
+            </div>
+						<div class="row pt-2">
+							<div class="col px-0">
+								<small>
+									{% if order.notes %}
+										<p>{{ order.notes }}</p>
+									{% endif %}
+									<p><a href="{% url 'webplatform:order_notes_view' %}">{% if order.notes %}Edit notes{% else %}Add order notes (optional){% endif %}</a></p>
+								</small>
+							</div>
+						</div>
           </div>
         </div>
       </div>

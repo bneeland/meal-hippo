@@ -72,6 +72,7 @@ class Order(models.Model):
     to_be_delivered = models.BooleanField(default=True)
     delivery_date = models.DateField(null=True)
     delivery_time = models.TimeField(null=True)
+    notes = models.TextField(blank=True, null=True, verbose_name='Order notes')
     is_completed = models.BooleanField(default=False)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -123,7 +124,7 @@ class UserDeliveryDetail(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20)
     address = models.TextField()
-    instructions = models.TextField(blank=True, null=True)
+    instructions = models.TextField(blank=True, null=True, verbose_name='Delivery instructions')
     free_delivery = models.BooleanField(default=True)
     is_subscribed = models.BooleanField(default=False, verbose_name='subscribe weekly')
 
