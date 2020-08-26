@@ -90,7 +90,7 @@ class Order(models.Model):
     def get_order_web_fee(self):
         order_initial_subtotal = self.get_order_initial_subtotal()
         # Set web fees
-        website_fee_fixed = 3
+        website_fee_fixed = 2 + 0.33
         website_fee_variable = 0.029
         # Apply web fees
         order_web_fee = website_fee_fixed + order_initial_subtotal * website_fee_variable
@@ -103,7 +103,7 @@ class Order(models.Model):
         # Delivery fee (only if user's setting is not set to free delivery)
         if not UserDeliveryDetail.objects.filter(user=self.user)[0].free_delivery and self.to_be_delivered:
             # Set delivery fee
-            order_delivery_fee = 6
+            order_delivery_fee = 7
             # Apply delivery fee
             order_subtotal += order_delivery_fee
         return order_subtotal
