@@ -190,3 +190,7 @@ div.dropdown-menu a:active {
 .navbar-expand .navbar-nav .dropdown-menu {
   z-index: 90000;
 }
+
+.supplier-name {
+  color: var(--text);
+}
