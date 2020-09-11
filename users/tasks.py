@@ -7,7 +7,7 @@ def send_mail_with_celery(subject, message, recipient_list, html_message):
     send_mail(
         subject=subject,
         message=message,
-        from_email='web.bot@mealhippo.com',
+        from_email=None,
         recipient_list=recipient_list,
         fail_silently=True,
         html_message=html_message,

@@ -25,12 +25,12 @@ class SignUpView(CreateView):
         #     html_message='<h1>New user</h1><p>A new user signed up on mealhippo.com beta.</p><p>The user who did this was '+email+'.</p><p>This was done at '+str(timezone.localtime(timezone.now()))+'.</p>',
         # )
 
-        # tasks.send_mail_with_celery.delay(
-        #     subject='Thanks for signing up to Meal Hippo!',
-        #     message='Hi '+email+', Thanks for signing up on mealhippo.com! If you have any questions about Meal Hippo, such as how to start your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help. -Brian from Meal Hippo | Call: 780-243-7675 | Email: hello@mealhippo.com | beta.mealhippo.com',
-        #     recipient_list=[email],
-        #     html_message='<h1>Thanks for signing up to Meal Hippo!</h1><p>Hi '+email+',</p><p>Thanks for signing up on mealhippo.com!</p><p>If you have any questions about Meal Hippo, such as how to start your order, don\'t hesitate to get in touch with me by phone or email. I\'d be happy to help.</p><p>Brian</p><p>Meal Hippo<br>Call: 780-243-7675<br>Email: hello@mealhippo.com<br><a href="https://b.mealhippo.com">beta.mealhippo.com</a></p>',
-        # )
+        tasks.send_mail_with_celery.delay(
+            subject='Welcome to Meal Hippo!',
+            message='Hi '+email+'! Welcome to Meal Hippo! Thank you so much for joining us. You’re on your way to saving time and effort with good, convenient food, effortlessly. Meal Hippo makes it easy to order fully cooked, ready-to-eat home-style food, so you can enjoy great food every day—even when you don\'t have time to cook. Order a multi-portion dish, and use it for lunches and supper for the next few days, or feed the whole family family easily--with enough for leftovers. Your next step would be to make an order through Meal Hippo. Click here to check out the dishes available in your area! Have any questions? Just shoot us an email! We’re always here to help. The Meal Hippo team &middot; hello@mealhippo.com &middot; mealhippo.com',
+            recipient_list=[email],
+            html_message='<p>Hi '+email+'!</p><p>Welcome to Meal Hippo! Thank you so much for joining us. You’re on your way to saving time and effort with good, convenient food, effortlessly.</p><p>Meal Hippo makes it easy to order fully cooked, ready-to-eat home-style food, so you can enjoy great food every day—even when you don\'t have time to cook. Order a multi-portion dish, and use it for lunches and supper for the next few days, or feed the whole family family easily--with enough for leftovers.</p><p>Your next step would be to make an order through Meal Hippo. <a href="https://www.mealhippo.com/order/items"><b>Click here</b></a> to check out the dishes available in your area!</p><p>Have any questions? Just shoot us an email! We’re always here to help.</p><p>The Meal Hippo team<br>hello@mealhippo.com<br>mealhippo.com</p>',
+        )
 
         return valid
 
