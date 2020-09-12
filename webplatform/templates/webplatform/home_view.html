@@ -8,19 +8,40 @@
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid bg-white text-center text-sm-left pb-0">
+<!-- <div class="jumbotron jumbotron-fluid bg-white text-center text-sm-left pb-0"> -->
+<div class="jumbotron jumbotron-fluid bg-white text-center pb-0">
   <div class="container">
     <div class="row">
-      <div class="col-md-9">
-        <!-- <h1 class="mb-4">Enjoy good food at home every day, even when you don't have time to cook</h1> -->
-        <h1 class="mb-4">Order home-style food from chefs and caterers in your area</h1>
-        <!-- <h4 class="mb-4">Get home-style cooking from chefs and caterers in your area delivered to you.</h4> -->
-        <h4 class="mb-4">Meal Hippo makes it easy to buy fully cooked, ready-to-eat home-style food, so you can enjoy great food every day&mdash;even when you don't have time to cook.</h4>
-        <p>
+      <!-- <div class="col-md-9"> -->
+      <div class="col">
+        <!-- <h1 class="mb-4">Order home-style food from chefs and caterers in your area</h1> -->
+        <h1 class="title mb-4">Lunch and supper, without cooking</h1>
+        <h3 class="mb-4">
+          Get casserole-type meals from local caterers delivered to you.
+        </h3>
+        <h5>
+          <span class="badge badge-pill badge-info">✓ Bulk portions for multiple meals</span>
+          <span class="badge badge-pill badge-info">✓ No prep</span>
+          <span class="badge badge-pill badge-info">✓ Ready to eat</span>
+        </h5>
+        <!-- <p>
           Great home-style food you want to eat everyday<br>
           Fully cooked, prepared, and ready to eat&mdash;no prep, no cooking<br>
           Made to order with fresh ingredients by local, independent chefs and caterers<br>
-          Subscribe to automate weekly orders</p>
+          Subscribe to automate weekly orders
+        </p> -->
+
+        <div class="row mt-5">
+          <div class="col text-right">
+            <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg" role="button">Explore dishes</a>
+            {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
+          </div>
+          <div class="col text-left">
+            <a href="{% url 'webplatform:support_view' %}" class="btn btn-outline-primary grey" role="button">Learn more</a>
+          </div>
+        </div>
+
+        {% comment %}
         <p class="mt-4">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg" role="button">Explore dishes</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
@@ -28,13 +49,14 @@
         <p>
           <a href="{% url 'webplatform:support_view' %}" class="btn btn-outline-primary grey" role="button">Learn more</a>
         </p>
+        {% endcomment %}
       </div>
     </div>
   </div>
 </div>
 
 <div class="container my-5">
-  <div class="card-group shadow-sm">
+  <div class="card-group shadow">
     {% for item in items %}
       <div class="card border-top-0 border-bottom-0 border-left-0">
         <a href="{% url 'webplatform:order_items_view' %}" class="featured">
@@ -61,29 +83,28 @@
     <div class="card-deck">
       <div class="card shadow">
         <div class="card-body">
-          <h5 class="card-title"><b>Step 1</b>&mdash;Build your order online</h5>
-          <p class="card-text">Choose from several home-style dishes offered by chefs in your area.</p>
-          <p class="card-text">Specify whether you would like your order delivered or if you would like to pick it up.</p>
+          <h5 class="card-title"><b>Step 1</b>&mdash;Build your order</h5>
+          <p class="card-text">Choose from several home-style dishes offered by caterers in your area.</p>
+          <p class="card-text">Select delivery or pickup.</p>
         </div>
       </div>
       <div class="card shadow">
         <div class="card-body">
           <h5 class="card-title"><b>Step 2</b>&mdash;Checkout</h5>
-          <p class="card-text">Set the date and time that you would like to receive your order.</p>
-          <p class="card-text">If you chose delivery, select the location that you would like your order delivered to you.</p>
+          <p class="card-text">Set the date, time, and location that you want to receive your order.</p>
           <p class="card-text">Finally, pay online using our secure payment system.</p>
         </div>
       </div>
       <div class="card shadow">
         <div class="card-body">
           <h5 class="card-title"><b>Step 3</b>&mdash;Receive your order</h5>
-          <p class="card-text">Your fresh, ready-to-eat food is delivered to you, or you pick it up at the supplier's location.</p>
+          <p class="card-text">Your fresh, ready-to-eat food is delivered to you, or you pick it up.</p>
           <p class="card-text">We make sure you get your food safely.</p>
         </div>
       </div>
     </div>
 
-    <div class="card-deck my-5">
+    <!-- <div class="card-deck my-5">
       <div class="card shadow">
         <div class="card-body">
           <h5 class="card-title"><b>Option</b>&mdash;Subscription</h5>
@@ -91,9 +112,9 @@
           <p class="card-text"><a href="{% url 'webplatform:support_view' %}">Learn more</a></p>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="text-center">
+    <div class="text-center mt-5">
       <p><a class="btn btn-primary" href="{% url 'webplatform:order_items_view' %}" role="button">Get started</a></p>
     </div>
 
