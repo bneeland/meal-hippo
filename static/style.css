@@ -146,6 +146,17 @@ a.featured:hover {
   color: var(--attention_text);
 }
 
+.btn-attention.btn-order {
+  background: var(--attention_dark);
+  color: var(--attention_text);
+  font-size: 26px;
+}
+
+.btn-attention.btn-order:hover {
+  background: var(--attention_light);
+  color: var(--attention_text);
+}
+
 .btn-outline-primary {
   border-color: var(--button_dark);
   color: var(--button_dark);
@@ -173,10 +184,6 @@ a.featured:hover {
 .btn-light {
   color: var(--text);
   border: none;
-}
-
-.btn-light:hover {
-  color: var(--link_light);
 }
 
 .badge.badge-success.message {
