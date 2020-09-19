@@ -28,12 +28,12 @@
                 <div class="card mr-3 border rounded shadow-sm">
                   <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
                   <div class="card-body p-3">
-                    <p><small>{{ item.supplier.business_name }}</small></p>
+                    <p class="text-center border rounded"><small>{{ item.supplier.business_name }}</small></p>
                     <h5 class="card-title">{{ item.name }}</h5>
                     <p class="card-text">{{ item.description }}</p>
-                    <p class="card-text"><b>{% if not order_items %}{% endif %}${{ item.price|floatformat:2|intcomma }}</b> <small>/ portion</small>{% if not order_items %}{% endif %}</p>
+                    <p class="card-text">{% if not order_items %}{% endif %}${{ item.price|floatformat:2|intcomma }} <small>/ portion</small>{% if not order_items %}{% endif %}</p>
                     <p class="card-text"><small>
-                      {% if item.calories %}Calories: {{ item.calories }} kcal/portion <small><span data-toggle="tooltip" data-placement="bottom" title="Provided by the caterer"><i class="fas fa-info-circle"></i></span></small> &emsp; {% endif %}{% comment %}{% if item.protein %}Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}
+                      {% if item.calories %}Calories: {{ item.calories }} kcal/portion <small><span data-toggle="tooltip" data-placement="bottom" title="Provided by the caterer"><i class="fas fa-info-circle"></i></span></small>{% endif %}{% comment %}{% if item.protein %} &emsp; Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}
                     </small></p>
                     <p class="card-text"><small>
                       {% if item.portion_size %}Portion size: {{ item.portion_size }} <small><span data-toggle="tooltip" data-placement="bottom" title="Provided by the caterer"><i class="fas fa-info-circle"></i></span></small>{% endif %}
@@ -75,7 +75,7 @@
 
           <hr>
 
-          {% if order.to_be_delivered %}
+          {% comment %}{% if order.to_be_delivered %}
             <div class="row">
               <div class="col-xl my-1"><a class="btn btn-sm btn-outline-primary btn-block disabled" role="button"><small><i class="fas fa-check"></i> Delivery</small></a></div>
               <div class="col-xl my-1"><a class="btn btn-sm btn-attention btn-block" href="{% url 'webplatform:to_be_delivered_toggle' %}" role="button"><small>Pick up</small></a></div>
@@ -96,7 +96,7 @@
             </div>
           {% endif %}
 
-          <hr>
+          <hr>{% endcomment %}
 
           <div class="container">
             {% for order_item in order_items %}
