@@ -213,3 +213,7 @@ div.dropdown-menu a:active {
   font-weight: normal;
   font-size: 0.8em;
 }
+
+.location {
+  background: #7A7A7A;
+}
