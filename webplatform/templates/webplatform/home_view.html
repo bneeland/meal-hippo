@@ -33,7 +33,7 @@
         </p> -->
 
         <div class="mt-4">
-          <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg btn-order border-bottom" role="button">Order food</a>
+          <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg btn-order" role="button">Order food</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
         </div>
         <div class="mt-3">
