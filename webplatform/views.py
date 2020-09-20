@@ -181,6 +181,7 @@ class OrderTimingView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
             'brian.neeland@protonmail.com',
             'mlabine103@gmail.com',
             'mike.neeland@gmail.com',
+            'Collinsjayden9@gmail.com',
         ]
         if self.request.user.email in allowed_users:
             return forms.OrderTimingFormLate
