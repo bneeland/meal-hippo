@@ -20,7 +20,7 @@
 body {
   color: var(--text);
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 select.form-control, input.form-control, textarea.form-control {
@@ -221,4 +221,8 @@ div.dropdown-menu a:active {
 
 .text-focus {
   color: var(--splash_focus);
+}
+
+.text-description {
+  color: var(--sub_heading);
 }
