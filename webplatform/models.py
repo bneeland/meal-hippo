@@ -90,7 +90,7 @@ class Order(models.Model):
     def get_order_web_fee(self):
         order_initial_subtotal = self.get_order_initial_subtotal()
         # Set web fees
-        website_fee_fixed = 2 + 0.33
+        website_fee_fixed = 1 + 0.33
         website_fee_variable = 0.029
         # Apply web fees
         order_web_fee = website_fee_fixed + order_initial_subtotal * website_fee_variable
