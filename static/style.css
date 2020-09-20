@@ -14,6 +14,7 @@
   --attention_dark: #C1DAFF;
   --attention_light: #D8E8FF;
   --attention_text: #0956AF;
+  --splash_focus: #78290F;
 }
 
 body {
@@ -215,5 +216,9 @@ div.dropdown-menu a:active {
 }
 
 .location {
-  background: #7A7A7A;
+  width: 120px;
+}
+
+.text-focus {
+  color: var(--splash_focus);
 }
