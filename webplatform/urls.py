@@ -18,6 +18,7 @@ urlpatterns = [
     path('order/history', views.OrderHistoryView.as_view(), name='order_history_view'),
     path('feedback', views.FeedbackView.as_view(), name='feedback_view'),
     path('feedback/thanks', views.FeedbackCompleteView.as_view(), name='feedback_complete_view'),
+    path('supplier/signup', views.SupplierSignUpView.as_view(), name='supplier_sign_up_view'),
     path('add_to_order/<int:pk>', views.add_to_order, name='add_to_order'),
     path('remove_from_order/<int:pk>', views.remove_from_order, name='remove_from_order'),
     path('to_be_delivered_toggle', views.to_be_delivered_toggle, name='to_be_delivered_toggle'),

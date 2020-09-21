@@ -322,3 +322,18 @@ class FeedbackForm(ModelForm):
             'main_benefit': forms.Textarea(attrs={'rows':3}),
             'how_to_improve': forms.Textarea(attrs={'rows':3}),
         }
+
+
+class SupplierSignUpForm(ModelForm):
+    class Meta:
+        model = models.UserSupplierInfo
+        fields = ['first_name', 'last_name', 'company_name', 'company_address', 'agree_to_terms_conditions']
+        widgets = {
+            'company_address': forms.Textarea(attrs={'rows':3}),
+        }
+
+    def clean_agree_to_terms_conditions(self):
+        agree_to_terms_conditions = self.cleaned_data.get('agree_to_terms_conditions')
+        if not agree_to_terms_conditions:
+            raise forms.ValidationError('You must agree to continue')
+        return agree_to_terms_conditions

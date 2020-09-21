@@ -344,3 +344,14 @@ class OrderHistoryView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['completed_orders'] = models.Order.objects.filter(user=self.request.user, is_completed=True).order_by('-delivery_date', '-delivery_time')
         return context
+
+class SupplierSignUpView(IsSubscribedMixin, LoginRequiredMixin, CreateView):
+    login_url = 'login'
+
+    template_name = 'webplatform/supplier_sign_up_view.html'
+    form_class = forms.SupplierSignUpForm
+    success_url = reverse_lazy('webplatform:home_view')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

@@ -138,6 +138,18 @@ class UserSubscription(models.Model):
     def __str__(self):
         return self.user.email
 
+class UserSupplierInfo(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=56, verbose_name='Your first name')
+    last_name = models.CharField(max_length=56, verbose_name='Your last name')
+    company_name = models.CharField(max_length=56)
+    company_address = models.TextField()
+    agree_to_terms_conditions = models.BooleanField(default=False, verbose_name='I agree to the General Terms and Conditions for Services &ndash; Caterers&mdash;as amended from time to time.', help_text='<a href="/static/webplatform/Terms-and-Conditions-for-Services-Caterers.pdf" target="_blank">General Terms and Conditions for Services &ndash; Caterers</a>')
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.user.email
+
 class Feedback(models.Model):
     FEEL_CHOICES = (
         ('VD', 'Very disappointed'),
