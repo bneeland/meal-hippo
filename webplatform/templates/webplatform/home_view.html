@@ -21,9 +21,9 @@
           Get casserole-size meals from local caterers delivered to you.
         </h3>
         <h5>
-          <span class="badge badge-pill badge-info">✓ Bulk portions for multiple meals</span>
-          <span class="badge badge-pill badge-info">✓ No prep</span>
-          <span class="badge badge-pill badge-info">✓ Ready to eat</span>
+          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;Bulk portions for multiple meals</span>&nbsp;
+          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;No prep</span>&nbsp;
+          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;Ready to eat</span>
         </h5>
         <!-- <p>
           Great home-style food you want to eat everyday<br>
@@ -32,11 +32,11 @@
           Subscribe to automate weekly orders
         </p> -->
 
-        <div class="mt-4">
+        <div class="mt-5">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg btn-order" role="button">Order food</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
         </div>
-        <div class="mt-3">
+        <div class="mt-3 mb-4">
           <a href="{% url 'webplatform:support_view' %}" class="btn btn-light" role="button">Learn more</a>
         </div>
 
@@ -64,45 +64,35 @@
   </div>
 </div>
 
-<div class="jumbotron jumbotron-fluid bg-medium mb-0">
+
+<div class="jumbotron jumbotron-fluid bg-light mb-0">
 
   <div class="container">
 
-    <h3 class="text-center mb-5">How it works</h3>
+    <h3 class="text-center mb-5">How can I use Meal Hippo?</h3>
+    <h5 class="text-center mb-3">Meal Hippo offers casserole-size dishes that replace regular cooking at home.</h5>
+    <h5 class="text-center mb-5">Save time and effort. Order here and cook less.</h5>
 
     <div class="card-deck">
-      <div class="card shadow">
+      <div class="card shadow border-0">
         <div class="card-body">
-          <h5 class="card-title"><b>Step 1</b>&mdash;Build your order</h5>
-          <p class="card-text">Choose from several dishes offered by caterers in your area.</p>
-          <p class="card-text">Select delivery or pickup.</p>
+          <h5 class="card-title">Meal prep lunches 📦</h5>
+          <p class="card-text">Get one large multi-portion dish at the beginning of the week and use it for packed lunches.</p>
         </div>
       </div>
-      <div class="card shadow">
+      <div class="card shadow border-0">
         <div class="card-body">
-          <h5 class="card-title"><b>Step 2</b>&mdash;Checkout</h5>
-          <p class="card-text">Set the date, time, and location that you want to receive your order.</p>
-          <p class="card-text">Finally, pay online using our secure payment system.</p>
+          <h5 class="card-title">Family dinners 🍽️</h5>
+          <p class="card-text">Take a few nights off from cooking dinner by getting ready-to-eat dishes delivered to your house.</p>
         </div>
       </div>
-      <div class="card shadow">
+      <div class="card shadow border-0">
         <div class="card-body">
-          <h5 class="card-title"><b>Step 3</b>&mdash;Receive your order</h5>
-          <p class="card-text">Your fresh, ready-to-eat food is delivered to you, or you pick it up.</p>
-          <p class="card-text">We make sure you get your food safely.</p>
+          <h5 class="card-title">Take a break on busy weeks 🛋️</h5>
+          <p class="card-text">Get a few casserole-size meals delivered when you're busy. Plan ahead for busy weeks by ordering a few dishes ahead of time.</p>
         </div>
       </div>
     </div>
-
-    <!-- <div class="card-deck my-5">
-      <div class="card shadow">
-        <div class="card-body">
-          <h5 class="card-title"><b>Option</b>&mdash;Subscription</h5>
-          <p class="card-text">Subscribe to set up automatic weekly orders based on your needs.</p>
-          <p class="card-text"><a href="{% url 'webplatform:support_view' %}">Learn more</a></p>
-        </div>
-      </div>
-    </div> -->
 
     <div class="text-center mt-5">
       <p><a class="btn btn-primary" href="{% url 'webplatform:order_items_view' %}" role="button">Get started</a></p>
@@ -111,6 +101,42 @@
   </div>
 
 </div>
+
+
+<div class="jumbotron jumbotron-fluid bg-white border-bottom mb-0">
+
+  <div class="container">
+
+    <h3 class="text-center mb-5">How does Meal Hippo work?</h3>
+    <h5 class="text-center mb-5">Ordering with Meal Hippo is simple.</h5>
+
+    <div class="card-deck mx-5">
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h5 class="card-title">Order online</h5>
+          <p class="card-text">Choose from several dishes offered by caterers in your area.</p>
+          <p class="card-text">Choose your delivery date and time.</p>
+          <p class="card-text">Pay online.</p>
+        </div>
+      </div>
+      <div class="card shadow border-0">
+        <div class="card-body">
+          <h5 class="card-title">Delivery</h5>
+          <p class="card-text">Your order is delivered to you, fresh.</p>
+          <p class="card-text">We make sure you receive you order safely.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <p><a class="btn btn-primary" href="{% url 'webplatform:order_items_view' %}" role="button">Get started</a></p>
+    </div>
+
+  </div>
+
+</div>
+
+
 
 {% comment %}
 <div class="jumbotron jumbotron-fluid bg-light mb-0 text-right">
