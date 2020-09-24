@@ -21,9 +21,9 @@
           Get casserole-size meals from local caterers delivered to you.
         </h3>
         <h5>
-          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;Bulk portions for multiple meals</span>&nbsp;
-          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;No prep</span>&nbsp;
-          <span class="badge badge-pill badge-info p-2 px-3">✓&nbsp;&nbsp;Ready to eat</span>
+          <span class="badge badge-pill badge-info p-2 px-3 mb-3">✓&nbsp;&nbsp;Bulk portions for multiple meals</span>&nbsp;
+          <span class="badge badge-pill badge-info p-2 px-3 mb-3">✓&nbsp;&nbsp;No prep</span>&nbsp;
+          <span class="badge badge-pill badge-info p-2 px-3 mb-3">✓&nbsp;&nbsp;Ready to eat</span>
         </h5>
         <!-- <p>
           Great home-style food you want to eat everyday<br>
@@ -32,7 +32,7 @@
           Subscribe to automate weekly orders
         </p> -->
 
-        <div class="mt-5">
+        <div class="mt-4">
           <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg btn-order" role="button">Order food</a>
           {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
         </div>
