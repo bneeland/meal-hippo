@@ -227,6 +227,10 @@ div.dropdown-menu a:active {
   color: var(--sub_heading);
 }
 
+.text-grey {
+  color: var(--text);
+}
+
 .card-text-details {
   line-height: 0.9em;
 }
