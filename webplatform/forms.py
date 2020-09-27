@@ -58,8 +58,6 @@ class OrderTimingForm(ModelForm):
                         DATE_CHOICE = ((next_date_as_date, next_date_as_str),)
                         DATE_CHOICES += DATE_CHOICE
 
-
-
         # Set list of times
 
         start_time_h = order_items[0].item.supplier.start_time_h
@@ -99,7 +97,7 @@ class OrderTimingForm(ModelForm):
                 next_timespan_as_str = f"{next_time_as_str__start} - {next_time_as_str__end}"
 
                 TIME_CHOICE = (
-                    ((next_time_as_date__start, next_timespan_as_str),)
+                    ((next_time_as_time__start, next_timespan_as_str),)
                 )
                 TIME_CHOICES += TIME_CHOICE
 
