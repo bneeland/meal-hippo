@@ -176,17 +176,7 @@ class OrderTimingView(IsSubscribedMixin, LoginRequiredMixin, UpdateView):
     # form_class = forms.OrderTimingForm
 
     def get_form_class(self):
-        allowed_users = [
-            'vanceweir@hotmail.com',
-            'brian.neeland@protonmail.com',
-            'mlabine103@gmail.com',
-            'mike.neeland@gmail.com',
-            'Collinsjayden9@gmail.com',
-        ]
-        if self.request.user.email in allowed_users:
-            return forms.OrderTimingFormLate
-        else:
-            return forms.OrderTimingForm
+        return forms.OrderTimingForm
 
     def get_object(self):
         order_qs = models.Order.objects.filter(user=self.request.user, is_completed=False)

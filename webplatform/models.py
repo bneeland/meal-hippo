@@ -3,18 +3,80 @@ from django.conf import settings
 from django.urls import reverse
 from datetime import time
 
+HOUR_CHOICES = (
+    (0, '00:'),
+    (1, '01:'),
+    (2, '02:'),
+    (3, '03:'),
+    (4, '04:'),
+    (5, '05:'),
+    (6, '06:'),
+    (7, '07:'),
+    (8, '08:'),
+    (9, '09:'),
+    (10, '10:'),
+    (11, '11:'),
+    (12, '12:'),
+    (13, '13:'),
+    (14, '14:'),
+    (15, '15:'),
+    (16, '16:'),
+    (17, '17:'),
+    (18, '18:'),
+    (19, '19:'),
+    (20, '20:'),
+    (21, '21:'),
+    (22, '22:'),
+    (23, '23:'),
+)
+
+MINUTE_CHOICES = (
+    (0, ':00'),
+    (30, ':30'),
+)
+
+class Day(models.Model):
+    number = models.IntegerField()
+    name_full = models.CharField(max_length=24, blank=True, null=True)
+    name_short = models.CharField(max_length=6, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.number)
+
 class Supplier(models.Model):
     business_name = models.CharField(max_length=100)
     contact_name = models.CharField(max_length=100, blank=True, null=True)
     contact_email = models.EmailField(blank=True, null=True)
     contact_phone = models.CharField(max_length=20, blank=True, null=True)
     contact_address = models.TextField(blank=True, null=True)
+    start_time_h = models.IntegerField(choices=HOUR_CHOICES, blank=True, null=True)
+    start_time_m = models.IntegerField(choices=MINUTE_CHOICES, blank=True, null=True)
+    end_time_h = models.IntegerField(choices=HOUR_CHOICES, blank=True, null=True)
+    end_time_m = models.IntegerField(choices=MINUTE_CHOICES, blank=True, null=True)
+    day_range = models.ManyToManyField(Day)
     is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.business_name
+
+    def get_humanized_date_range(self):
+        day_range = self.day_range.all()
+        day_min_int = day_range[0].number
+        day_min = day_range[0]
+        day_max_int = day_range[0].number
+        day_max = day_range[0]
+        for day in day_range:
+            if day.number < day_min_int:
+                day_min = day
+                day_min_int = day.number
+            if day.number > day_max_int:
+                day_max = day
+                day_max_int = day.number
+
+        humanized_date_range = day_min.name_short + format(u'\u2014') + day_max.name_short
+        return humanized_date_range
 
 class Item(models.Model):
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
