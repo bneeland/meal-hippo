@@ -41,9 +41,7 @@ class OrderTimingForm(ModelForm):
         for acceptable_day in acceptable_days_qs:
             acceptable_days += [acceptable_day.number]
 
-        print(acceptable_days)
         acceptable_days.sort()
-        print(acceptable_days)
 
         first_date = timezone.localtime(timezone.now()).date() + datetime.timedelta(cutoff_days)
         while first_date.weekday() not in acceptable_days:
