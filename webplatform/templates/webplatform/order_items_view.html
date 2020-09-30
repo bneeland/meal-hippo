@@ -39,7 +39,7 @@
                     <p class="card-text text-focus">{% if not order_items %}{% endif %}${{ item.price|floatformat:2|intcomma }} <small>/ portion</small>{% if not order_items %}{% endif %}</p>
                     <p class="text-center border rounded"><small>
                       {{ item.supplier.business_name }}<br>
-                      <i class="far fa-calendar"></i> {{ item.supplier.get_humanized_date_range }} &middot; <i class="far fa-clock"></i> {{ item.supplier.start_time_h }}:{{ item.supplier.start_time_m }}&ndash;{{ item.supplier.end_time_h }}:{{ item.supplier.end_time_m }}
+                      <i class="far fa-calendar"></i> {{ item.supplier.get_humanized_date_range }} &middot; <i class="far fa-clock"></i> {{ item.supplier.start_time_h }}:{{ item.supplier.start_time_m|stringformat:"02d" }}&ndash;{{ item.supplier.end_time_h }}:{{ item.supplier.end_time_m|stringformat:"02i" }}
                     </small></p>
                     <p class="card-text card-text-details mb-2"><small>
                       {% if item.calories %}Calories: {{ item.calories }} kcal/portion{% endif %}{% comment %}{% if item.protein %} &emsp; Protein: {{ item.protein }} g &emsp; {% endif %}{% if item.fat %}Fat: {{ item.fat }} g &emsp; {% endif %}{% if item.carbs %}Carbs: {{ item.carbs }} g{% endif %}{% endcomment %}
