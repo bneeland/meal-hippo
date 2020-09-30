@@ -345,7 +345,7 @@ class OrderHistoryView(IsSubscribedMixin, LoginRequiredMixin, TemplateView):
         return context
 
 class SupplierSignUpView(IsSubscribedMixin, LoginRequiredMixin, CreateView):
-    login_url = 'login'
+    login_url = 'users:signup'
 
     template_name = 'webplatform/supplier_sign_up_view.html'
     form_class = forms.SupplierSignUpForm
