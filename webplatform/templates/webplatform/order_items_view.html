@@ -48,8 +48,8 @@
                       {% if item.portion_size %}Portion size: {{ item.portion_size }}{% endif %}
                     </small></p>
                     <p class="card-text card-text-details mb-2"><small>
-                      Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}
-                      {% if item.portion_increment > 1 %} &middot; Portions in multiples of {{ item.portion_increment }}{% endif %}
+                      {% if item.minimum_portions > 1 %}Minimum {{ item.minimum_portions }} {% if item.minimum_portions > 1 %}portions{% else %}portion{% endif %}{% endif %}
+                      {% if item.minimum_portions > 1 and item.portion_increment > 1 %} &middot; {% endif %}{% if item.portion_increment > 1 %}Portions in multiples of {{ item.portion_increment }}{% endif %}
                     </small></p>
                     <p class="card-text card-text-details"><small>Order at least {{ item.minimum_lead_time }} {% if item.minimum_lead_time > 1 %}days{% else %}day{% endif %} in advance</small></p>
                     {% if user.is_authenticated %}
