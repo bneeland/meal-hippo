@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic import TemplateView, ListView
 from django.views.generic.base import ContextMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -71,6 +72,7 @@ class OrderItemsView(IsSubscribedMixin, HasFreeDeliveryMixin, ListView):
                 context['order_items'] = order_items
         return context
 
+@login_required
 def add_to_order(request, pk):
     item = get_object_or_404(models.Item, pk=pk)
     order_item, created = models.OrderItem.objects.get_or_create(item=item, user=request.user, is_completed=False)
