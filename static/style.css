@@ -16,6 +16,7 @@
   --attention_light: #D8E8FF;
   --attention_text: #0956AF;
   --splash_focus: #78290F;
+  --grey: #e0e1e4;
 }
 
 body {
@@ -160,6 +161,11 @@ a.featured:hover {
   color: var(--attention_text);
 }
 
+.btn-attention.disabled {
+  background: var(--grey);
+  color:
+}
+
 .btn-outline-primary {
   border-color: var(--button_dark);
   color: var(--button_dark);
@@ -235,4 +241,10 @@ div.dropdown-menu a:active {
 
 .card-text-details {
   line-height: 0.9em;
+}
+
+.collapse-order-toggle {
+  position: fixed;
+  right: 1em;
+  z-index: 80000;
 }
