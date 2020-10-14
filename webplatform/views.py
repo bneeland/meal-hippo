@@ -356,3 +356,8 @@ class SupplierSignUpView(IsSubscribedMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+def create_quick_feedback(request, email, answer):
+    quick_feedback = models.QuickFeedback(answer=answer,email=email)
+    quick_feedback.save()
+    return redirect("webplatform:home_view")

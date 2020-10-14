@@ -227,3 +227,11 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.user.email
+
+class QuickFeedback(models.Model):
+    email = models.CharField(max_length=100)
+    answer = models.CharField(max_length=25)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.created_at)

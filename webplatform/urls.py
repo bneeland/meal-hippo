@@ -24,4 +24,5 @@ urlpatterns = [
     path('to_be_delivered_toggle', views.to_be_delivered_toggle, name='to_be_delivered_toggle'),
     path('is_individual_toggle/<int:pk>', views.is_individual_toggle, name='is_individual_toggle'),
     path('subscribe_toggle/<path:path>', views.subscribe_toggle, name='subscribe_toggle'),
+    path('create_quick_feedback/<email>/<answer>', views.create_quick_feedback, name='create_quick_feedback'),
 ]
