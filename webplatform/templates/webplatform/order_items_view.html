@@ -134,9 +134,13 @@
                 ${{ order.get_order_total|floatformat:2|intcomma }}
               </div>
             </div>
-            <div class="row py-2 my-3">
+            <div class="row py-2 my-2">
               <div class="col px-0">
                 <a href="{% url 'webplatform:order_timing_view' %}" class="btn btn-attention btn-block">Checkout</a>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col px-0">
                 <hr>
               </div>
             </div>
@@ -146,15 +150,27 @@
 
         {% else %}
 
-          <div>
-            <p>Nothing in your order yet.</p>
-            <p>Add an item to your order to start.</p>
-          </div>
+          <div class="container-fluid collapse show" id="collapse-order">
 
-          <div class="row py-2 my-3">
-            <div class="col px-0">
-              <a class="btn btn-attention btn-block disabled">Checkout</a>
+            <div class="row py-2">
+              <div class="col px-0">
+                Nothing in your order yet. <br>
+                Add an item to start.
+              </div>
             </div>
+
+            <div class="row py-2 my-2">
+              <div class="col px-0">
+                <a class="btn btn-attention btn-block disabled">Checkout</a>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col px-0">
+                <hr>
+              </div>
+            </div>
+
           </div>
 
         {% endif %}
