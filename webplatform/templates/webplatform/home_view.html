@@ -86,7 +86,9 @@
         <a href="{% url 'webplatform:order_items_view' %}" class="featured">
           <img src="{% static 'webplatform/'|add:item.name|add:'.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text text-center">{{ item.name }}</p>
+            <p class="card-text text-center">{{ item.name }}<br>
+              <small>{{ item.supplier.business_name }}</small>
+            </p>
           </div>
         </a>
       </div>
