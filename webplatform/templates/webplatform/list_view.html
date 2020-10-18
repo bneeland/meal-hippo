@@ -21,9 +21,9 @@
 
         <p>We want to make it easy for you to get great food day-to-day. The kind of food that you’d make yourself, if you had the time, effort, and skills to do so, every day.</p>
 
-        <p>We’ve compiled a list of local businesses that offer the kind of food that works well for home use.</p>
+        <p>We’ve compiled a list of local food businesses that offer the kind of food that works well for home use.</p>
 
-        <p>We hope this list will help you find great food.</p>
+        <p>We hope this list will help you find great food that you can incorporate into your busy life.</p>
 
         <p>We’ll keep it updated. Sign up for our newsletter to receive a weekly digest of the list of great food providers in your area.</p>
 
@@ -47,56 +47,62 @@
       </div>
 
       {% for list_item in list_items %}
-        <div class="search-target border-bottom pt-5 pb-4">
+        {% if list_item.is_active %}
+          <div class="search-target border-bottom pt-5 pb-4">
 
-          <h5 class="mb-4"><b>{{ list_item.company_name }}</b></h5>
+            <h5 class="mb-4"><b>{{ list_item.company_name }}</b></h5>
 
-          <div class="row">
+            <div class="row">
 
-            <div class="col">
-              <div>
-                <h6><b>Menu <small>(sample)</small></b></h6>
-                <div class="row">
-                  <div class="col">
-                    <p>{{ list_item.menu_items|linebreaks }}</p>
-                  </div>
-                  <div class="col text-right">
-                    <p>{{ list_item.menu_prices|linebreaks }}</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h6><b>Format</b></h6>
-                <p>{{ list_item.food_format }}
-              </div>
-            </div>
-
-            <div class="col">
-              <div>
-                <div class="row">
-                  <div class="col">
-                    <h6><b>Delivery?</b></h6>
-                    <p>{{ list_item.delivery_details }}</p>
-                  </div>
-                  <div class="col">
-                    <h6><b>Pickup?</b></h6>
-                    <p>{{ list_item.pickup_details }}</p>
+              <div class="col">
+                <div>
+                  <h6><b>Menu <small>(sample)</small></b></h6>
+                  <div class="row">
+                    <div class="col">
+                      <p>{{ list_item.menu_items|linebreaks }}</p>
+                    </div>
+                    <div class="col text-right">
+                      <p>{{ list_item.menu_prices|linebreaks }}</p>
+                    </div>
                   </div>
                 </div>
+                <div>
+                  <h6><b>Format</b></h6>
+                  <p>{{ list_item.food_format }}
+                </div>
               </div>
-              <div>
-                <h6><b>Payment process</b></h6>
-                <p>{{ list_item.payment_process_details }}</p>
+
+              <div class="col">
+                <div>
+                  <div class="row">
+                    <div class="col">
+                      <h6><b>Delivery?</b></h6>
+                      <p>{{ list_item.delivery_details }}</p>
+                    </div>
+                    <div class="col">
+                      <h6><b>Pickup?</b></h6>
+                      <p>{{ list_item.pickup_details }}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h6><b>Payment process</b></h6>
+                  <p>{{ list_item.payment_process_details }}</p>
+                </div>
+                <div>
+                  <h6><b>How to order</b></h6>
+                  {% if list_item.is_on_meal_hippo %}
+                    <a class="btn btn-primary" href="{% url 'webplatform:order_items_view' %}">Order on Meal Hippo</a>
+                  {% else %}
+                    <p>{{ list_item.how_to_order_details|urlize }}</p>
+                  {% endif %}
+                </div>
               </div>
-              <div>
-                <h6><b>How to order</b></h6>
-                <p>{{ list_item.how_to_order_details|urlize }}</p>
-              </div>
+
             </div>
 
           </div>
-
-        </div>
+        {% endif %}
       {% endfor %}
 
     </div>

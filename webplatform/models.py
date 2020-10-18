@@ -245,6 +245,8 @@ class ListItem(models.Model):
     pickup_details = models.TextField(blank=True, null=True)
     payment_process_details = models.TextField(blank=True, null=True)
     how_to_order_details = models.TextField(blank=True, null=True)
+    is_on_meal_hippo = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
