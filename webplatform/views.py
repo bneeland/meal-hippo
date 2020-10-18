@@ -361,3 +361,15 @@ def create_quick_feedback(request, email, answer):
     quick_feedback = models.QuickFeedback(answer=answer,email=email)
     quick_feedback.save()
     return redirect("webplatform:home_view")
+
+class ListView(IsSubscribedMixin, TemplateView):
+    # model = models.Newsletter
+    # fields = ['name']
+
+    template_name = 'webplatform/list_view.html'
+    # success_url = reverse_lazy('webplatform:list_view')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['list_items'] = models.ListItem.objects.all()
+        return context

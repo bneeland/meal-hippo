@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Nunito:wght@400;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Varela+Round&display=swap&family=Sansita+Swashed:wght@500&display=swap');
 
 :root {
   --heading: #1B1B1F;
@@ -51,6 +50,10 @@ h4, h5, h6 {
   color: var(--sub_heading);
 }
 
+h6 {
+  font-size: 1em;
+}
+
 h1.title {
   font-size: 3em;
 }
@@ -67,7 +70,6 @@ a.featured:hover {
 .navbar-light .navbar-brand, .logo a {
   color: var(--logo);
   font-size: 1.5em;
-  /* font-family: 'Nunito', sans-serif; */
   font-family: 'Varela Round', sans-serif;
   font-weight: bold;
 }
@@ -87,6 +89,15 @@ a.featured:hover {
 
 .logo a:hover {
   color: var(--logo);
+}
+
+a.list-link {
+  font-family: 'Varela Round', sans-serif;
+  background: var(--attention_dark);
+}
+
+a.list-link:hover {
+  background: var(--attention_light);
 }
 
 .navbar-nav .nav-item a.nav-link {

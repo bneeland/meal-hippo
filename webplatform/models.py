@@ -235,3 +235,17 @@ class QuickFeedback(models.Model):
 
     def __str__(self):
         return str(self.created_at)
+
+class ListItem(models.Model):
+    company_name = models.CharField(max_length=56)
+    menu_items = models.TextField(blank=True, null=True)
+    menu_prices = models.TextField(blank=True, null=True)
+    food_format = models.TextField(blank=True, null=True)
+    delivery_details = models.TextField(blank=True, null=True)
+    pickup_details = models.TextField(blank=True, null=True)
+    payment_process_details = models.TextField(blank=True, null=True)
+    how_to_order_details = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.company_name

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row mt-4 mb-5">
+
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
+
+      <h3>
+        <p>Hi everyone&mdash;</p>
+
+        <p>There are so many great food providers in your city.</p>
+
+        <p>We want to make it easy for you to get great food.</p>
+
+        <p>We’ve compiled a list of local businesses that offer the kind of food that works well for home use.</p>
+
+        <p>The kind of food that you’d make yourself, if you had the time, effort, and skills to do so, every day.</p>
+
+        <p>We hope this list will help you find great food.</p>
+
+        <p>We’ll keep it updated. Sign up for our newsletter to receive a weekly digest of the list of great food providers in your area.</p>
+
+        <p>Enjoy!</p>
+      </h3>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-md-9">
+
+      <div class="sticky-top py-3 bg-white">
+        <input class="form-control form-control-lg" type="text" placeholder="Search" id="Search" onkeyup="searchList()">
+      </div>
+
+      {% for list_item in list_items %}
+        <div class="search-target border-top mt-4 pt-5">
+
+          <h5 class="mb-4"><b>{{ list_item.company_name }}</b></h5>
+
+          <div class="row">
+
+            <div class="col">
+              <div>
+                <h6><b>Menu <small>(sample)</small></b></h6>
+                <div class="row">
+                  <div class="col">
+                    <p>{{ list_item.menu_items|linebreaks }}</p>
+                  </div>
+                  <div class="col text-right">
+                    <p>{{ list_item.menu_prices|linebreaks }}</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h6><b>Format</b></h6>
+                <p>{{ list_item.food_format }}
+              </div>
+            </div>
+
+            <div class="col">
+              <div>
+                <div class="row">
+                  <div class="col">
+                    <h6><b>Delivery?</b></h6>
+                    <p>{{ list_item.delivery_details }}</p>
+                  </div>
+                  <div class="col">
+                    <h6><b>Pickup?</b></h6>
+                    <p>{{ list_item.pickup_details }}</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h6><b>Payment process</b></h6>
+                <p>{{ list_item.payment_process_details }}</p>
+              </div>
+              <div>
+                <h6><b>How to order</b></h6>
+                <p>{{ list_item.how_to_order_details|urlize }}</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="sticky-top py-3 bg-white">
+
+        <h3>Newsletter</h3>
+
+        <input class="form-control" type="text" placeholder="Your email address">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

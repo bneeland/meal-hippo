@@ -25,4 +25,5 @@ urlpatterns = [
     path('is_individual_toggle/<int:pk>', views.is_individual_toggle, name='is_individual_toggle'),
     path('subscribe_toggle/<path:path>', views.subscribe_toggle, name='subscribe_toggle'),
     path('create_quick_feedback/<email>/<answer>', views.create_quick_feedback, name='create_quick_feedback'),
+    path('list', views.ListView.as_view(), name='list_view'),
 ]

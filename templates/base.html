@@ -27,20 +27,28 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <!-- Crisp Chat -->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="236504b4-421b-42dd-a06a-f2b089be0bed";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <!-- Search list -->
+    <script type="text/javascript" src="{% static 'search_list.js' %}"></script>
   </head>
   <body>
 
 
     <nav class="navbar navbar-expand-md navbar-light py-3">
+
       <a class="navbar-brand" href="{% url 'webplatform:home_view' %}">Meal&nbsp;Hippo</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarText">
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mr-4">
             <a class="nav-link" href="{% url 'webplatform:order_items_view' %}">Order food</a>
           </li>
+          {% comment %}<li class="nav-item mr-4">
+            <a class="nav-link" href="{% url 'webplatform:list_view' %}">List<small> (new)</small></a>
+          </li>{% endcomment %}
           <li class="nav-item mr-4">
             <a class="nav-link" href="{% url 'webplatform:support_view' %}">How it works</a>
           </li>
@@ -61,6 +69,7 @@
           {% endif %}
         </ul>
       </div>
+
     </nav>
 
     {% if user.is_authenticated %}
