@@ -228,7 +228,8 @@ div.dropdown-menu a:active {
 
 .badge-info {
   background: white;
-  border: 1px solid var(--attention_dark);
+  /* border: 1px solid var(--attention_dark); */
+  border: none;
   color: var(--attention_text);
   font-weight: normal;
   font-size: 0.8em;
