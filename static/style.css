@@ -259,3 +259,7 @@ div.dropdown-menu a:active {
   right: 1em;
   z-index: 80000;
 }
+
+div.list-search {
+  border-width: 3px !important
+}
