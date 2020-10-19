@@ -235,9 +235,14 @@ div.dropdown-menu a:active {
   font-size: 0.8em;
 }
 
+.location-badge {
+  background-color: #7A7A7A;
+}
+
 .location {
   width: 120px;
 }
+
 
 .text-focus {
   color: var(--splash_focus);
