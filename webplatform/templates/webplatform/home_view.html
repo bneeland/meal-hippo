@@ -16,19 +16,33 @@
 
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-12">
 
-      <h3>
+      <h4>
 
         <p>Hi everyone&mdash;</p>
 
-        <p>There are so many great food providers in your city.</p>
+        <p>If you have a busy life, it can be difficult to keep up with cooking at home.</p>
 
-        <p>We want to make it easy for you to get great food day-to-day. The kind of food that you’d make yourself, if you had the time, effort, and skills to do so, every day.</p>
+        <p>Sometimes, you don't have the time, effort, or skills to cook great, affordable food, three times a day, every day of the year.</p>
 
-        <p>We’ve compiled a list of local businesses that offer the kind of food that works well for home use.</p>
+        <p>You end up cooking when you would rather be relaxing. Or carving out big spans of time in your weekend to do meal preparation. Or, you settle for quick sub-par meals that aren't as tasty or healthy as you would hope.</p>
 
-        <p><a href="{% url 'webplatform:list_view' %}">More <i class="fas fa-long-arrow-alt-right"></i></a></p>
+        <p>We built Meal Hippo to solve this problem. We want to make it easy for you to get great food day-to-day. The kind of food that you’d make yourself, if you had the time, effort, and skills to do so, every meal.</p>
 
-      </h3>
+        <p>Meal Hippo makes it super easy to get casserole-sized meals from local caterers delivered to you.</p>
+
+        <p>We've partnered with a growing list of local caterers who offer great food that you can use to solve your meal planning and home cooking challenges.</p>
+
+      </h4>
+
+      <div class="text-center">
+        <div class="mt-5">
+          <a href="{% url 'webplatform:order_items_view' %}" class="btn btn-attention btn-lg btn-order" role="button">Order food</a>
+          {% if user.is_authenticated and free_delivery or not user.is_authenticated %}<br><small>Free delivery with first order</small>{% endif %}
+        </div>
+        <div class="mt-3 mb-4">
+          <a href="{% url 'webplatform:support_view' %}" class="btn btn-light" role="button">Learn more</a>
+        </div>
+      </div>
 
     </div>
 
@@ -51,12 +65,12 @@
       <div class="col">
         <!-- <h1 class="mb-4">Order home-style food from chefs and caterers in your area</h1> -->
         <h1 class="title mb-4">Lunches and suppers, without cooking</h1>
-        <h3 class="mb-4">
-          Get casserole-size meals from local caterers delivered to you.
-        </h3>
+        <h4 class="mb-4 px-5 mx-5">
+          Meal Hippo solves your meal planning and home cooking challenges by making it easy to get casserole-sized meals from local caterers delivered to you.
+        </h4>
         <h5>
           <span class="badge badge-pill badge-info p-2 px-3 mb-3"><i class="fas fa-check"></i>&nbsp;&nbsp;Bulk portions for multiple meals</span>&nbsp;
-          <span class="badge badge-pill badge-info p-2 px-3 mb-3"><i class="fas fa-check"></i>&nbsp;&nbsp;No prep</span>&nbsp;
+          <span class="badge badge-pill badge-info p-2 px-3 mb-3"><i class="fas fa-check"></i>&nbsp;&nbsp;No prep, no cooking</span>&nbsp;
           <span class="badge badge-pill badge-info p-2 px-3 mb-3"><i class="fas fa-check"></i>&nbsp;&nbsp;Ready to eat</span>
         </h5>
         <!-- <p>
@@ -78,6 +92,8 @@
     </div>
   </div>
 </div>
+
+
 
 <div class="container my-5">
   <div class="card-group shadow">
